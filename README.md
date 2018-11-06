@@ -4,7 +4,7 @@
 
 - Bernardo
 - Marcos Vinicius Prescendo Tonin - 140153233
-- Talles
+- Talles Fernando Silva - 140173633
 - Vinicius
 ------------------------------------------------------------
 ### Datas 
