@@ -4,7 +4,7 @@
 
 - Bernardo
 - Marcos Vinicius Prescendo Tonin - 140153233
-- Thales
+- Talles
 - Vinicius
 ------------------------------------------------------------
 ### Datas 
