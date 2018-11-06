@@ -2,7 +2,7 @@
 
 #### Membros
 
-- Bernardo
+- Bernardo Ferreira Santos Ximbre - 160164516
 - Marcos Vinicius Prescendo Tonin - 140153233
 - Talles Fernando Silva - 140173633
 - Vinicius
