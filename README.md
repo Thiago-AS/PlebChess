@@ -1,14 +1,15 @@
 # Projeto MP - Jogo de Estratégia
 
-#### Membros
+#### Membros Grupo 01
 
 - Bernardo Ferreira Santos Ximbre - 160164516
 - Marcos Vinicius Prescendo Tonin - 140153233
 - Talles Fernando Silva - 140173633
-- Vinicius
+- Thiago Araújo da Silva - 150149832
+- Vinicius Campos Silva -160041465 
 ------------------------------------------------------------
 ### Datas 
-*  **Data de Definição dos grupos : 5/11/1 - 7/11/188**
+*  **Data de Definição dos grupos : 5/11/1 - 7/11/18**
 *  **Data de Entrega Especificação: 12/11/18 ate as 23:55**
 *  **Data de Entrega Projeto: 02/12/18 ate as 23:55**
 ---------------------------------------------------------------
