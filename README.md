@@ -4,7 +4,7 @@
 
 Implementação de um jogo de estratégia para a disciplina de Métodos de Programação da Universidade de Brasília.
 
-##  Requerimentos
+##  Dependências
 - Ferramentas necessárias:
   - [C++](http://www.cplusplus.com/)
   - [Catch](https://github.com/catchorg/Catch2)
