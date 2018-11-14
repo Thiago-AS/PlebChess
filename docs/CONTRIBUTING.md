@@ -16,7 +16,7 @@
   make test
   ./test
   ```
-4. Após sucesso em todo os tests, de um *push* com suas modifições para sua *branch* e crie um [PR](#pr's) (Pull Resquest) para a master.
+4. Após sucesso em todo os tests, de um *push* com suas modifições para sua *branch*, de um *pull* na master, resolva os conflitos e crie um [PR](#pr's) (Pull Resquest) para a master.
 
 ### Commits
 

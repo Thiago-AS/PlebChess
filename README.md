@@ -16,7 +16,7 @@ Implementação de um jogo de estratégia para a disciplina de Métodos de Progr
 |:---------------------:|:---------------------------------:|:-------------------------------------------------------------------:|
 |  Thiago Araújo        |  [thiagos.araujo09@gmail.com]()   |   [@Thiag-AS](https://github.com/Thiago-AS)                         |
 |  Vinicius Campos      |  []()                             |   [@ViniciusSilva3](https://github.com/ViniciusSilva3)              |
-|  Talles Fernando      |  []()                             |   [@InluxBDX](https://github.com/InluxBDX)                          |
+|  Talles Fernando      |  [talles.silva@gmail.com]()       |   [@InluxBDX](https://github.com/InluxBDX)                          |
 |  Marcos Vinicius      |  []()                             |   [@M-Tonin](https://github.com/M-Tonin)                            |
 |  Bernardo Ferreira    |  []()                             |   [@BernardoXimbre](https://github.com/BernardoXimbre)              |
 
