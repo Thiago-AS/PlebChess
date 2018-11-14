@@ -1,22 +1,22 @@
-# Table of Contents
+# Sumário
 
 1. [Contribuindo](#Contribuindo)
 2. [Politica de commits](#Commits)
-3. [Politica de Pr's](#Pr's)
-4. [Requerimentos](#Requerimentos)
+3. [Politica de Pr's](#Prs)
+4. [Requerimentos](#Dependências)
 
 
 ## Contribuindo
 
 1. Crie uma *issue* com uma melhoria/*bug* ou adote uma das *issues* já existentes.
 2. Crie uma *branch* chamada ``dev_[feature]``, onde *feature* é o nome ou número de uma *issue* a ser trabalhada.
-3. Atualize a *branch* ``dev_[feature]`` com seu código de acordo com a [folha de estilos](https://google.github.io/styleguide/cppguide.html) utilizada, e envie seus *commits* de acordo com a [politica de commits](#commits)
+3. Atualize a *branch* ``dev_[feature]`` com seu código de acordo com a [folha de estilos](https://google.github.io/styleguide/cppguide.html) utilizada, e envie seus *commits* de acordo com a [politica de commits](#Commits)
 4. Rode os tests para ver se tudo está de acordo com o previsto:
   ```bash
   make test
   ./test
   ```
-4. Após sucesso em todo os tests, de um *push* com suas modifições para sua *branch*, de um *pull* na master, resolva os conflitos e crie um [PR](#pr's) (Pull Resquest) para a master.
+4. Após sucesso em todo os tests, de um *push* com suas modifições para sua *branch*, de um *pull* na master, resolva os conflitos e crie um [PR](#Prs) (Pull Resquest) para a master.
 
 ### Commits
 
@@ -35,7 +35,7 @@ Adicionar importação de funcionalidades de projeto
 
 * Utilize **imperativo**, não gerúndio!
 
-### Pr's
+### Prs
 
 #### 1º Passo
 - Preencher o Título do _Pull Request_, uma sucinta descrição a respeito do _Pull Request_.
@@ -60,7 +60,7 @@ Adicionar importação de funcionalidades de projeto
 - Ferramentas necessárias:
   - [C++](http://www.cplusplus.com/)
   - [SFML](https://www.sfml-dev.org/)
-  - [CPPLinter]((https://github.com/cpplint/cpplint)
+  - [CPPLinter](https://github.com/cpplint/cpplint)
   - [Catch](https://github.com/catchorg/Catch2)
   - [Gcov](http://gcc.gnu.org/onlinedocs/gcc/Gcov.html)
   - [CPPcheck](http://cppcheck.sourceforge.net/)
