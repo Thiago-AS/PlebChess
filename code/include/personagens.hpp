@@ -12,7 +12,7 @@
 #include <cstring>
 using namespace std;
 enum tipo_personagens {
-	zero =0,
+	zero_p = 0,
     arqueiro = 1,
     guerreiro = 2,
     cavaleiro = 3

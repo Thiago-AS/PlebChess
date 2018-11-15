@@ -7,9 +7,10 @@
 
 #include "catch.hpp"
 #include "../include/personagens.hpp"
+#include "../include/unidades.hpp"
 
 TEST_CASE( "Personagens -> metodos get e set", "[personagens.hpp]" ) {
-    Personagens p1(zero);
+    Personagens p1(zero_p);
     REQUIRE( p1.setDano(10) == 1 );
     REQUIRE( p1.getDano() == 10 );
     REQUIRE( p1.setVida(1500) == 1 );
@@ -26,7 +27,7 @@ TEST_CASE( "Personagens -> metodos get e set", "[personagens.hpp]" ) {
     REQUIRE( p1.getQt_turnos() == 10 );
     REQUIRE( p1.setQt_casas(5) == 1 );
     REQUIRE( p1.getQt_casas() == 5 );
-    REQUIRE(p1.setPersonagem(zero) == 1);
+    REQUIRE(p1.setPersonagem(zero_p) == 1);
     REQUIRE( p1.getPersonagem() == 0);
     p1.get_status_personagem();
 }
@@ -67,8 +68,8 @@ TEST_CASE( "Personagens Construtor - cavaleiro", "[personagens.hpp]" ) {
     p_cav.get_status_personagem();
 }
 
-TEST_CASE( "unidades -> metodos get e set", "[personagens.hpp]" ) {
-    unidades u1(zero);
+TEST_CASE( "unidades -> metodos get e set", "[unidades.hpp]" ) {
+    Unidades u1(zero_u);
     REQUIRE( u1.setQt_materia(3) == 1 );
     REQUIRE( u1.getQt_materia() == 3 );
     REQUIRE( u1.setVida(3100) == 1 );
@@ -77,41 +78,48 @@ TEST_CASE( "unidades -> metodos get e set", "[personagens.hpp]" ) {
     REQUIRE( u1.getLargura() == 20 );
     REQUIRE( u1.setComprimento(12) == 1 );
     REQUIRE( u1.getComprimento() == 12 );
-    REQUIRE( u1.setUnidade(zero) == 1 );
-    REQUIRE( u1.getUnidade() == zero );
+    REQUIRE( u1.setConstrucao(33) == 1 );
+    REQUIRE( u1.getConstrucao() == 33 );
+    REQUIRE( u1.setUnidade(zero_u) == 1 );
+    REQUIRE( u1.getUnidade() == zero_u );
     REQUIRE( u1.setRecurso(nada) == 1 );
-    REQUIRE( u1.getQt_Recurso() == nada);
-   
+    REQUIRE( u1.getRecurso() == nada);
+   u1.get_status_unidade();
 }
 
 TEST_CASE( "Unidade Construtor - fortaleza", "[unidades.hpp]" ) {
-    unidades u_for(fortaleza);
-    REQUIRE( u_for.getLargura() == 40 );
-    REQUIRE( u_for.getVida() == 100 );
-    REQUIRE( u_for.getComprimento() == 0 );
+    Unidades u_for(fortaleza);
+    REQUIRE( u_for.getLargura() == 2);
+    REQUIRE( u_for.getVida() == 500 );
+    REQUIRE( u_for.getComprimento() == 4 );
     REQUIRE( u_for.getQt_materia() == 0 );
-    REQUIRE( u_for.getQt_Unidade() == 2 );
-    REQUIRE( u_for.getQt_Recurso() == 2 );
-   
+    REQUIRE( u_for.getUnidade() == fortaleza );
+    REQUIRE( u_for.getRecurso() == nada );
+    REQUIRE( u_for.getConstrucao() == 999999 );
+   u_for.get_status_unidade();
 }
 
 TEST_CASE( "Unidade Construtor - lenhadora", "[unidades.hpp]" ) {
-    unidades u_lenha(fortaleza);
-    REQUIRE( u_lenha.getLargura() == 40 );
+    Unidades u_lenha(lenhadora);
+    REQUIRE( u_lenha.getLargura() == 2 );
     REQUIRE( u_lenha.getVida() == 100 );
-    REQUIRE( u_lenha.getComprimento() == 0 );
-    REQUIRE( u_lenha.getQt_materia() == 0 );
-    REQUIRE( u_lenha.getQt_Unidade() == 2 );
-    REQUIRE( u_lenha.getQt_Recurso() == 2 );
+    REQUIRE( u_lenha.getComprimento() == 2 );
+    REQUIRE( u_lenha.getQt_materia() == 5 );
+    REQUIRE( u_lenha.getUnidade() == lenhadora );
+    REQUIRE( u_lenha.getRecurso() == madeira );
+    REQUIRE( u_lenha.getConstrucao() == 30 );
+    u_lenha.get_status_unidade();
 }
 
 TEST_CASE( "Unidade Construtor - mina de ouro", "[unidades.hpp]" ) {
-    unidades u_min(fortaleza);
-    REQUIRE( u_min.getLargura() == 40 );
-    REQUIRE( u_min.getVida() == 100 );
-    REQUIRE( u_min.getComprimento() == 0 );
-    REQUIRE( u_min.getQt_materia() == 0 );
-    REQUIRE( u_min.getQt_Unidade() == 2 );
-    REQUIRE( u_min.getQt_Recurso() == 2 );
+    Unidades u_min(mina);
+    REQUIRE( u_min.getLargura() == 2 );
+    REQUIRE( u_min.getVida() == 200 );
+    REQUIRE( u_min.getComprimento() == 2 );
+    REQUIRE( u_min.getQt_materia() == 10 );
+    REQUIRE( u_min.getUnidade() == mina );
+    REQUIRE( u_min.getRecurso() == ouro );
+    REQUIRE( u_min.getConstrucao() == 50 );
+    u_min.get_status_unidade();
 
 }

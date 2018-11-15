@@ -84,7 +84,7 @@ tipo_personagens  Personagens::getPersonagem() {
     return personagem;
 }
 int Personagens::get_status_personagem(){
-    if (getPersonagem()==zero){
+    if (getPersonagem()==zero_p){
         printf("Personagem :: ZERO \n");    
     } else if (getPersonagem()==arqueiro){
     	printf("Personagem :: ARQUEIRO \n"); 
@@ -99,7 +99,7 @@ int Personagens::get_status_personagem(){
     printf("O personagem tem \nVida: %d Dano: %d\n",getVida(),getDano());
     printf("Esta na posicao: X:%d Y:%d\n",getPosX(),getPosY());
     printf("Limitacoes: Quantidade de turnos para ser produzido %d \n",getQt_turnos());
-    printf("\t\t\tQuantidade de casas que podem ser andadas %d \n",getQt_casas());
+    printf("\tQuantidade de casas que podem ser andadas %d \n",getQt_casas());
 
 }		
 
