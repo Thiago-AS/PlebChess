@@ -1,6 +1,6 @@
 IDIR =../include
 CC=g++
-CFLAGS=-ftest-coverage -fprofile-arcs -I$(IDIR)
+CFLAGS=-I$(IDIR) -std=c++11 -ftest-coverage -fprofile-arcs
 
 ODIR=obj
 LDIR =../lib
@@ -10,17 +10,16 @@ LIBS=-lm
 _DEPS = personagens.hpp catch.hpp
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_OBJ = personagens.o main.o 
+_OBJ = testes.o personagens.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
-
 
 $(ODIR)/%.o: %.cpp $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
-personagens: $(OBJ)
+testes: $(OBJ)
 	$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
 
 .PHONY: clean
 
 clean:
-	rm -f $(ODIR)/*.o *~ core $(INCDIR)/*~ 
+	rm -f $(ODIR)/*.o *~ core $(INCDIR)/*~ $(ODIR)/*.gcno *~ $(ODIR)/*.gcda *~ testes *~
