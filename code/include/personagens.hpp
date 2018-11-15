@@ -12,34 +12,34 @@
 #include <cstring>
 using namespace std;
 
-enum tipo_personagens{
-	arqueiro, guerreiro, cavaleiro
+enum tipo_personagens {
+    arqueiro,
+    guerreiro,
+    cavaleiro
 };
-
 
 class Personagens {
-	private:
-		tipo_personagens personagem;
-		bool eh_humano;
-		unsigned int posX;
-		unsigned int posY;
-		unsigned int vida;
-		unsigned int dano;
-	public:
-	   //construtor e destrutor	
-	   Personagens();
-	   ~Personagens();
-	   // metodos getter and setters
-	   int  setVida(unsigned int vida);
-	   int  setDano(unsigned int dano);
-	   int  setPosX(unsigned int posX);
-	   int  setPosY(unsigned int posY);
-	   unsigned int  getVida();
-	   unsigned int  getDano();
-	   unsigned int  getPosX();
-	   unsigned int  getPosY();
-	   tipo_personagens  getPersonagem();
-		
-};
+    private:
+        tipo_personagens personagem;
+    bool eh_humano;
+    unsigned int posX;
+    unsigned int posY;
+    unsigned int vida;
+    unsigned int dano;
+    public:
+        //construtor e destrutor	
+        Personagens();
+    ~Personagens();
+    // metodos getter and setters
+    int setVida(unsigned int p_vida);
+    int setDano(unsigned int p_dano);
+    int setPosX(unsigned int p_posX);
+    int setPosY(unsigned int p_posY);
+    unsigned int getVida();
+    unsigned int getDano();
+    unsigned int getPosX();
+    unsigned int getPosY();
+    tipo_personagens getPersonagem();
 
+};
 #endif  
