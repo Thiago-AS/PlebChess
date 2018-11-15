@@ -12,8 +12,8 @@ TEST_CASE( "Personagens -> metodos get e set", "[personagens.hpp]" ) {
     Personagens p1(zero);
     REQUIRE( p1.setDano(10) == 1 );
     REQUIRE( p1.getDano() == 10 );
-    REQUIRE( p1.setVida(150) == 1 );
-    REQUIRE( p1.getVida() == 150 );
+    REQUIRE( p1.setVida(1500) == 1 );
+    REQUIRE( p1.getVida() == 1500 );
     REQUIRE( p1.setPosX(1) == 1 );
     REQUIRE( p1.getPosX() == 1 );
     REQUIRE( p1.setPosY(12) == 1 );
@@ -22,28 +22,32 @@ TEST_CASE( "Personagens -> metodos get e set", "[personagens.hpp]" ) {
     REQUIRE( p1.getPosX() == 0 );
     REQUIRE( p1.setPosY(0) == 1 );
     REQUIRE( p1.getPosY() == 0);
+    p1.get_status_personagem();
 }
 
 TEST_CASE( "Personagens Construtor - arqueiro", "[personagens.hpp]" ) {
     Personagens p_arq(arqueiro);
-    REQUIRE( p_arq.getDano() == 10 );
-    REQUIRE( p_arq.getVida() == 150 );
+    REQUIRE( p_arq.getDano() == 40 );
+    REQUIRE( p_arq.getVida() == 100 );
     REQUIRE( p_arq.getPosX() == 0 );
     REQUIRE( p_arq.getPosY() == 0 );
+    p_arq.get_status_personagem();
 }
 
 TEST_CASE( "Personagens Construtor - guerreiro", "[personagens.hpp]" ) {
     Personagens p_ger(guerreiro);
-    REQUIRE( p_ger.getDano() == 10 );
+    REQUIRE( p_ger.getDano() == 30 );
     REQUIRE( p_ger.getVida() == 150 );
     REQUIRE( p_ger.getPosX() == 0 );
     REQUIRE( p_ger.getPosY() == 0 );
+    p_ger.get_status_personagem();
 }
 
 TEST_CASE( "Personagens Construtor - cavaleiro", "[personagens.hpp]" ) {
     Personagens p_cav(cavaleiro);
-    REQUIRE( p_cav.getDano() == 10 );
-    REQUIRE( p_cav.getVida() == 150 );
+    REQUIRE( p_cav.getDano() == 20 );
+    REQUIRE( p_cav.getVida() == 250 );
     REQUIRE( p_cav.getPosX() == 0 );
     REQUIRE( p_cav.getPosY() == 0 );
+    p_cav.get_status_personagem();
 }
