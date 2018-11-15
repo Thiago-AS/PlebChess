@@ -123,3 +123,14 @@ TEST_CASE( "Unidade Construtor - mina de ouro", "[unidades.hpp]" ) {
     u_min.get_status_unidade();
 
 }
+
+TEST_CASE( "Utils", "[utils.hpp]" ) {
+    REQUIRE( rest_eh_positivo(2) == 1 );
+    REQUIRE( rest_eh_positivo(0) == 1 );
+    REQUIRE( rest_eh_positivo(-2) == 0 );
+    REQUIRE( rest_limiteCol_sup(12) == 1);
+    REQUIRE( rest_limiteCol_sup(200) == 0);
+    REQUIRE( rest_limiteLin_sup(12) == 1);
+    REQUIRE( rest_limiteLin_sup(200) == 0);
+}
+

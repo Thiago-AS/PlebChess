@@ -63,6 +63,18 @@ int Unidades::setConstrucao(unsigned int p_const) {
     return 1;
 
 }
+int  Unidades::setPosX(unsigned int p_posX) {
+    rest_eh_positivo(p_posX);
+	rest_limiteLin_sup(p_posX + getLargura());
+	posX = p_posX;
+    return 1;
+}
+int  Unidades::setPosY(unsigned int p_posY) {
+    rest_eh_positivo(p_posY);
+	rest_limiteCol_sup(p_posY + getComprimento());
+	posY = p_posY;
+    return 1;
+}
 int Unidades::setUnidade(tipo_unidades p_unidade) {
     unidade = p_unidade;
     return 1;
@@ -93,6 +105,12 @@ tipo_unidades Unidades::getUnidade() {
 }
 tipo_recurso Unidades::getRecurso() {
     return recurso;  
+}
+unsigned int  Unidades::getPosX() {
+    return posX;
+}
+unsigned int  Unidades::getPosY() {
+    return posY;
 }
 
 void Unidades::get_status_unidade() {

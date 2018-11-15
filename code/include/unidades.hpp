@@ -5,6 +5,7 @@
 #ifndef UNIDADES_HPP_
 #define UNIDADES_HPP_
 // includes
+#include "../include/utils.hpp"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -33,6 +34,8 @@ class Unidades {
     unsigned int construcao;
 	unsigned int largura;
 	unsigned int comprimento;
+    // indica a posicao inicial .... crescera de acordo com a largura e o comprimento
+    unsigned int posX, posY;
     public:
         //construtor e destrutor	
         Unidades(tipo_unidades unidade);
@@ -43,6 +46,8 @@ class Unidades {
         int setLargura(unsigned int p_lar);
         int setComprimento(unsigned int p_com);
         int setConstrucao(unsigned int p_const);
+        int setPosX(unsigned int p_posX);
+        int setPosY(unsigned int p_posY);
         int setUnidade(tipo_unidades p_unidade);
 	    int setRecurso(tipo_recurso p_recurso);
         unsigned int getVida();
@@ -50,6 +55,8 @@ class Unidades {
         unsigned int getComprimento();
         unsigned int getQt_materia();
         unsigned int getConstrucao();
+        unsigned int getPosX();
+        unsigned int getPosY();
 
 	tipo_unidades getUnidade();
         tipo_recurso getRecurso();

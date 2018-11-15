@@ -5,6 +5,7 @@
 #ifndef PERSONAGENS_HPP_
 #define PERSONAGENS_HPP_
 // includes
+#include "../include/utils.hpp"
 #include <iostream>
 #include <fstream>
 #include <string>

@@ -7,10 +7,10 @@ LDIR =../lib
 
 LIBS=-lm
 
-_DEPS = personagens.hpp catch.hpp unidades.hpp
+_DEPS = personagens.hpp catch.hpp unidades.hpp utils.hpp
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_OBJ = testes.o personagens.o unidades.o
+_OBJ = testes.o personagens.o unidades.o utils.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 $(ODIR)/%.o: %.cpp $(DEPS)
