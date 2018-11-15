@@ -59,7 +59,7 @@ Adicionar importação de funcionalidades de projeto
 ##  Dependências
 - Ferramentas necessárias:
   - [C++](http://www.cplusplus.com/)
-  - [SFML](https://www.sfml-dev.org/)
+  - [SDL](https://www.libsdl.org/)
   - [CPPLinter](https://github.com/cpplint/cpplint)
   - [Catch](https://github.com/catchorg/Catch2)
   - [Gcov](http://gcc.gnu.org/onlinedocs/gcc/Gcov.html)
