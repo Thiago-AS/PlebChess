@@ -66,3 +66,52 @@ TEST_CASE( "Personagens Construtor - cavaleiro", "[personagens.hpp]" ) {
     REQUIRE( p_cav.getPersonagem() == 3);
     p_cav.get_status_personagem();
 }
+
+TEST_CASE( "unidades -> metodos get e set", "[personagens.hpp]" ) {
+    unidades u1(zero);
+    REQUIRE( u1.setQt_materia(3) == 1 );
+    REQUIRE( u1.getQt_materia() == 3 );
+    REQUIRE( u1.setVida(3100) == 1 );
+    REQUIRE( u1.getVida() == 3100 );
+    REQUIRE( u1.setLargura(20) == 1 );
+    REQUIRE( u1.getLargura() == 20 );
+    REQUIRE( u1.setComprimento(12) == 1 );
+    REQUIRE( u1.getComprimento() == 12 );
+    REQUIRE( u1.setUnidade(zero) == 1 );
+    REQUIRE( u1.getUnidade() == zero );
+    REQUIRE( u1.setRecurso(nada) == 1 );
+    REQUIRE( u1.getQt_Recurso() == nada);
+   
+}
+
+TEST_CASE( "Unidade Construtor - fortaleza", "[unidades.hpp]" ) {
+    unidades u_for(fortaleza);
+    REQUIRE( u_for.getLargura() == 40 );
+    REQUIRE( u_for.getVida() == 100 );
+    REQUIRE( u_for.getComprimento() == 0 );
+    REQUIRE( u_for.getQt_materia() == 0 );
+    REQUIRE( u_for.getQt_Unidade() == 2 );
+    REQUIRE( u_for.getQt_Recurso() == 2 );
+   
+}
+
+TEST_CASE( "Unidade Construtor - lenhadora", "[unidades.hpp]" ) {
+    unidades u_lenha(fortaleza);
+    REQUIRE( u_lenha.getLargura() == 40 );
+    REQUIRE( u_lenha.getVida() == 100 );
+    REQUIRE( u_lenha.getComprimento() == 0 );
+    REQUIRE( u_lenha.getQt_materia() == 0 );
+    REQUIRE( u_lenha.getQt_Unidade() == 2 );
+    REQUIRE( u_lenha.getQt_Recurso() == 2 );
+}
+
+TEST_CASE( "Unidade Construtor - mina de ouro", "[unidades.hpp]" ) {
+    unidades u_min(fortaleza);
+    REQUIRE( u_min.getLargura() == 40 );
+    REQUIRE( u_min.getVida() == 100 );
+    REQUIRE( u_min.getComprimento() == 0 );
+    REQUIRE( u_min.getQt_materia() == 0 );
+    REQUIRE( u_min.getQt_Unidade() == 2 );
+    REQUIRE( u_min.getQt_Recurso() == 2 );
+
+}
