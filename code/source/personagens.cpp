@@ -2,7 +2,7 @@
 #include "../include/personagens.hpp"
 
 
-Personagens::Personagens(void){
+Personagens::Personagens(tipo_personagens personagem_atual){
 
 
 }
@@ -41,5 +41,7 @@ unsigned int  Personagens::getPosY(){
 tipo_personagens  Personagens::getPersonagem(){
     return personagem;
 }
-		
+int get_status_personagem(){
+
+}		
 

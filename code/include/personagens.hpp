@@ -13,6 +13,7 @@
 using namespace std;
 
 enum tipo_personagens {
+	zero,
     arqueiro,
     guerreiro,
     cavaleiro
@@ -28,7 +29,7 @@ class Personagens {
     unsigned int dano;
     public:
         //construtor e destrutor	
-        Personagens();
+        Personagens(tipo_personagens personagem_atual);
     ~Personagens();
     // metodos getter and setters
     int setVida(unsigned int p_vida);
@@ -40,6 +41,6 @@ class Personagens {
     unsigned int getPosX();
     unsigned int getPosY();
     tipo_personagens getPersonagem();
-
+    int get_status_personagem();
 };
 #endif  
