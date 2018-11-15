@@ -17,7 +17,7 @@ enum tipo_personagens{
 };
 
 
-class personagens {
+class Personagens {
 	private:
 		tipo_personagens personagem;
 		bool eh_humano;
@@ -26,7 +26,10 @@ class personagens {
 		unsigned int vida;
 		unsigned int dano;
 	public:
-	   
+	   //construtor e destrutor	
+	   Personagens();
+	   ~Personagens();
+	   // metodos getter and setters
 	   int  setVida(unsigned int vida);
 	   int  setDano(unsigned int dano);
 	   int  setPosX(unsigned int posX);
@@ -35,7 +38,7 @@ class personagens {
 	   unsigned int  getDano();
 	   unsigned int  getPosX();
 	   unsigned int  getPosY();
-	   Personagem  getPersonagem();
+	   tipo_personagens  getPersonagem();
 		
 };
 
