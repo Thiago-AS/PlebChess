@@ -8,7 +8,7 @@ Implementação de um jogo de estratégia para a disciplina de Métodos de Progr
 - Ferramentas necessárias:
   - [C++](http://www.cplusplus.com/)
   - [Catch](https://github.com/catchorg/Catch2)
-  - [SFML](https://www.sfml-dev.org/)
+  - [SDL](https://www.libsdl.org/)
 
 ## Team
 
@@ -18,7 +18,7 @@ Implementação de um jogo de estratégia para a disciplina de Métodos de Progr
 |  Vinicius Campos      |  []()                             |   [@ViniciusSilva3](https://github.com/ViniciusSilva3)              |
 |  Talles Fernando      |  [talles.silva@gmail.com]()       |   [@InluxBDX](https://github.com/InluxBDX)                          |
 |  Marcos Tonin         |  [marcosvtonin@gmail.com]()       |   [@M-Tonin](https://github.com/M-Tonin)                            |
-|  Bernardo Ferreira    |  []()                             |   [@BernardoXimbre](https://github.com/BernardoXimbre)              |
+|  Bernardo Ferreira    |  [bernardoximbre@gmail.com]()                             |   [@BernardoXimbre](https://github.com/BernardoXimbre)              |
 
 ## Contribua
 
