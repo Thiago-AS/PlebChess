@@ -35,27 +35,35 @@ Personagens::~Personagens(void) {
 }
 	   // metodos getter and setters
 int  Personagens::setVida(unsigned int p_vida) {
-    vida = p_vida;
+    rest_eh_positivo(p_vida);
+	vida = p_vida;
     return 1;
 }
 int  Personagens::setDano(unsigned int p_dano) {
-    dano = p_dano;
+    rest_eh_positivo(p_dano);
+	dano = p_dano;
     return 1;
 }
 int  Personagens::setPosX(unsigned int p_posX) {
-    posX = p_posX;
+    rest_eh_positivo(p_posX);
+	rest_limiteLin_sup(p_posX);
+	posX = p_posX;
     return 1;
 }
 int  Personagens::setPosY(unsigned int p_posY) {
-    posY = p_posY;
+    rest_eh_positivo(p_posY);
+	rest_limiteCol_sup(p_posY);
+	posY = p_posY;
     return 1;
 }
 int Personagens::setQt_turnos(unsigned int turnos){
-    qt_turnos = turnos;
+    rest_eh_positivo(turnos);
+	qt_turnos = turnos;
     return 1;
 }
 int Personagens::setQt_casas(unsigned int casas){
-    qt_casas =  casas;
+    rest_eh_positivo(casas);
+	qt_casas =  casas;
     return 1;
 }
 int  Personagens::setPersonagem(tipo_personagens tipo) {

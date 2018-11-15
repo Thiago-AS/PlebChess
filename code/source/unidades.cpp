@@ -34,27 +34,32 @@ Unidades::~Unidades() {
 
 }
 int Unidades::setVida(unsigned int p_vida) {
-    vida = p_vida;
+    rest_eh_positivo(p_vida);
+	vida = p_vida;
     return 1;
 
 }
 int Unidades::setQt_materia(unsigned int materia) {
-    qt_materia = materia;
+    rest_eh_positivo(materia);
+	qt_materia = materia;
     return 1;
 
 }
 int Unidades::setLargura(unsigned int p_lar) {
-    largura = p_lar;
+    rest_eh_positivo(p_lar);
+	largura = p_lar;
     return 1;
 
 }
 int Unidades::setComprimento(unsigned int p_com) {
-    comprimento = p_com;
+    rest_eh_positivo(p_com);
+	comprimento = p_com;
     return 1;
 
 }
 int Unidades::setConstrucao(unsigned int p_const) {
-    construcao = p_const;
+    rest_eh_positivo(p_const);
+	construcao = p_const;
     return 1;
 
 }
