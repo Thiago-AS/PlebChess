@@ -22,6 +22,12 @@ TEST_CASE( "Personagens -> metodos get e set", "[personagens.hpp]" ) {
     REQUIRE( p1.getPosX() == 0 );
     REQUIRE( p1.setPosY(0) == 1 );
     REQUIRE( p1.getPosY() == 0);
+    REQUIRE( p1.setQt_turnos(10) == 1 );
+    REQUIRE( p1.getQt_turnos() == 10 );
+    REQUIRE( p1.setQt_casas(5) == 1 );
+    REQUIRE( p1.getQt_casas() == 5 );
+    REQUIRE(p1.setPersonagem(zero) == 1);
+    REQUIRE( p1.getPersonagem() == 0);
     p1.get_status_personagem();
 }
 
@@ -31,6 +37,9 @@ TEST_CASE( "Personagens Construtor - arqueiro", "[personagens.hpp]" ) {
     REQUIRE( p_arq.getVida() == 100 );
     REQUIRE( p_arq.getPosX() == 0 );
     REQUIRE( p_arq.getPosY() == 0 );
+    REQUIRE( p_arq.getQt_turnos() == 2 );
+    REQUIRE( p_arq.getQt_casas() == 2 );
+    REQUIRE( p_arq.getPersonagem() == 1);
     p_arq.get_status_personagem();
 }
 
@@ -40,6 +49,9 @@ TEST_CASE( "Personagens Construtor - guerreiro", "[personagens.hpp]" ) {
     REQUIRE( p_ger.getVida() == 150 );
     REQUIRE( p_ger.getPosX() == 0 );
     REQUIRE( p_ger.getPosY() == 0 );
+    REQUIRE( p_ger.getQt_turnos() == 1 );
+    REQUIRE( p_ger.getQt_casas() == 1 );
+    REQUIRE( p_ger.getPersonagem() == 2);
     p_ger.get_status_personagem();
 }
 
@@ -49,5 +61,8 @@ TEST_CASE( "Personagens Construtor - cavaleiro", "[personagens.hpp]" ) {
     REQUIRE( p_cav.getVida() == 250 );
     REQUIRE( p_cav.getPosX() == 0 );
     REQUIRE( p_cav.getPosY() == 0 );
+    REQUIRE( p_cav.getQt_turnos() == 2 );
+    REQUIRE( p_cav.getQt_casas() == 3 );
+    REQUIRE( p_cav.getPersonagem() == 3);
     p_cav.get_status_personagem();
 }
