@@ -11,6 +11,7 @@
 #include <cstdlib>
 #include <cstring>
 using namespace std;
+
 enum tipo_unidades {
     zero_u = 0,
     fortaleza = 1,
@@ -22,6 +23,12 @@ enum tipo_recurso {
 	madeira = 1,
 	ouro = 2
 };
+
+    /**
+     *  \class Unidades
+     *  \brief Define tipos de unidades do jogo
+     *
+     */
 
 class Unidades {
     private:
@@ -51,8 +58,8 @@ class Unidades {
         unsigned int getQt_materia();
         unsigned int getConstrucao();
 
-	tipo_unidades getUnidade();
-        tipo_recurso getRecurso();
+	   tipo_unidades getUnidade();
+       tipo_recurso getRecurso();
         void get_status_unidade();
 
         
