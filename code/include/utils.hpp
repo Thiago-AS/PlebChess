@@ -10,8 +10,9 @@
 #include <string>
 #include <cstdlib>
 #include <cstring>
-using namespace std;
 
+
+using namespace std;
 #define LIN_TABULEIRO 30
 #define COL_TABULEIRO 20
 
