@@ -93,7 +93,7 @@ TEST_CASE( "Utils", "[utils.hpp]" ) {
 
 TEST_CASE( " quadrado -> metodos get e set", "[quadrado.hpp]" ) {
     Quadrado q1;
-    //Tabuleiro t1;
+    Tabuleiro t1;
     REQUIRE( q1.setPosX(1) == 1 );
     REQUIRE( q1.getPosX() == 1 );
     REQUIRE( q1.setPosY(12) == 1 );
@@ -106,7 +106,14 @@ TEST_CASE( " quadrado -> metodos get e set", "[quadrado.hpp]" ) {
     REQUIRE( q1.setUsado(false) == 1);
     REQUIRE( q1.getHumano() == false );
     REQUIRE( q1.getUsado() == false);
-   
-    
-    
+    t1.print_tabuleiro();
+    printf("\n\n\n");
+    t1.insere_fortaleza(12,0);
+    t1.insere_mina(18,12);
+    t1.insere_lenhadora(12,22);
+    t1.insere_guerreiro(13,13);
+    t1.insere_guerreiro(13,11);
+    t1.insere_arqueiro(1,13);
+    t1.insere_cavaleiro(19,18);
+    t1.print_tabuleiro();
 }
