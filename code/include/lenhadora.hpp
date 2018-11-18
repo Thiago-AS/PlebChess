@@ -1,3 +1,4 @@
+// "Copyright 2018 Mtonin"
 /**
 * @file Unidades.hpp
 * @brief Arquivo com as funcoes que sao usadas para implementar as funcoes que contaram o numero de linhas. 
@@ -20,7 +21,7 @@ enum tipo_recurso2 {
 };
 
 class Lenhadora {
-    private:
+ private:
     tipo_recurso2 recurso;
     bool eh_humano;
     unsigned int vida;
@@ -28,11 +29,13 @@ class Lenhadora {
     unsigned int construcao;
     unsigned int largura;
     unsigned int comprimento;
-    // indica a posicao inicial .... crescera de acordo com a largura e o comprimento
+    // indica a posicao inicial ....
+    // crescera de acordo com a largura e o comprimento
     unsigned int posX, posY;
-    public:
-        //construtor e destrutor
-        Lenhadora();    
+
+ public:
+        // construtor e destrutor
+        Lenhadora();
         ~Lenhadora();
         // metodos getter and setters
         int setVida(unsigned int p_vida);
@@ -52,7 +55,5 @@ class Lenhadora {
         unsigned int getPosY();
         tipo_recurso2 getRecurso();
         void get_status_unidade();
-
-        
 };
-#endif  
+#endif

@@ -1,3 +1,4 @@
+// "Copyright 2018 Mtonin"
 /**
 * @file quadrado.hpp
 * @brief Arquivo com as funcoes que sao usadas para implementar as funcoes que contaram o numero de linhas. 
@@ -8,13 +9,11 @@
 #include "quadrado.hpp"
 #include "utils.hpp"
 using namespace std;
-
-class Tabuleiro
-{
-private:
-  Quadrado  *quadrado;
+class Tabuleiro {
+ private:
+  Quadrado *quadrado;
   char tabuleiro[COL_TABULEIRO][LIN_TABULEIRO];
-public:
+ public:
   Tabuleiro();
   ~Tabuleiro();
   void print_tabuleiro();
@@ -25,6 +24,7 @@ public:
   int insere_mina(unsigned int posX, unsigned posY);
   int insere_fortaleza(unsigned int posX, unsigned posY);
   int eh_possivel_inserir(unsigned int posX, unsigned posY);
+  void atualiza_tabuleiro();
+  char qual_unidade(unsigned int posX, unsigned posY);
 };
-
 #endif

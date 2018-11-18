@@ -1,4 +1,4 @@
-
+// "Copyright 2018 Mtonin"
 #include "../include/arqueiro.hpp"
 
 Arqueiro::Arqueiro() {
@@ -10,7 +10,6 @@ Arqueiro::Arqueiro() {
           setQt_casas(2);
 }
 Arqueiro::~Arqueiro(void) {
-
 }
      // metodos getter and setters
 int  Arqueiro::setVida(unsigned int p_vida) {
@@ -35,12 +34,12 @@ int  Arqueiro::setPosY(unsigned int p_posY) {
   posY = p_posY;
     return 1;
 }
-int Arqueiro::setQt_turnos(unsigned int turnos){
+int Arqueiro::setQt_turnos(unsigned int turnos) {
     rest_eh_positivo(turnos);
   qt_turnos = turnos;
     return 1;
 }
-int Arqueiro::setQt_casas(unsigned int casas){
+int Arqueiro::setQt_casas(unsigned int casas) {
     rest_eh_positivo(casas);
   qt_casas =  casas;
     return 1;
@@ -63,12 +62,11 @@ unsigned int  Arqueiro::getQt_turnos() {
 unsigned int  Arqueiro::getQt_casas() {
     return qt_casas;
 }
-int Arqueiro::get_status_personagem(){
+int Arqueiro::get_status_personagem() {
     printf("Personagem :: Arqueiro \n");
-    printf("O personagem tem \nVida: %d Dano: %d\n",getVida(),getDano());
-    printf("Esta na posicao: X:%d Y:%d\n",getPosX(),getPosY());
-    printf("Limitacoes: Quantidade de turnos para ser produzido %d \n",getQt_turnos());
-    printf("\tQuantidade de casas que podem ser andadas %d \n",getQt_casas());
-
-}   
-
+    printf("O personagem tem \nVida: %d Dano: %d\n", getVida(), getDano());
+    printf("Esta na posicao: X:%d Y:%d\n", getPosX(), getPosY());
+    printf("Limitacoes: Quantidade de turnos para ser produzido");
+    printf("%d\n", getQt_turnos());
+    printf("\tQuantidade de casas que podem ser andadas %d \n", getQt_casas());
+}

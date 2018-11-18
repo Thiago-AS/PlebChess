@@ -1,8 +1,8 @@
 #include "../include/quadrado.hpp"
-    Quadrado::Quadrado(){
+    Quadrado::Quadrado() {
 
     }
-   Quadrado::~Quadrado(){
+   Quadrado::~Quadrado() {
 
     }		
 int  Quadrado::setPosX(unsigned int p_posX) {
@@ -18,11 +18,11 @@ int  Quadrado::setPosY(unsigned int p_posY) {
     return 1;
 }
 
-int Quadrado::setHumano(bool humano){
+int Quadrado::setHumano(bool humano) {
   eh_humano = humano;
   return 1;
 }
-int Quadrado::setUsado(bool uso){
+int Quadrado::setUsado(bool uso) {
   usado = uso;
   return 1;
 }
@@ -34,9 +34,15 @@ unsigned int  Quadrado::getPosY() {
     return posY;
 }    
 
-bool Quadrado::getHumano(){
+bool Quadrado::getHumano() {
      return eh_humano;
 }
-bool Quadrado::getUsado(){
+bool Quadrado::getUsado() {
     return usado;
 }    
+void Quadrado::unidadeMorta() {
+    setUsado(false);
+    setPosY(-1);
+    setPosX(-1);
+
+}

@@ -1,3 +1,4 @@
+// "Copyright 2018 Mtonin"
 /**
 * @file personagens.hpp
 * @brief Arquivo com as funcoes que sao usadas para implementar as funcoes que contaram o numero de linhas. 
@@ -13,8 +14,8 @@
 #include <cstring>
 using namespace std;
 
-class Arqueiro {		
-    private:
+class Arqueiro {
+ private :
     bool eh_humano;
     unsigned int posX;
     unsigned int posY;
@@ -22,8 +23,9 @@ class Arqueiro {
     unsigned int dano;
     unsigned int qt_turnos;
     unsigned int qt_casas;
-    public:
-        //construtor e destrutor    
+
+ public :
+// construtor e destrutor
         Arqueiro();
         ~Arqueiro();
         // metodos getter and setters
@@ -40,4 +42,4 @@ class Arqueiro {
         unsigned int getQt_turnos();
         unsigned int getQt_casas();
         int get_status_personagem();};
-#endif  
+#endif
