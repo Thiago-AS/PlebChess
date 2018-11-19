@@ -1,15 +1,10 @@
 // "Copyright 2018"
-#include "../include/gui.h"
+#include "../include/gui_manager.h"
 
 int main() {
-  Gui *new_gui = NULL;
-  new_gui = new Gui();
-
-  if (new_gui->Init())
-    SDL_Delay(2000);
-  else
-    cout << "Falha ao iniciar" << endl;
-
-  new_gui->Close();
+  GuiManager* game = GuiManager::Instance();
+  game->Run();
+  GuiManager::Release();
+  game = NULL;
   return 0;
 }
