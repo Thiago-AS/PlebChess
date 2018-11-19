@@ -4,7 +4,7 @@
 bool Gui::Init() {
     bool success = true;
 
-    ifc(SDL_Init(SDL_INIT_VIDEO) < 0) {
+    if (SDL_Init(SDL_INIT_VIDEO) < 0) {
         cout << "SDL nao pode iniciar! SDL Error: " << SDL_GetError() << endl;
         success = false;
     } else {
@@ -25,7 +25,7 @@ bool Gui::Init() {
 
 void Gui::Close() {
   SDL_FreeSurface(gScreenSurface);
-  gHelloWorld = NULL;
+  gScreenSurface = NULL;
 
   SDL_DestroyWindow(gWindow);
   gWindow = NULL;

@@ -6,6 +6,8 @@
 #include <SDL2/SDL.h>
 #include <iostream>
 
+using namespace std;
+
 class Gui {
  private:
   const int SCREEN_WIDTH = 680;
