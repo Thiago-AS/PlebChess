@@ -1,7 +1,7 @@
 // "Copyright 2018"
 #include "../include/gui.h"
 
-bool Gui::init() {
+bool Gui::Init() {
     bool success = true;
 
     ifc(SDL_Init(SDL_INIT_VIDEO) < 0) {
@@ -21,4 +21,14 @@ bool Gui::init() {
         }
     }
     return success;
+}
+
+void Gui::Close() {
+  SDL_FreeSurface(gScreenSurface);
+  gHelloWorld = NULL;
+
+  SDL_DestroyWindow(gWindow);
+  gWindow = NULL;
+
+  SDL_Quit();
 }

@@ -10,9 +10,11 @@ class Gui {
  private:
   const int SCREEN_WIDTH = 680;
   const int SCREEN_HEIGHT = 680;
+  SDL_Window* gWindow = NULL;
+  SDL_Surface* gScreenSurface = NULL;
  public:
-  bool init();
-  void close();
+  bool Init();
+  void Close();
 };
 
 #endif
