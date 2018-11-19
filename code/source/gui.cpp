@@ -27,7 +27,7 @@ Gui::Gui() {
   initialized = Init();
 }
 
-~Gui::Gui() {
+Gui::~Gui() {
   SDL_DestroyWindow(mWindow);
   mWindow = NULL;
 

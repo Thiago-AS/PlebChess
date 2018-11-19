@@ -19,6 +19,6 @@ class GuiManager {
   static void Release();
 
   void Run();
-}
+};
 
 #endif  // GUI_MANAGER_H
