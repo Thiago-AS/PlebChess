@@ -37,6 +37,7 @@ class Quadrado {
     int setPosY(unsigned int p_posY);
     int setHumano(bool humano);
     int setUsado(bool uso);
+    int setUnidade(TipoUnidade nomeUnidade);
     void unidadeMorta();
     unsigned int getPosX();
     unsigned int getPosY();

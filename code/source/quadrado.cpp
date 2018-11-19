@@ -46,7 +46,7 @@ bool Quadrado::getUsado() {
 }    
 void Quadrado::unidadeMorta() {
     setUsado(false);
-  	this->setUnidade(UnidadeVazio);
+  	this->setUnidade(TipoUnidade::UnidadeVazio);
     this->setPosX(-1);
 	this->setPosY(-1);
 
