@@ -1,4 +1,4 @@
-// "Copyright 2018 Mtonin"
+// "Copyright 2018 Grupo MP"
 /**
 * @file quadrado.hpp
 * @brief Arquivo com as funcoes que sao usadas para implementar as funcoes que contaram o numero de linhas. 

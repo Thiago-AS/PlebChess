@@ -1,4 +1,4 @@
-// "Copyright 2018 Mtonin"
+// "Copyright 2018 Grupo MP"
 #include "../include/guerreiro.hpp"
 
 Guerreiro::Guerreiro() {
