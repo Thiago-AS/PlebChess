@@ -1,4 +1,4 @@
-// "Copyright 2018 Mtonin"
+// "Copyright 2018 Grupo MP"
 #include "../include/utils.hpp"
 int rest_eh_positivo(int ind) {
     if (ind >= 0) {

@@ -1,4 +1,4 @@
-// "Copyright 2018 Mtonin"
+// "Copyright 2018 Grupo MP"
 /**
 * @file main.cpp
 * @brief Arquivo com os testes feitos no arquivo contador.cpp e sua respectiva biblioteca. 
@@ -90,6 +90,7 @@ TEST_CASE("Utils", "[utils.hpp]" ) {
 TEST_CASE(" quadrado -> metodos get e set", "[quadrado.hpp]" ) {
     Quadrado q1;
     Tabuleiro t1;
+    TipoUnidade nome = TipoUnidade::UnidadeVazio;
     REQUIRE(q1.setPosX(1) == 1);
     REQUIRE(q1.getPosX() == 1);
     REQUIRE(q1.setPosY(12) == 1);
@@ -102,6 +103,14 @@ TEST_CASE(" quadrado -> metodos get e set", "[quadrado.hpp]" ) {
     REQUIRE(q1.setUsado(false) == 1);
     REQUIRE(q1.getHumano() == false);
     REQUIRE(q1.getUsado() == false);
+    REQUIRE(q1.getUnidade() == TipoUnidade::UnidadeVazio);
+    REQUIRE(q1.setUnidade(TipoUnidade::mina) == 1);
+    REQUIRE(q1.getUnidade() == TipoUnidade::mina);
+    q1.unidadeMorta();
+    REQUIRE(q1.getUnidade() == TipoUnidade::UnidadeVazio);
+    REQUIRE(q1.getPosX() == -1);
+    REQUIRE(q1.getUsado() == false);
+    REQUIRE(q1.getPosY() == -1);
     t1.print_tabuleiro();
     printf("\n\n\n");
     REQUIRE(t1.insere_fortaleza(12, 0) == 1);

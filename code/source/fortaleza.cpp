@@ -1,4 +1,4 @@
-// "Copyright 2018 Mtonin"
+// "Copyright 2018 Grupo MP"
 #include "../include/fortaleza.hpp"
 Fortaleza::Fortaleza() {
          setVida(500);
