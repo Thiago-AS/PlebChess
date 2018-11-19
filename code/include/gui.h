@@ -2,21 +2,28 @@
 #ifndef GUI_H
 #define GUI_H
 
-#include <SDL2/SDL_image.h>
 #include <SDL2/SDL.h>
 #include <iostream>
 
-using namespace std;
-
 class Gui {
  private:
-  const int SCREEN_WIDTH = 680;
-  const int SCREEN_HEIGHT = 680;
-  SDL_Window* gWindow = NULL;
-  SDL_Surface* gScreenSurface = NULL;
- public:
+  static Gui* instance;
+  static bool initialized;
+  SDL_Window* mWindow;
+  SDL_Surface* mBackBuffer;
+
+  Gui();
+  ~Gui();
   bool Init();
-  void Close();
+
+ public:
+  const int SCREEN_WIDTH = 800;
+  const int SCREEN_HEIGHT = 600;
+
+  static Gui* Instance();
+  static void Release();
+  static bool Initialized();
+  void Render();
 };
 
 #endif
