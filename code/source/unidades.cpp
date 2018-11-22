@@ -48,21 +48,29 @@ int Mina::setRecurso(tipo_recurso p_recurso) {
     return 1;
 }
 unsigned int Mina::getVida() {
-    return vida;}
+    return vida;
+	}
 unsigned int Mina::getLargura() {
-    return largura;}
+    return largura;
+	}
 unsigned int Mina::getComprimento() {
-    return comprimento;}
+    return comprimento;
+	}
 unsigned int Mina::getQt_materia() {
-    return qt_materia;}
+    return qt_materia;
+	}
 unsigned int Mina::getConstrucao() {
-    return construcao;}
+    return construcao;
+	}
 tipo_recurso Mina::getRecurso() {
-    return recurso;  }
+    return recurso;
+	}
 unsigned int  Mina::getPosX() {
-    return posX;}
+    return posX;
+	}
 unsigned int  Mina::getPosY() {
-    return posY;}
+    return posY;
+	}
 
 void Mina::get_status_unidade() {
        printf("UNidade :: MINA \n");
@@ -72,7 +80,7 @@ void Mina::get_status_unidade() {
 }
 Lenhadora::Lenhadora() {
           setVida(100);
-          setRecurso(madeira2);
+          setRecurso(madeira);
           setQt_materia(5);
           setComprimento(2);
           setLargura(2);
@@ -114,7 +122,7 @@ int  Lenhadora::setPosY(unsigned int p_posY) {
   rest_limiteCol_sup(p_posY + getComprimento());
   posY = p_posY;
     return 1;}
-int Lenhadora::setRecurso(tipo_recurso2 p_recurso) {
+int Lenhadora::setRecurso(tipo_recurso p_recurso) {
     recurso = p_recurso;
     return 1;
 }
@@ -133,7 +141,7 @@ unsigned int Lenhadora::getQt_materia() {
 unsigned int Lenhadora::getConstrucao() {
     return construcao;
   }
-tipo_recurso2 Lenhadora::getRecurso() {
+tipo_recurso Lenhadora::getRecurso() {
     return recurso;
   }
 unsigned int  Lenhadora::getPosX() {
@@ -151,7 +159,7 @@ void Lenhadora::get_status_unidade() {
 }
 Fortaleza::Fortaleza() {
          setVida(500);
-          setRecurso(nada3);
+          setRecurso(nada);
           setQt_materia(0);
           setComprimento(4);
           setLargura(2);
@@ -191,25 +199,34 @@ int  Fortaleza::setPosY(unsigned int p_posY) {
   rest_limiteCol_sup(p_posY + getComprimento());
   posY = p_posY;
     return 1;}
-int Fortaleza::setRecurso(tipo_recurso3 p_recurso) {
+int Fortaleza::setRecurso(tipo_recurso p_recurso) {
     recurso = p_recurso;
-    return 1;}
+    return 1;
+	}
 unsigned int Fortaleza::getVida() {
-    return vida;}
+    return vida;
+	}
 unsigned int Fortaleza::getLargura() {
-    return largura;}
+    return largura;
+	}
 unsigned int Fortaleza::getComprimento() {
-    return comprimento;}
+    return comprimento;
+	}
 unsigned int Fortaleza::getQt_materia() {
-    return qt_materia;}
+    return qt_materia;
+	}
 unsigned int Fortaleza::getConstrucao() {
-    return construcao;}
-tipo_recurso3 Fortaleza::getRecurso() {
-    return recurso;  }
+    return construcao;
+	}
+tipo_recurso Fortaleza::getRecurso() {
+    return recurso;
+	}
 unsigned int  Fortaleza::getPosX() {
-    return posX;}
+    return posX;
+	}
 unsigned int  Fortaleza::getPosY() {
-    return posY;}
+    return posY;
+	}
 
 void Fortaleza::get_status_unidade() {
     printf("UNidade :: Fortaleza \n");

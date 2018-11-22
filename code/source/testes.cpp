@@ -48,7 +48,7 @@ TEST_CASE("Unidade Construtor - fortaleza", "[unidades.hpp]" ) {
     REQUIRE(u_for.getVida() == 500);
     REQUIRE(u_for.getComprimento() == 4);
     REQUIRE(u_for.getQt_materia() == 0);
-    REQUIRE(u_for.getRecurso() == nada3);
+    REQUIRE(u_for.getRecurso() == nada);
     REQUIRE(u_for.getConstrucao() == 999999);
     u_for.get_status_unidade();
 }
@@ -58,7 +58,7 @@ TEST_CASE("Unidade Construtor - lenhadora", "[unidades.hpp]" ) {
     REQUIRE(u_lenha.getVida() == 100);
     REQUIRE(u_lenha.getComprimento() == 2);
     REQUIRE(u_lenha.getQt_materia() == 5);
-    REQUIRE(u_lenha.getRecurso() == madeira2);
+    REQUIRE(u_lenha.getRecurso() == madeira);
     REQUIRE(u_lenha.getConstrucao() == 30);
     u_lenha.get_status_unidade();
 }

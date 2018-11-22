@@ -19,16 +19,7 @@ enum tipo_recurso {
     madeira = 1,
     ouro = 2
 };
-enum tipo_recurso2 {
-    nada2 ,
-    madeira2,
-    ouro2
-};
-enum tipo_recurso3 {
-    nada3,
-    madeira3,
-    ouro3
-};
+
 class Mina {
  private:
     tipo_recurso recurso;
@@ -66,7 +57,7 @@ class Mina {
 };
 class Lenhadora {
  private:
-    tipo_recurso2 recurso;
+    tipo_recurso recurso;
     bool eh_humano;
     unsigned int vida;
     unsigned int qt_materia;
@@ -89,7 +80,7 @@ class Lenhadora {
         int setConstrucao(unsigned int p_const);
         int setPosX(unsigned int p_posX);
         int setPosY(unsigned int p_posY);
-        int setRecurso(tipo_recurso2 p_recurso);
+        int setRecurso(tipo_recurso p_recurso);
         unsigned int getVida();
         unsigned int getLargura();
         unsigned int getComprimento();
@@ -97,12 +88,12 @@ class Lenhadora {
         unsigned int getConstrucao();
         unsigned int getPosX();
         unsigned int getPosY();
-        tipo_recurso2 getRecurso();
+        tipo_recurso getRecurso();
         void get_status_unidade();
 };
 class Fortaleza {
  private:
-    tipo_recurso3 recurso;
+    tipo_recurso recurso;
     bool eh_humano;
     unsigned int vida;
     unsigned int qt_materia;
@@ -125,7 +116,7 @@ class Fortaleza {
         int setConstrucao(unsigned int p_const);
         int setPosX(unsigned int p_posX);
         int setPosY(unsigned int p_posY);
-        int setRecurso(tipo_recurso3 p_recurso);
+        int setRecurso(tipo_recurso p_recurso);
         unsigned int getVida();
         unsigned int getLargura();
         unsigned int getComprimento();
@@ -133,7 +124,7 @@ class Fortaleza {
         unsigned int getConstrucao();
         unsigned int getPosX();
         unsigned int getPosY();
-        tipo_recurso3 getRecurso();
+        tipo_recurso getRecurso();
         void get_status_unidade();
 };
 #endif
