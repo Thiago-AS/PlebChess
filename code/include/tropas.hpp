@@ -42,7 +42,7 @@ class Arqueiro {
         unsigned int getQt_turnos();
         unsigned int getQt_casas();
         int get_status_personagem();
-		};
+};
 class Guerreiro {
  private:
     bool eh_humano;
@@ -100,5 +100,5 @@ class Cavaleiro {
         unsigned int getQt_turnos();
         unsigned int getQt_casas();
         int get_status_personagem();
-};		
+};
 #endif

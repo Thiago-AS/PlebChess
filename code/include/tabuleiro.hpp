@@ -18,6 +18,7 @@ class Tabuleiro {
  private:
   Quadrado *quadrado;
   char tabuleiro[COL_TABULEIRO][LIN_TABULEIRO];
+
  public:
   Tabuleiro();
   ~Tabuleiro();

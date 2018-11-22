@@ -32,6 +32,7 @@ class Mina {
     // indica a posicao inicial ....
     // crescera de acordo com a largura e o comprimento
     unsigned int posX, posY;
+    
  public:
         // construtor e destrutor
         Mina();

@@ -49,28 +49,28 @@ int Mina::setRecurso(tipo_recurso p_recurso) {
 }
 unsigned int Mina::getVida() {
     return vida;
-	}
+    }
 unsigned int Mina::getLargura() {
     return largura;
-	}
+    }
 unsigned int Mina::getComprimento() {
     return comprimento;
-	}
+    }
 unsigned int Mina::getQt_materia() {
     return qt_materia;
-	}
+    }
 unsigned int Mina::getConstrucao() {
     return construcao;
-	}
+    }
 tipo_recurso Mina::getRecurso() {
     return recurso;
-	}
+    }
 unsigned int  Mina::getPosX() {
     return posX;
-	}
+    }
 unsigned int  Mina::getPosY() {
     return posY;
-	}
+    }
 
 void Mina::get_status_unidade() {
        printf("UNidade :: MINA \n");
@@ -202,31 +202,31 @@ int  Fortaleza::setPosY(unsigned int p_posY) {
 int Fortaleza::setRecurso(tipo_recurso p_recurso) {
     recurso = p_recurso;
     return 1;
-	}
+    }
 unsigned int Fortaleza::getVida() {
     return vida;
-	}
+    }
 unsigned int Fortaleza::getLargura() {
     return largura;
-	}
+    }
 unsigned int Fortaleza::getComprimento() {
     return comprimento;
-	}
+    }
 unsigned int Fortaleza::getQt_materia() {
     return qt_materia;
-	}
+    }
 unsigned int Fortaleza::getConstrucao() {
     return construcao;
-	}
+    }
 tipo_recurso Fortaleza::getRecurso() {
     return recurso;
-	}
+    }
 unsigned int  Fortaleza::getPosX() {
     return posX;
-	}
+    }
 unsigned int  Fortaleza::getPosY() {
     return posY;
-	}
+    }
 
 void Fortaleza::get_status_unidade() {
     printf("UNidade :: Fortaleza \n");
