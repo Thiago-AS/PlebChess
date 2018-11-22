@@ -1,11 +1,9 @@
 // "Copyright 2018 Grupo MP"
 #include "../include/quadrado.hpp"
     Quadrado::Quadrado() {
-
     }
-   Quadrado::~Quadrado() {
-
-    }		
+    Quadrado::~Quadrado() {
+    }
 int  Quadrado::setPosX(unsigned int p_posX) {
     rest_eh_positivo(p_posX);
     rest_limiteLin_sup(p_posX);
@@ -29,27 +27,25 @@ int Quadrado::setUsado(bool uso) {
 }
 int Quadrado::setUnidade(TipoUnidade nomeUnidade) {
     nome = nomeUnidade;
-	return 1;
+    return 1;
 }
 unsigned int  Quadrado::getPosX() {
     return posX;
 }
 unsigned int  Quadrado::getPosY() {
     return posY;
-}    
-
+}
 bool Quadrado::getHumano() {
      return eh_humano;
 }
 bool Quadrado::getUsado() {
     return usado;
-}    
+}
 void Quadrado::unidadeMorta() {
     setUsado(false);
-  	this->setUnidade(TipoUnidade::UnidadeVazio);
+      this->setUnidade(TipoUnidade::UnidadeVazio);
     this->setPosX(-1);
-	this->setPosY(-1);
-
+    this->setPosY(-1);
 }
 TipoUnidade Quadrado::getUnidade() {
     return nome;
