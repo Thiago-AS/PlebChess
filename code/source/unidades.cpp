@@ -1,5 +1,5 @@
 // "Copyright 2018 Grupo MP"
-#include "../include/tropas.hpp"
+#include "../include/unidades.hpp"
 Mina::Mina() {
           setVida(200);
           setRecurso(ouro);

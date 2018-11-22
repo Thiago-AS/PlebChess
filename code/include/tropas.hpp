@@ -43,7 +43,6 @@ class Arqueiro {
         unsigned int getQt_casas();
         int get_status_personagem();
 		};
-using namespace std;
 class Guerreiro {
  private:
     bool eh_humano;

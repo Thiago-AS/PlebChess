@@ -64,7 +64,6 @@ class Mina {
         tipo_recurso getRecurso();
         void get_status_unidade();
 };
-
 class Lenhadora {
  private:
     tipo_recurso2 recurso;
@@ -137,5 +136,4 @@ class Fortaleza {
         tipo_recurso3 getRecurso();
         void get_status_unidade();
 };
-
 #endif

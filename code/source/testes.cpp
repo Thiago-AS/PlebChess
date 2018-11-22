@@ -9,6 +9,7 @@
 #include "catch.hpp"
 #include "../include/tropas.hpp"
 #include "../include/unidades.hpp"
+#include "../include/tabuleiro.hpp"
 TEST_CASE("arqueiro Construtor - arqueiro", "[tropas.hpp]" ) {
     Arqueiro p_arq;
     REQUIRE(p_arq.getDano() == 40);
