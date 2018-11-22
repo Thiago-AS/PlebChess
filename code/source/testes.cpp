@@ -7,15 +7,9 @@
 #define CATCH_CONFIG_MAIN
 
 #include "catch.hpp"
-#include "../include/arqueiro.hpp"
-#include "../include/guerreiro.hpp"
-#include "../include/cavaleiro.hpp"
-#include "../include/quadrado.hpp"
-#include "../include/fortaleza.hpp"
-#include "../include/mina.hpp"
-#include "../include/lenhadora.hpp"
-#include "../include/tabuleiro.hpp"
-TEST_CASE("arqueiro Construtor - arqueiro", "[arqueiro.hpp]" ) {
+#include "../include/tropas.hpp"
+#include "../include/unidades.hpp"
+TEST_CASE("arqueiro Construtor - arqueiro", "[tropas.hpp]" ) {
     Arqueiro p_arq;
     REQUIRE(p_arq.getDano() == 40);
     REQUIRE(p_arq.getVida() == 100);
@@ -26,7 +20,7 @@ TEST_CASE("arqueiro Construtor - arqueiro", "[arqueiro.hpp]" ) {
     p_arq.get_status_personagem();
 }
 
-TEST_CASE("guerreiro Construtor - guerreiro", "[guerreiro.hpp]" ) {
+TEST_CASE("guerreiro Construtor - guerreiro", "[tropas.hpp]" ) {
     Guerreiro p_ger;
     REQUIRE(p_ger.getDano() == 30);
     REQUIRE(p_ger.getVida() == 150);
@@ -37,7 +31,7 @@ TEST_CASE("guerreiro Construtor - guerreiro", "[guerreiro.hpp]" ) {
     p_ger.get_status_personagem();
 }
 
-TEST_CASE("cavaleiro Construtor - cavaleiro", "[cavaleiro.hpp]" ) {
+TEST_CASE("cavaleiro Construtor - cavaleiro", "[tropas.hpp]" ) {
     Cavaleiro p_cav;
     REQUIRE(p_cav.getDano() == 20);
     REQUIRE(p_cav.getVida() == 250);
@@ -47,7 +41,7 @@ TEST_CASE("cavaleiro Construtor - cavaleiro", "[cavaleiro.hpp]" ) {
     REQUIRE(p_cav.getQt_casas() == 3);
     p_cav.get_status_personagem();
 }
-TEST_CASE("Unidade Construtor - fortaleza", "[fortaleza.hpp]" ) {
+TEST_CASE("Unidade Construtor - fortaleza", "[unidades.hpp]" ) {
     Fortaleza u_for;
     REQUIRE(u_for.getLargura() == 2);
     REQUIRE(u_for.getVida() == 500);
@@ -57,7 +51,7 @@ TEST_CASE("Unidade Construtor - fortaleza", "[fortaleza.hpp]" ) {
     REQUIRE(u_for.getConstrucao() == 999999);
     u_for.get_status_unidade();
 }
-TEST_CASE("Unidade Construtor - lenhadora", "[lenhadora.hpp]" ) {
+TEST_CASE("Unidade Construtor - lenhadora", "[unidades.hpp]" ) {
     Lenhadora u_lenha;
     REQUIRE(u_lenha.getLargura() == 2);
     REQUIRE(u_lenha.getVida() == 100);
@@ -68,7 +62,7 @@ TEST_CASE("Unidade Construtor - lenhadora", "[lenhadora.hpp]" ) {
     u_lenha.get_status_unidade();
 }
 
-TEST_CASE("Unidade Construtor - mina de ouro", "[mina.hpp]" ) {
+TEST_CASE("Unidade Construtor - mina de ouro", "[unidades.hpp]" ) {
     Mina u_min;
     REQUIRE(u_min.getLargura() == 2);
     REQUIRE(u_min.getVida() == 200);
