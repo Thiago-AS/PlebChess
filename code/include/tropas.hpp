@@ -23,6 +23,7 @@ class Arqueiro {
     unsigned int dano;
     unsigned int qt_turnos;
     unsigned int qt_casas;
+    unsigned int ativo;
 
  public :
 // construtor e destrutor
@@ -35,12 +36,14 @@ class Arqueiro {
         int setPosY(unsigned int p_posY);
         int setQt_turnos(unsigned int turnos);
         int setQt_casas(unsigned int casas);
+        int setAtivo(int);
         unsigned int getVida();
         unsigned int getDano();
         unsigned int getPosX();
         unsigned int getPosY();
         unsigned int getQt_turnos();
         unsigned int getQt_casas();
+        unsigned int getAtivo();
         int get_status_personagem();
 };
 class Guerreiro {
@@ -52,6 +55,7 @@ class Guerreiro {
     unsigned int dano;
     unsigned int qt_turnos;
     unsigned int qt_casas;
+    unsigned int ativo;
 
  public:
         // construtor e destrutor
@@ -64,12 +68,14 @@ class Guerreiro {
         int setPosY(unsigned int p_posY);
         int setQt_turnos(unsigned int turnos);
         int setQt_casas(unsigned int casas);
+        int setAtivo(int);
         unsigned int getVida();
         unsigned int getDano();
         unsigned int getPosX();
         unsigned int getPosY();
         unsigned int getQt_turnos();
         unsigned int getQt_casas();
+        unsigned int getAtivo();
         int get_status_personagem();
 };
 class Cavaleiro {
@@ -81,6 +87,7 @@ class Cavaleiro {
     unsigned int dano;
     unsigned int qt_turnos;
     unsigned int qt_casas;
+    unsigned int ativo;
 
  public:
         // construtor e destrutor
@@ -93,12 +100,14 @@ class Cavaleiro {
         int setPosY(unsigned int p_posY);
         int setQt_turnos(unsigned int turnos);
         int setQt_casas(unsigned int casas);
+        int setAtivo(int);
         unsigned int getVida();
         unsigned int getDano();
         unsigned int getPosX();
         unsigned int getPosY();
         unsigned int getQt_turnos();
         unsigned int getQt_casas();
+        unsigned int getAtivo();
         int get_status_personagem();
 };
 #endif
