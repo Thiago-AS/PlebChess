@@ -1,9 +1,10 @@
+// "Copyright 2018 Grupo MP"
 /**
 * @file engine.hpp
 * @brief Arquivo com as funcoes que sao usadas para implementar a game engine 
 */
-#ifndef ENGINE_HPP_
-#define ENGINE_HPP_
+#ifndef CODE_INCLUDE_ENGINE_HPP_
+#define CODE_INCLUDE_ENGINE_HPP_
 // includes
 #include <iostream>
 #include <fstream>
@@ -13,58 +14,46 @@
 #include "../include/tropas.hpp"
 using namespace std;
 
-
 class Engine {
+     private:
+     unsigned int turnoAtual;
+     unsigned int jogadorAtual;
 
-    private:
-    unsigned int turnoAtual;
-    unsigned int jogadorAtual;
-    
-    
-    public:
+     public:
         // construtor e destrutor
         Engine();
         ~Engine();
-
         // getters and setters
-        int setTurno(); // seta o turno inicial como 1
-        int endTurno(); // acaba o turno do jogador, e incrementa o turno atual
-        int setJogador(); // por default, o jogador 1 inicia o jogo
+        int setTurno();  // seta o turno inicial como 1
+        int endTurno();  // acaba o turno do jogador, e incrementa o turno atual
+        int setJogador();  // por default, o jogador 1 inicia o jogo
         int getJogador();
         int getTurno();
-
 };
-
-
 class Jogador {
-
     private:
-    unsigned int time; // representa qual time o jog eh
+    unsigned int time;  // representa qual time o jog eh
     // quantidade de recursos atuais
     unsigned int ouro;
     unsigned int madeira;
-
     // quantidade de tropas atuais
     unsigned int guerreiros;
     unsigned int arqueiros;
     unsigned int cavaleiros;
-
     // quantidade de construcoes atuais
     unsigned int minas;
     unsigned int madeireiras;
-
     // ganho de recursos por turno
     unsigned int ganhoOuro;
     unsigned int ganhoMadeira;
-    
     // vetores de tropas
     Arqueiro vetorArqueiro[10];
     Guerreiro vetorGuerreiro[10];
-    Cavaleiro vetorCavaleiro[10];          
+    Cavaleiro vetorCavaleiro[10];
 
     public:
     // construtor e destrutor
-    Jogador( int times );
+    explicit Jogador(int times);
     ~Jogador();
     // metodos SET
     int setRecursos(int, int);
@@ -74,6 +63,7 @@ class Jogador {
     int setVetorArqueiro(int, int);
     int setVetorGuerreiro(int, int);
     int setVetorCavaleiro(int, int);
+    int inicializaJogador();
     // metodos GET
     int getTime();
     int getOuro();
@@ -88,6 +78,5 @@ class Jogador {
     Arqueiro getVetorArqueiro(int);
     Guerreiro getVetorGuerreiro(int);
     Cavaleiro getVetorCavaleiro(int);
-
-}; // jogador
-#endif
+};  // jogador
+#endif  // CODE_INCLUDE_ENGINE_HPP_

@@ -153,6 +153,9 @@ TEST_CASE( "Inicializacao da Engine", "[engine.hpp]" ) {
 
 TEST_CASE( "Inicializacao do Jogador", "[engine.hpp]" ) {
     Jogador Jog1(1);  // inicializa no time 1
+    int teste;
+    teste = Jog1.inicializaJogador();
+    REQUIRE( teste == 1 );
     REQUIRE( Jog1.getTime() == 1 );
     REQUIRE( Jog1.getOuro() == 10 );
     REQUIRE( Jog1.getMadeira() == 10 );

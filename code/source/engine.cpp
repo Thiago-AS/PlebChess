@@ -44,6 +44,7 @@ int Engine::getTurno() {
 
 Jogador::Jogador(int times) {
     time = times;
+    inicializaJogador();
     setRecursos(10, 10);
     setTropas(0, 0, 0);
     setConstrucoes(0, 0);
@@ -56,21 +57,32 @@ Jogador::~Jogador() {
 /* Todos os valores dados inicialmente sao arbitrarios, e podem
  * ser alterados para balancear o ritmo do jogo
  */
-
+int Jogador::inicializaJogador() {
+    /* eh necessario para os outros metodos ja terem o valor inicial
+        desses recursos, para poder fazer as contas */
+    arqueiros = 0;
+    guerreiros = 0;
+    cavaleiros = 0;
+    minas = 0;
+    madeireiras = 0;
+    return 1;
+}
 int Jogador::setRecursos(int ouro1, int madeira1) {
     ouro = ouro1;
     madeira = madeira1;
 }
 
 int Jogador::setTropas(int guerr, int arq, int cav) {
-    guerreiros = guerr;
-    arqueiros = arq;
-    cavaleiros = cav;
+    /* adiciona novas tropas as ja existentes */
+    guerreiros = guerr + guerreiros;
+    arqueiros = arq + arqueiros;
+    cavaleiros = cav + cavaleiros;
 }
 
 int Jogador::setConstrucoes(int mina, int madeireira) {
-    minas = mina;
-    madeireiras = madeireira;
+    /* adiciona novas construcoes as ja existentes */
+    minas = minas + mina;
+    madeireiras = madeireiras + madeireira;
 }
 
 int Jogador::setGanhoPorTurno() {
@@ -135,10 +147,10 @@ int Jogador::setVetorArqueiro(int posicaoX, int posicaoY) {
             }  // end if
             i++;
         }  // end while
-        return 0; // nao era possivel colocar mais arqueiros
+        return 0;  // nao era possivel colocar mais arqueiros
 }
 Arqueiro Jogador::getVetorArqueiro(int indice) {
-    if( indice >= 0 && indice < 10 )
+    if ( indice >= 0 && indice < 10 )
         return vetorArqueiro[indice];
     else
     /* Caso o indice seja passado errado, retorna um personagem
@@ -158,10 +170,10 @@ int Jogador::setVetorGuerreiro(int posicaoX, int posicaoY) {
             }  // end if
             i++;
         }  // end while
-        return 0; // nao era possivel colocar mais guerreiros 
+        return 0;  // nao era possivel colocar mais guerreiros
 }
 Guerreiro Jogador::getVetorGuerreiro(int indice) {
-    if( indice >= 0 && indice < 10 )
+    if ( indice >= 0 && indice < 10 )
         return vetorGuerreiro[indice];
     else
     /* Caso o indice seja passado errado, retorna um personagem
@@ -181,10 +193,10 @@ int Jogador::setVetorCavaleiro(int posicaoX, int posicaoY) {
             }  // end if
             i++;
         }  // end while
-        return 0; // nao era possivel colocar mais cavaleiros 
+        return 0;  // nao era possivel colocar mais cavaleiros
 }
 Cavaleiro Jogador::getVetorCavaleiro(int indice) {
-    if( indice >= 0 && indice < 10 )
+    if ( indice >= 0 && indice < 10 )
         return vetorCavaleiro[indice];
     else
     /* Caso o indice seja passado errado, retorna um personagem
