@@ -77,12 +77,14 @@ int Jogador::setTropas(int guerr, int arq, int cav) {
     guerreiros = guerr + guerreiros;
     arqueiros = arq + arqueiros;
     cavaleiros = cav + cavaleiros;
+	uni_vazias -= (guerr+arq+cav);
 }
 
 int Jogador::setConstrucoes(int mina, int madeireira) {
     /* adiciona novas construcoes as ja existentes */
     minas = minas + mina;
     madeireiras = madeireiras + madeireira;
+	uni_vazias -= (mina+madeireira);
 }
 
 int Jogador::setGanhoPorTurno() {

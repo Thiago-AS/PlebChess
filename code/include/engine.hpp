@@ -43,6 +43,8 @@ class Jogador {
     // quantidade de construcoes atuais
     unsigned int minas;
     unsigned int madeireiras;
+	// quantidade de unidades vazias
+    unsigned int uni_vazias = LIN_TABULEIRO * COL_TABULEIRO;
     // ganho de recursos por turno
     unsigned int ganhoOuro;
     unsigned int ganhoMadeira;
