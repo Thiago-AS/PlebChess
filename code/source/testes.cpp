@@ -12,7 +12,7 @@
 #include "../include/tabuleiro.hpp"
 #include "../include/engine.hpp"
 TEST_CASE("arqueiro Construtor - arqueiro", "[tropas.hpp]" ) {
-    Arqueiro p_arq;
+    Arqueiro p_arq(0,0);
     REQUIRE(p_arq.getDano() == 40);
     REQUIRE(p_arq.getVida() == 100);
     REQUIRE(p_arq.getPosX() == 0);
@@ -23,7 +23,7 @@ TEST_CASE("arqueiro Construtor - arqueiro", "[tropas.hpp]" ) {
 }
 
 TEST_CASE("guerreiro Construtor - guerreiro", "[tropas.hpp]" ) {
-    Guerreiro p_ger;
+    Guerreiro p_ger(0,0);
     REQUIRE(p_ger.getDano() == 30);
     REQUIRE(p_ger.getVida() == 150);
     REQUIRE(p_ger.getPosX() == 0);
@@ -34,7 +34,7 @@ TEST_CASE("guerreiro Construtor - guerreiro", "[tropas.hpp]" ) {
 }
 
 TEST_CASE("cavaleiro Construtor - cavaleiro", "[tropas.hpp]" ) {
-    Cavaleiro p_cav;
+    Cavaleiro p_cav(0,0);
     REQUIRE(p_cav.getDano() == 20);
     REQUIRE(p_cav.getVida() == 250);
     REQUIRE(p_cav.getPosX() == 0);
@@ -43,8 +43,16 @@ TEST_CASE("cavaleiro Construtor - cavaleiro", "[tropas.hpp]" ) {
     REQUIRE(p_cav.getQt_casas() == 3);
     p_cav.get_status_personagem();
 }
+TEST_CASE("guerreiro Construtor - Vazio", "[tropas.hpp]" ) {
+    Unidade_vazio p_vazio(0,0);
+    REQUIRE(p_vazio.getPosX() == 0);
+    REQUIRE(p_vazio.getPosY() == 0);
+    Unidade_vazio p_vazio(10,12);
+    REQUIRE(p_vazio.getPosX() == 10);
+    REQUIRE(p_vazio.getPosY() == 12);   
+}
 TEST_CASE("Unidade Construtor - fortaleza", "[unidades.hpp]" ) {
-    Fortaleza u_for;
+    Fortaleza u_for(0,0);
     REQUIRE(u_for.getLargura() == 2);
     REQUIRE(u_for.getVida() == 500);
     REQUIRE(u_for.getComprimento() == 4);
@@ -54,7 +62,7 @@ TEST_CASE("Unidade Construtor - fortaleza", "[unidades.hpp]" ) {
     u_for.get_status_unidade();
 }
 TEST_CASE("Unidade Construtor - lenhadora", "[unidades.hpp]" ) {
-    Lenhadora u_lenha;
+    Lenhadora u_lenha(0,0);
     REQUIRE(u_lenha.getLargura() == 2);
     REQUIRE(u_lenha.getVida() == 100);
     REQUIRE(u_lenha.getComprimento() == 2);
@@ -65,7 +73,7 @@ TEST_CASE("Unidade Construtor - lenhadora", "[unidades.hpp]" ) {
 }
 
 TEST_CASE("Unidade Construtor - mina de ouro", "[unidades.hpp]" ) {
-    Mina u_min;
+    Mina u_min(0,0);
     REQUIRE(u_min.getLargura() == 2);
     REQUIRE(u_min.getVida() == 200);
     REQUIRE(u_min.getComprimento() == 2);
@@ -84,29 +92,8 @@ TEST_CASE("Utils", "[utils.hpp]" ) {
     REQUIRE(rest_limiteLin_sup(200) == 0);
 }
 TEST_CASE(" quadrado -> metodos get e set", "[quadrado.hpp]" ) {
-    Quadrado q1;
     Tabuleiro t1;
     TipoUnidade nome = TipoUnidade::UnidadeVazio;
-    REQUIRE(q1.setPosX(1) == 1);
-    REQUIRE(q1.getPosX() == 1);
-    REQUIRE(q1.setPosY(12) == 1);
-    REQUIRE(q1.getPosY() == 12);
-    REQUIRE(q1.setPosX(0) == 1);
-    REQUIRE(q1.getPosX() == 0);
-    REQUIRE(q1.setPosY(0) == 1);
-    REQUIRE(q1.getPosY() == 0);
-    REQUIRE(q1.setHumano(false) == 1);
-    REQUIRE(q1.setUsado(false) == 1);
-    REQUIRE(q1.getHumano() == false);
-    REQUIRE(q1.getUsado() == false);
-    REQUIRE(q1.getUnidade() == TipoUnidade::UnidadeVazio);
-    REQUIRE(q1.setUnidade(TipoUnidade::mina) == 1);
-    REQUIRE(q1.getUnidade() == TipoUnidade::mina);
-    q1.unidadeMorta();
-    REQUIRE(q1.getUnidade() == TipoUnidade::UnidadeVazio);
-    REQUIRE(q1.getPosX() == -1);
-    REQUIRE(q1.getUsado() == false);
-    REQUIRE(q1.getPosY() == -1);
     t1.print_tabuleiro();
     printf("\n\n\n");
     REQUIRE(t1.insere_fortaleza(12, 0) == 1);

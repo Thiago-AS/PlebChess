@@ -1,12 +1,15 @@
 // "Copyright 2018 Grupo MP"
 #include "../include/unidades.hpp"
-Mina::Mina() {
+Mina::Mina(unsigned int pX, unsigned int pY) {
           setVida(200);
           setRecurso(ouro);
           setQt_materia(10);
           setComprimento(2);
           setLargura(2);
-          setConstrucao(50);}
+          setConstrucao(50);
+		  setPosX(pX);
+		  setPosY(pY);
+		  }
 Mina::~Mina() {}
 int Mina::setVida(unsigned int p_vida) {
     rest_eh_positivo(p_vida);
@@ -78,13 +81,15 @@ void Mina::get_status_unidade() {
     printf("Tem: Comprimento:%d Largura:%d\n", getComprimento(), getLargura());
     printf("Para construir precisa :  %d \n", getConstrucao());
 }
-Lenhadora::Lenhadora() {
+Lenhadora::Lenhadora(unsigned int pX, unsigned int pY) {
           setVida(100);
           setRecurso(madeira);
           setQt_materia(5);
           setComprimento(2);
           setLargura(2);
           setConstrucao(30);
+		  setPosX(pX);
+		  setPosY(pY);
         }
 Lenhadora::~Lenhadora() {}
 int Lenhadora::setVida(unsigned int p_vida) {
@@ -157,13 +162,15 @@ void Lenhadora::get_status_unidade() {
     printf("Tem: Comprimento:%d Largura:%d\n", getComprimento(), getLargura());
     printf("Para construir precisa :  %d \n", getConstrucao());
 }
-Fortaleza::Fortaleza() {
+Fortaleza::Fortaleza(unsigned int pX, unsigned int pY) {
          setVida(500);
           setRecurso(nada);
           setQt_materia(0);
           setComprimento(4);
           setLargura(2);
-          setConstrucao(999999);}
+          setConstrucao(999999)
+		  setPosX(pX);
+		  setPosY(pY);;}
 Fortaleza::~Fortaleza() {}
 int Fortaleza::setVida(unsigned int p_vida) {
     rest_eh_positivo(p_vida);
