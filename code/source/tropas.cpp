@@ -7,6 +7,7 @@ Arqueiro::Arqueiro() {
           setPosX(0);
           setQt_turnos(2);
           setQt_casas(2);
+          setAtivo(0);
 }
 Arqueiro::~Arqueiro(void) {
 }
@@ -43,6 +44,12 @@ int Arqueiro::setQt_casas(unsigned int casas) {
   qt_casas =  casas;
     return 1;
 }
+int Arqueiro::setAtivo(int valor) {
+    // deve ser inicializado com 0, e quando inserido no tabuleiro
+    // e estiver vivo, setado em 1
+    ativo = valor;
+    return 1;
+}
 unsigned int  Arqueiro::getVida() {
     return vida;
 }
@@ -61,6 +68,9 @@ unsigned int  Arqueiro::getQt_turnos() {
 unsigned int  Arqueiro::getQt_casas() {
     return qt_casas;
 }
+unsigned int Arqueiro::getAtivo() {
+    return ativo;
+}
 int Arqueiro::get_status_personagem() {
     printf("Personagem :: Arqueiro \n");
     printf("O personagem tem \nVida: %d Dano: %d\n", getVida(), getDano());
@@ -76,6 +86,7 @@ Cavaleiro::Cavaleiro() {
           setPosX(0);
           setQt_turnos(2);
           setQt_casas(3);
+          setAtivo(0);
 }
 Cavaleiro::~Cavaleiro(void) {
 }
@@ -112,6 +123,12 @@ int Cavaleiro::setQt_casas(unsigned int casas) {
   qt_casas =  casas;
     return 1;
 }
+int Cavaleiro::setAtivo(int valor) {
+    // deve ser inicializado com 0, e quando inserido no tabuleiro
+    // e estiver vivo, setado em 1
+    ativo = valor;
+    return 1;
+}
 unsigned int  Cavaleiro::getVida() {
     return vida;
 }
@@ -130,6 +147,9 @@ unsigned int  Cavaleiro::getQt_turnos() {
 unsigned int  Cavaleiro::getQt_casas() {
     return qt_casas;
 }
+unsigned int Cavaleiro::getAtivo() {
+    return ativo;
+}
 int Cavaleiro::get_status_personagem() {
     printf("Personagem :: Cavaleiro \n");
     printf("O personagem tem \nVida: %d Dano: %d\n", getVida(), getDano());
@@ -146,6 +166,7 @@ Guerreiro::Guerreiro() {
           setPosX(0);
           setQt_turnos(1);
           setQt_casas(1);
+          setAtivo(0);
 }
 Guerreiro::~Guerreiro(void) {
 }
@@ -182,6 +203,12 @@ int Guerreiro::setQt_casas(unsigned int casas) {
     qt_casas =  casas;
     return 1;
 }
+int Guerreiro::setAtivo(int valor) {
+    // deve ser inicializado com 0, e quando inserido no tabuleiro
+    // e estiver vivo, setado em 1
+    ativo = valor;
+    return 1;
+}
 unsigned int  Guerreiro::getVida() {
     return vida;
 }
@@ -199,6 +226,9 @@ unsigned int  Guerreiro::getQt_turnos() {
 }
 unsigned int  Guerreiro::getQt_casas() {
     return qt_casas;
+}
+unsigned int Guerreiro::getAtivo() {
+    return ativo;
 }
 int Guerreiro::get_status_personagem() {
        printf("Personagem :: guerreiro \n");
