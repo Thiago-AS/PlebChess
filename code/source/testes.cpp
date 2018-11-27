@@ -20,6 +20,8 @@ TEST_CASE("arqueiro Construtor - arqueiro", "[tropas.hpp]" ) {
     REQUIRE(p_arq.getPosY() == 0);
     REQUIRE(p_arq.getQt_turnos() == 2);
     REQUIRE(p_arq.getQt_casas() == 2);
+    REQUIRE(p_arq.setHumano(1) == 1);
+    REQUIRE(p_arq.getHumano() == 1);
     p_arq.get_status_personagem();
 }
 
@@ -31,6 +33,8 @@ TEST_CASE("guerreiro Construtor - guerreiro", "[tropas.hpp]" ) {
     REQUIRE(p_ger.getPosY() == 0);
     REQUIRE(p_ger.getQt_turnos() == 1);
     REQUIRE(p_ger.getQt_casas() == 1);
+    REQUIRE(p_ger.setHumano(1) == 1);
+    REQUIRE(p_ger.getHumano() == 1);
     p_ger.get_status_personagem();
 }
 
@@ -42,6 +46,8 @@ TEST_CASE("cavaleiro Construtor - cavaleiro", "[tropas.hpp]" ) {
     REQUIRE(p_cav.getPosY() == 0);
     REQUIRE(p_cav.getQt_turnos() == 2);
     REQUIRE(p_cav.getQt_casas() == 3);
+    REQUIRE(p_cav.setHumano(1) == 1);
+    REQUIRE(p_cav.getHumano() == 1);
     p_cav.get_status_personagem();
 }
 TEST_CASE("guerreiro Construtor - Vazio", "[tropas.hpp]" ) {
@@ -60,6 +66,8 @@ TEST_CASE("Unidade Construtor - fortaleza", "[unidades.hpp]" ) {
     REQUIRE(u_for.getQt_materia() == 0);
     REQUIRE(u_for.getRecurso() == nada);
     REQUIRE(u_for.getConstrucao() == 999999);
+    REQUIRE(u_for.setHumano(1) == 1);
+    REQUIRE(u_for.getHumano() == 1);
     u_for.get_status_unidade();
 }
 TEST_CASE("Unidade Construtor - lenhadora", "[unidades.hpp]" ) {
@@ -70,6 +78,8 @@ TEST_CASE("Unidade Construtor - lenhadora", "[unidades.hpp]" ) {
     REQUIRE(u_lenha.getQt_materia() == 5);
     REQUIRE(u_lenha.getRecurso() == madeira);
     REQUIRE(u_lenha.getConstrucao() == 30);
+    REQUIRE(u_lenha.setHumano(1) == 1);
+    REQUIRE(u_lenha.getHumano() == 1);
     u_lenha.get_status_unidade();
 }
 
@@ -81,6 +91,8 @@ TEST_CASE("Unidade Construtor - mina de ouro", "[unidades.hpp]" ) {
     REQUIRE(u_min.getQt_materia() == 10);
     REQUIRE(u_min.getRecurso() == ouro);
     REQUIRE(u_min.getConstrucao() == 50);
+    REQUIRE(u_min.setHumano(1) == 1);
+    REQUIRE(u_min.getHumano() == 1);
     u_min.get_status_unidade();
 }
 TEST_CASE("Utils", "[utils.hpp]" ) {

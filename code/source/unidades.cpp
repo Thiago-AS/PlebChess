@@ -9,6 +9,7 @@ Mina::Mina() {
           setConstrucao(50);
           setPosX(0);
           setPosY(0);
+          setHumano(0);
           }
 Mina::~Mina() {}
 int Mina::setVida(unsigned int p_vida) {
@@ -50,6 +51,13 @@ int Mina::setRecurso(tipo_recurso p_recurso) {
     recurso = p_recurso;
     return 1;
 }
+int Mina::setHumano(bool hum) {
+    eh_humano = hum;
+    return 1;
+}
+bool Mina::getHumano() {
+    return eh_humano;
+}
 unsigned int Mina::getVida() {
     return vida;
     }
@@ -90,6 +98,7 @@ Lenhadora::Lenhadora() {
           setConstrucao(30);
           setPosX(0);
           setPosY(0);
+          setHumano(0);
         }
 Lenhadora::~Lenhadora() {}
 int Lenhadora::setVida(unsigned int p_vida) {
@@ -131,6 +140,13 @@ int Lenhadora::setRecurso(tipo_recurso p_recurso) {
     recurso = p_recurso;
     return 1;
 }
+int Lenhadora::setHumano(bool hum) {
+    eh_humano = hum;
+    return 1;
+}
+bool Lenhadora::getHumano() {
+    return eh_humano;
+}
 unsigned int Lenhadora::getVida() {
     return vida;
   }
@@ -169,6 +185,7 @@ Fortaleza::Fortaleza() {
           setComprimento(4);
           setLargura(2);
           setConstrucao(999999);
+          setHumano(0);
       setPosX(0);
       setPosY(0);
 }
@@ -211,6 +228,13 @@ int Fortaleza::setRecurso(tipo_recurso p_recurso) {
     recurso = p_recurso;
     return 1;
     }
+int Fortaleza::setHumano(bool hum) {
+    eh_humano = hum;
+    return 1;
+}
+bool Fortaleza::getHumano() {
+    return eh_humano;
+}
 unsigned int Fortaleza::getVida() {
     return vida;
     }

@@ -46,6 +46,8 @@ class Mina {
         int setPosX(unsigned int p_posX);
         int setPosY(unsigned int p_posY);
         int setRecurso(tipo_recurso p_recurso);
+        int setHumano(bool);
+        bool getHumano();
         unsigned int getVida();
         unsigned int getLargura();
         unsigned int getComprimento();
@@ -82,6 +84,8 @@ class Lenhadora {
         int setPosX(unsigned int p_posX);
         int setPosY(unsigned int p_posY);
         int setRecurso(tipo_recurso p_recurso);
+        int setHumano(bool);
+        bool getHumano();
         unsigned int getVida();
         unsigned int getLargura();
         unsigned int getComprimento();
@@ -118,6 +122,8 @@ class Fortaleza {
         int setPosX(unsigned int p_posX);
         int setPosY(unsigned int p_posY);
         int setRecurso(tipo_recurso p_recurso);
+        int setHumano(bool);
+        bool getHumano();
         unsigned int getVida();
         unsigned int getLargura();
         unsigned int getComprimento();

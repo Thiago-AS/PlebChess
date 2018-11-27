@@ -162,6 +162,7 @@ int Jogador::setVetorArqueiro(int posicaoX, int posicaoY) {
                     que construiu o arqueiro */
                 vetorArqueiro[i].setPosX(posicaoX);
                 vetorArqueiro[i].setPosY(posicaoY);
+                vetorArqueiro[i].setHumano(1);
                 return 1;  // bem sucedido
             }  // end if
             i++;
@@ -200,6 +201,7 @@ int Jogador::setVetorGuerreiro(int posicaoX, int posicaoY) {
                     que construiu o guerreiro */
                 vetorGuerreiro[i].setPosX(posicaoX);
                 vetorGuerreiro[i].setPosY(posicaoY);
+                vetorGuerreiro[i].setHumano(1);
                 return 1;  // bem sucedido
             }  // end if
             i++;
@@ -238,6 +240,7 @@ int Jogador::setVetorCavaleiro(int posicaoX, int posicaoY) {
                     que construiu o cavaleiro */
                 vetorCavaleiro[i].setPosX(posicaoX);
                 vetorCavaleiro[i].setPosY(posicaoY);
+                vetorCavaleiro[i].setHumano(1);
                 return 1;  // bem sucedido
             }  // end if
             i++;
@@ -309,6 +312,7 @@ int Jogador::setVetorMina(int posicaoX, int posicaoY) {
                     que construiu o cavaleiro */
                 vetorMina[i].setPosX(posicaoX);
                 vetorMina[i].setPosY(posicaoY);
+                vetorArqueiro[i].setHumano(1);
             i++;
         }  // end while
         return 1;
@@ -320,6 +324,8 @@ int Jogador::setVetorLenhadora(int posicaoX, int posicaoY) {
                     que construiu o cavaleiro */
                 vetorLenhadora[i].setPosX(posicaoX);
                 vetorLenhadora[i].setPosY(posicaoY);
+                vetorLenhadora[i].setHumano(1);
+                
             i++;
         }  // end while
         return 1;  // bem sucedido
@@ -330,6 +336,7 @@ int Jogador::setFortaleza(int posicaoX, int posicaoY) {
                     que construiu o cavaleiro */
                 un_Fortaleza.setPosX(posicaoX);
                 un_Fortaleza.setPosY(posicaoY);
+                un_Fortaleza.setHumano(1);
                 return 1;  // bem sucedido
 }
 

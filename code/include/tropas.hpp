@@ -37,6 +37,8 @@ class Arqueiro {
         int setQt_turnos(unsigned int turnos);
         int setQt_casas(unsigned int casas);
         int setAtivo(int);
+        int setHumano(bool);
+        bool getHumano();
         unsigned int getVida();
         unsigned int getDano();
         unsigned int getPosX();
@@ -69,6 +71,8 @@ class Guerreiro {
         int setQt_turnos(unsigned int turnos);
         int setQt_casas(unsigned int casas);
         int setAtivo(int);
+        int setHumano(bool);
+        bool getHumano();
         unsigned int getVida();
         unsigned int getDano();
         unsigned int getPosX();
@@ -101,6 +105,8 @@ class Cavaleiro {
         int setQt_turnos(unsigned int turnos);
         int setQt_casas(unsigned int casas);
         int setAtivo(int);
+        int setHumano(bool);
+        bool getHumano();
         unsigned int getVida();
         unsigned int getDano();
         unsigned int getPosX();

@@ -8,6 +8,7 @@ Arqueiro::Arqueiro() {
           setQt_turnos(2);
           setQt_casas(2);
           setAtivo(0);
+          setHumano(0);
 }
 Arqueiro::~Arqueiro(void) {
 }
@@ -50,6 +51,10 @@ int Arqueiro::setAtivo(int valor) {
     ativo = valor;
     return 1;
 }
+int Arqueiro::setHumano(bool hum) {
+    eh_humano = hum;
+    return 1;
+}
 unsigned int  Arqueiro::getVida() {
     return vida;
 }
@@ -71,6 +76,9 @@ unsigned int  Arqueiro::getQt_casas() {
 unsigned int Arqueiro::getAtivo() {
     return ativo;
 }
+bool Arqueiro::getHumano() {
+    return eh_humano;
+}
 int Arqueiro::get_status_personagem() {
     printf("Personagem :: Arqueiro \n");
     printf("O personagem tem \nVida: %u Dano: %u\n", getVida(), getDano());
@@ -87,6 +95,7 @@ Cavaleiro::Cavaleiro() {
           setQt_turnos(2);
           setQt_casas(3);
           setAtivo(0);
+          setHumano(0);          
 }
 Cavaleiro::~Cavaleiro(void) {
 }
@@ -129,6 +138,13 @@ int Cavaleiro::setAtivo(int valor) {
     ativo = valor;
     return 1;
 }
+int Cavaleiro::setHumano(bool hum) {
+    eh_humano = hum;
+    return 1;
+}
+bool Cavaleiro::getHumano() {
+    return eh_humano;
+}
 unsigned int  Cavaleiro::getVida() {
     return vida;
 }
@@ -167,6 +183,7 @@ Guerreiro::Guerreiro() {
           setQt_turnos(1);
           setQt_casas(1);
           setAtivo(0);
+          setHumano(0);
 }
 Guerreiro::~Guerreiro(void) {
 }
@@ -229,6 +246,13 @@ unsigned int  Guerreiro::getQt_casas() {
 }
 unsigned int Guerreiro::getAtivo() {
     return ativo;
+}
+int Guerreiro::setHumano(bool hum) {
+    eh_humano = hum;
+    return 1;
+}
+bool Guerreiro::getHumano() {
+    return eh_humano;
 }
 int Guerreiro::get_status_personagem() {
        printf("Personagem :: guerreiro \n");
