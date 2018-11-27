@@ -35,7 +35,7 @@ class Mina {
     
  public:
         // construtor e destrutor
-        Mina(unsigned int pX, unsigned int pY);
+        Mina();
         ~Mina();
         // metodos getter and setters
         int setVida(unsigned int p_vida);
@@ -71,7 +71,7 @@ class Lenhadora {
 
  public:
         // construtor e destrutor
-        Lenhadora(unsigned int pX, unsigned int pY);
+        Lenhadora();
         ~Lenhadora();
         // metodos getter and setters
         int setVida(unsigned int p_vida);
@@ -107,7 +107,7 @@ class Fortaleza {
 
  public:
         // construtor e destrutor
-        Fortaleza(unsigned int pX, unsigned int pY);
+        Fortaleza();
         ~Fortaleza();
         // metodos getter and setters
         int setVida(unsigned int p_vida);

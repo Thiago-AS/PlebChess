@@ -6,9 +6,21 @@
 #ifndef TABULEIRO_HPP_
 #define TABULEIRO_HPP_
 // includes
-#include "quadrado.hpp"
 #include "utils.hpp"
 using namespace std;
+/**
+ * @brief Enumeracao da Classe tipo de unidades que o jogo pode ter.
+ * Descricao: Contem todas as unidades que pode estar presente em um quadrado do mapa.
+ */
+enum class TipoUnidade{
+    UnidadeVazio,
+    fortaleza,
+    lenhadora,
+    mina,
+    arqueiro,
+    cavaleiro,
+    guerreiro,
+    };
 /**
 * @brief Classe que contem as especificacoes do tabuleiro e como esta sendo usado.
 * Descricao: Contem construtor e destrutor além dos metodos getters and setters que
@@ -16,7 +28,6 @@ using namespace std;
 */
 class Tabuleiro {
  private:
-  Quadrado *quadrado;
   char tabuleiro[COL_TABULEIRO][LIN_TABULEIRO];
 
  public:

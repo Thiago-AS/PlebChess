@@ -12,7 +12,7 @@
 #include "../include/tabuleiro.hpp"
 #include "../include/engine.hpp"
 TEST_CASE("arqueiro Construtor - arqueiro", "[tropas.hpp]" ) {
-    Arqueiro p_arq(0,0);
+    Arqueiro p_arq;
     REQUIRE(p_arq.getDano() == 40);
     REQUIRE(p_arq.getVida() == 100);
     REQUIRE(p_arq.getPosX() == 0);
@@ -23,7 +23,7 @@ TEST_CASE("arqueiro Construtor - arqueiro", "[tropas.hpp]" ) {
 }
 
 TEST_CASE("guerreiro Construtor - guerreiro", "[tropas.hpp]" ) {
-    Guerreiro p_ger(0,0);
+    Guerreiro p_ger;
     REQUIRE(p_ger.getDano() == 30);
     REQUIRE(p_ger.getVida() == 150);
     REQUIRE(p_ger.getPosX() == 0);
@@ -34,7 +34,7 @@ TEST_CASE("guerreiro Construtor - guerreiro", "[tropas.hpp]" ) {
 }
 
 TEST_CASE("cavaleiro Construtor - cavaleiro", "[tropas.hpp]" ) {
-    Cavaleiro p_cav(0,0);
+    Cavaleiro p_cav;
     REQUIRE(p_cav.getDano() == 20);
     REQUIRE(p_cav.getVida() == 250);
     REQUIRE(p_cav.getPosX() == 0);
@@ -47,12 +47,12 @@ TEST_CASE("guerreiro Construtor - Vazio", "[tropas.hpp]" ) {
     Unidade_vazio p_vazio(0,0);
     REQUIRE(p_vazio.getPosX() == 0);
     REQUIRE(p_vazio.getPosY() == 0);
-    Unidade_vazio p_vazio(10,12);
-    REQUIRE(p_vazio.getPosX() == 10);
-    REQUIRE(p_vazio.getPosY() == 12);   
+    Unidade_vazio p_vazio1(10,12);
+    REQUIRE(p_vazio1.getPosX() == 10);
+    REQUIRE(p_vazio1.getPosY() == 12);   
 }
 TEST_CASE("Unidade Construtor - fortaleza", "[unidades.hpp]" ) {
-    Fortaleza u_for(0,0);
+    Fortaleza u_for;
     REQUIRE(u_for.getLargura() == 2);
     REQUIRE(u_for.getVida() == 500);
     REQUIRE(u_for.getComprimento() == 4);
@@ -62,7 +62,7 @@ TEST_CASE("Unidade Construtor - fortaleza", "[unidades.hpp]" ) {
     u_for.get_status_unidade();
 }
 TEST_CASE("Unidade Construtor - lenhadora", "[unidades.hpp]" ) {
-    Lenhadora u_lenha(0,0);
+    Lenhadora u_lenha;
     REQUIRE(u_lenha.getLargura() == 2);
     REQUIRE(u_lenha.getVida() == 100);
     REQUIRE(u_lenha.getComprimento() == 2);
@@ -73,7 +73,7 @@ TEST_CASE("Unidade Construtor - lenhadora", "[unidades.hpp]" ) {
 }
 
 TEST_CASE("Unidade Construtor - mina de ouro", "[unidades.hpp]" ) {
-    Mina u_min(0,0);
+    Mina u_min;
     REQUIRE(u_min.getLargura() == 2);
     REQUIRE(u_min.getVida() == 200);
     REQUIRE(u_min.getComprimento() == 2);
@@ -125,6 +125,7 @@ TEST_CASE(" quadrado -> metodos get e set", "[quadrado.hpp]" ) {
     REQUIRE(t1.qual_unidade(19, 18) == 'C');
     t1.print_tabuleiro();
 }
+
 
 TEST_CASE( "Inicializacao da Engine", "[engine.hpp]" ) {
     Engine En0; // inicializa uma classe sem parametros

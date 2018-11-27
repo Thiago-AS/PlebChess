@@ -12,6 +12,7 @@
 #include <cstdlib>
 #include <cstring>
 #include "../include/tropas.hpp"
+#include "../include/unidades.hpp"
 using namespace std;
 
 class Engine {

@@ -27,7 +27,7 @@ class Arqueiro {
 
  public :
 // construtor e destrutor
-        Arqueiro(unsigned int pX, unsigned int pY);
+        Arqueiro();
         ~Arqueiro();
         // metodos getter and setters
         int setVida(unsigned int p_vida);
@@ -59,7 +59,7 @@ class Guerreiro {
 
  public:
         // construtor e destrutor
-        Guerreiro(unsigned int pX, unsigned int pY);
+        Guerreiro();
         ~Guerreiro();
         // metodos getter and setters
         int setVida(unsigned int p_vida);
@@ -91,7 +91,7 @@ class Cavaleiro {
 	
  public:
         // construtor e destrutor
-        Cavaleiro(unsigned int pX, unsigned int pY);
+        Cavaleiro();
         ~Cavaleiro();
         // metodos getter and setters
         int setVida(unsigned int p_vida);
@@ -122,6 +122,8 @@ class Unidade_vazio {
         // metodos getter and setters
         int setPosX(unsigned int p_posX);
         int setPosY(unsigned int p_posY);
+        unsigned int getPosX();
+        unsigned int getPosY();
 };
 
 

@@ -1,6 +1,4 @@
 // Copyright [2018] < Grupo Mp >
-#include "../include/tropas.hpp"
-#include "../include/unidades.hpp"
 #include "../include/engine.hpp"
 
 // Metodos da classe Engine

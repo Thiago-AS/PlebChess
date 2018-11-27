@@ -1,10 +1,10 @@
 // "Copyright 2018 Grupo MP"
 #include "../include/tropas.hpp"
-Arqueiro::Arqueiro(unsigned int pX, unsigned int pY) {
+Arqueiro::Arqueiro() {
           setVida(100);
           setDano(40);
-          setPosY(pX);
-          setPosX(pY);
+          setPosX(0);
+          setPosY(0);
           setQt_turnos(2);
           setQt_casas(2);
           setAtivo(0);
@@ -79,11 +79,11 @@ int Arqueiro::get_status_personagem() {
     printf("%d\n", getQt_turnos());
     printf("\tQuantidade de casas que podem ser andadas %d \n", getQt_casas());
 }
-Cavaleiro::Cavaleiro(unsigned int pX, unsigned int pY) {
+Cavaleiro::Cavaleiro() {
           setVida(250);
           setDano(20);
-          setPosY(pX);
-          setPosX(pY);
+          setPosX(0);
+          setPosY(0);
           setQt_turnos(2);
           setQt_casas(3);
           setAtivo(0);
@@ -159,11 +159,11 @@ int Cavaleiro::get_status_personagem() {
     printf("\tQuantidade de casas que podem ser andadas %d \n", getQt_casas());
 }
 
-Guerreiro::Guerreiro(unsigned int pX, unsigned int pY) {
+Guerreiro::Guerreiro() {
           setVida(150);
           setDano(30);
-          setPosY(pX);
-          setPosX(pY);
+          setPosX(0);
+          setPosY(0);
           setQt_turnos(1);
           setQt_casas(1);
           setAtivo(0);
@@ -239,11 +239,11 @@ int Guerreiro::get_status_personagem() {
     printf("\tQuantidade de casas que podem ser andadas %d \n", getQt_casas());
 }
 
-Guerreiro::Guerreiro(unsigned int pX, unsigned int pY) {
-          setPosY(pX);
-          setPosX(pY);
+Unidade_vazio::Unidade_vazio(unsigned int pX, unsigned int pY) {
+          setPosX(pX);
+          setPosY(pY);
 }
-Guerreiro::~Guerreiro(void) {
+Unidade_vazio::~Unidade_vazio(void) {
 }
        // metodos getter and setters
 int  Unidade_vazio::setPosX(unsigned int p_posX) {
