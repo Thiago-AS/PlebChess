@@ -10,7 +10,7 @@ Engine::Engine() {
 	int i = 0, j =0; 
 	for ( i = 0; i < LIN_TABULEIRO; i++) {
 		for (j = 0; j < COL_TABULEIRO; j++) {
-		 tabuleirogame[i][j] = t_UnidadeVazio;	
+		 tabuleirogame[i][j] = TipoUnidade::t_UnidadeVazio;	
 	    }
 	}
 			
@@ -45,15 +45,15 @@ int Engine::getTurno() {
     return turnoAtual;
 }
 
-TipoUnidade getUnidade(unsigned int posX, unsigned int posY) {
- return tabuleiro[posX][posY];
+TipoUnidade Engine::getUnidadeTAB(unsigned int posX, unsigned int posY) {
+ return tabuleirogame[posX][posY];
 }
-int setUnidade(TipoUnidade unit, unsigned int posX, unsigned int posY){
- if( posX < LIN_TABULEIRO || posY  < COL_TABULEIRO) {
+int Engine::setUnidadeTAB(TipoUnidade unit, unsigned int posX, unsigned int posY){
+ if( posX > LIN_TABULEIRO || posY  > COL_TABULEIRO) {
 	 printf("Posicao invalida\n");
 	 return 0;
  } else {
-	 tabuleiro[posX][posY] = unit;
+	 tabuleirogame[posX][posY] = unit;
      return 1;	
  }    
 
@@ -183,13 +183,12 @@ Arqueiro Jogador::getArqueiroBypos(unsigned int posX, unsigned int posY) {
         /* As posicoes devem ser recebidas da posicao do quartel
          que construiu o arqueiro */
         if((vetorArqueiro[i].getPosX() == (posX)) && 
-		    (vetorArqueiro[i].getPosY == (posY)) {
+		    (vetorArqueiro[i].getPosY() == (posY))) {
 				
                 return vetorArqueiro[i];  // bem sucedido
             }  // end if
             i++;
         }  
-    else
     /* Caso o indice seja passado errado, retorna um personagem
      * do tipo zero_p, mas eh quando o metodo eh usado errado */
         return Arqueiro();
@@ -218,17 +217,17 @@ Guerreiro Jogador::getVetorGuerreiro(int indice) {
         return Guerreiro();
 }
 Guerreiro Jogador::getGuerreiroBypos(unsigned int posX, unsigned int posY) {
+     int i = 0;
      while ( i < 10 ) {
         /* As posicoes devem ser recebidas da posicao do quartel
          que construiu o arqueiro */
         if((vetorGuerreiro[i].getPosX() == (posX)) && 
-		    (vetorGuerreiro[i].getPosY == (posY)) {
+		    (vetorGuerreiro[i].getPosY() == (posY))) {
 				
                 return vetorGuerreiro[i];  // bem sucedido
             }  // end if
             i++;
         }  
-    else
     /* Caso o indice seja passado errado, retorna um personagem
      * do tipo zero_p, mas eh quando o metodo eh usado errado */
         return Guerreiro();
@@ -262,13 +261,12 @@ Cavaleiro Jogador::getCavaleiroBypos(unsigned int posX, unsigned int posY) {
         /* As posicoes devem ser recebidas da posicao do quartel
          que construiu o arqueiro */
         if((vetorCavaleiro[i].getPosX() == (posX)) && 
-		    (vetorCavaleiro[i].getPosY == (posY)) {
+		    (vetorCavaleiro[i].getPosY() == (posY))) {
 				
                 return vetorCavaleiro[i];  // bem sucedido
             }  // end if
             i++;
         }  
-    else
     /* Caso o indice seja passado errado, retorna um personagem
      * do tipo zero_p, mas eh quando o metodo eh usado errado */
         return Cavaleiro();
@@ -372,13 +370,12 @@ Mina Jogador::getMinaBypos(unsigned int posX, unsigned int posY) {
         /* As posicoes devem ser recebidas da posicao do quartel
          que construiu o arqueiro */
         if((vetorMina[i].getPosX() == (posX)) && 
-		    (vetorMina[i].getPosY == (posY)) {
+		    (vetorMina[i].getPosY() == (posY))) {
 				
                 return vetorMina[i];  // bem sucedido
             }  // end if
             i++;
         }  
-    else
     /* Caso o indice seja passado errado, retorna um personagem
      * do tipo zero_p, mas eh quando o metodo eh usado errado */
         return Mina();
@@ -397,13 +394,12 @@ Lenhadora Jogador::getLenhadoraBypos(unsigned int posX, unsigned int posY) {
         /* As posicoes devem ser recebidas da posicao do quartel
          que construiu o arqueiro */
         if((vetorLenhadora[i].getPosX() == (posX)) && 
-		    (vetorLenhadora[i].getPosY == (posY)) {
+		    (vetorLenhadora[i].getPosY() == (posY))) {
 				
                 return vetorLenhadora[i];  // bem sucedido
             }  // end if
             i++;
         }  
-    else
     /* Caso o indice seja passado errado, retorna um personagem
      * do tipo zero_p, mas eh quando o metodo eh usado errado */
         return Lenhadora();

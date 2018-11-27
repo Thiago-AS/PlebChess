@@ -7,20 +7,9 @@
 #define TABULEIRO_HPP_
 // includes
 #include "utils.hpp"
+#include "engine.hpp"
 using namespace std;
-/**
- * @brief Enumeracao da Classe tipo de unidades que o jogo pode ter.
- * Descricao: Contem todas as unidades que pode estar presente em um quadrado do mapa.
- */
-enum class TipoUnidade{
-    UnidadeVazio,
-    fortaleza,
-    lenhadora,
-    mina,
-    arqueiro,
-    cavaleiro,
-    guerreiro,
-    };
+
 /**
 * @brief Classe que contem as especificacoes do tabuleiro e como esta sendo usado.
 * Descricao: Contem construtor e destrutor além dos metodos getters and setters que

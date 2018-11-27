@@ -55,8 +55,8 @@ class Engine {
 		*    Interface implicita: Nao ha
 		* Assertiva Saida: devolve o valor de nome
 		*/
-        TipoUnidade getUnidade(unsigned int posX, unsigned int posY);
-		int setUnidade(TipoUnidade unit, unsigned int posX, unsigned int posY);
+        TipoUnidade getUnidadeTAB(unsigned int posX, unsigned int posY);
+		int setUnidadeTAB(TipoUnidade unit, unsigned int posX, unsigned int posY);
 };
 class Jogador {
     private:
@@ -113,18 +113,19 @@ class Jogador {
     int getGanhoOuro();
     int getGanhoMadeira();
     Arqueiro getVetorArqueiro(int);
-	Arqueiro getArqueiroBypos(unsigned int posX, unsigned int posY));
+	Arqueiro getArqueiroBypos(unsigned int posX, unsigned int posY);
     int alteraArqueiro(int indice, unsigned int posX, unsigned int posY);
     Guerreiro getVetorGuerreiro(int);
-	Guerreiro getGuerreiroBypos(unsigned int posX, unsigned int posY));
+	Guerreiro getGuerreiroBypos(unsigned int posX, unsigned int posY);
     int alteraGuerreiro(int indice, unsigned int posX, unsigned int posY);
     Cavaleiro getVetorCavaleiro(int);
-	Cavaleiro getCavaleiroBypos(unsigned int posX, unsigned int posY));
+	Cavaleiro getCavaleiroBypos(unsigned int posX, unsigned int posY);
     int alteraCavaleiro(int indice, unsigned int posX, unsigned int posY);
     Mina getVetorMina(int);
-	Mina getMinaBypos(unsigned int posX, unsigned int posY));
+	Mina getMinaBypos(unsigned int posX, unsigned int posY);
     int alteraMina(int indice, unsigned int posX, unsigned int posY);
     Lenhadora getVetorLenhadora(int);
+    Lenhadora getLenhadoraBypos(unsigned int posX, unsigned int posY);
     int alteraLenhadora(int indice, unsigned int posX, unsigned int posY);
     Fortaleza getun_Fortaleza();
     int alteraFortaleza(unsigned int posX, unsigned int posY);

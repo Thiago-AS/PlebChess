@@ -11,6 +11,7 @@
 #include "../include/unidades.hpp"
 #include "../include/tabuleiro.hpp"
 #include "../include/engine.hpp"
+
 TEST_CASE("arqueiro Construtor - arqueiro", "[tropas.hpp]" ) {
     Arqueiro p_arq;
     REQUIRE(p_arq.getDano() == 40);
@@ -93,7 +94,7 @@ TEST_CASE("Utils", "[utils.hpp]" ) {
 }
 TEST_CASE(" quadrado -> metodos get e set", "[quadrado.hpp]" ) {
     Tabuleiro t1;
-    TipoUnidade nome = TipoUnidade::UnidadeVazio;
+    TipoUnidade nome = TipoUnidade::t_UnidadeVazio;
     t1.print_tabuleiro();
     printf("\n\n\n");
     REQUIRE(t1.insere_fortaleza(12, 0) == 1);
@@ -137,9 +138,9 @@ TEST_CASE( "Inicializacao da Engine", "[engine.hpp]" ) {
     REQUIRE( En0.getJogador() == 2 );
     En0.endTurno(); // verifica se troca o jog nos 2 casos
     REQUIRE( En0.getJogador() == 1 );
-	REQUIRE(getUnidade(12,11) == t_UnidadeVazio);
-	REQUIRE(setUnidade(t_arqueiro,13,13) == 1);
-	REQUIRE(getUnidade(12,11) == t_arqueiro);
+	REQUIRE(En0.getUnidadeTAB(12,11) == TipoUnidade::t_UnidadeVazio);
+	REQUIRE(En0.setUnidadeTAB(TipoUnidade::t_arqueiro,13,13) == 1);
+	REQUIRE(En0.getUnidadeTAB(13,13) == TipoUnidade::t_arqueiro);
 	
 }
 
