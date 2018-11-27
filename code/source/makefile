@@ -1,16 +1,16 @@
 IDIR =../include
-CC=g++
-CFLAGS=-I$(IDIR) -std=c++11 -ftest-coverage -fprofile-arcs
+CC=g++ -std=c++11
+CFLAGS=-I$(IDIR) -ftest-coverage -fprofile-arcs
 
 ODIR=obj
 LDIR =../lib
 
-LIBS=-lm
+LIBS=-lm -lSDL2 -lSDL2_image
 
-_DEPS = tropas.hpp catch.hpp unidades.hpp utils.hpp engine.hpp
+_DEPS = gui.h gui_manager.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
-	
-_OBJ = testes.o tropas.o unidades.o utils.o engine.o
+
+_OBJ = gui.o gui_manager.o main.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 $(ODIR)/%.o: %.cpp $(DEPS)

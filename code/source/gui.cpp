@@ -23,13 +23,16 @@ bool Gui::Initialized() {
 }
 
 Gui::Gui() {
-  mBackBuffer = NULL;
+  mRenderer = NULL;
+  mWindow = NULL;
   initialized = Init();
 }
 
 Gui::~Gui() {
   SDL_DestroyWindow(mWindow);
   mWindow = NULL;
+  SDL_DestroyRenderer(mRenderer);
+  mRenderer = NULL;
 
   SDL_Quit();
 }
@@ -47,10 +50,17 @@ bool Gui::Init() {
     return false;
   }
 
-  mBackBuffer = SDL_GetWindowSurface(mWindow);
+  mRenderer = SDL_CreateRenderer(mWindow, -1, 0);
+  if (mRenderer == NULL) {
+    cout << "Falha ao criar renderer: " << SDL_GetError() << endl;
+  } else {
+    SDL_SetRenderDrawColor(mRenderer, 255, 255, 255, 255);
+  }
   return true;
 }
 
 void Gui::Render() {
-  SDL_UpdateWindowSurface(mWindow);
+  SDL_RenderClear(mRenderer);
+  // add stuff to render
+  SDL_RenderPresent(mRenderer);
 }

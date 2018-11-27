@@ -28,13 +28,22 @@ GuiManager::~GuiManager() {
   gui = NULL;
 }
 
+void GuiManager::HandleEvents() {
+  SDL_Event events;
+  SDL_PollEvent(&events);
+  switch (events.type) {
+    case SDL_QUIT:
+      quit = true;
+      break;
+
+    default:
+      break;
+  }
+}
+
 void GuiManager::Run() {
   while (!quit) {
-    while (SDL_PollEvent(&events) != 0) {
-      if (events.type == SDL_QUIT) {
-        quit = true;
-      }
-      gui->Render();
-    }
+    HandleEvents();
+    gui->Render();
   }
 }
