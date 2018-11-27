@@ -203,3 +203,117 @@ Cavaleiro Jogador::getVetorCavaleiro(int indice) {
      * do tipo zero_p, mas eh quando o metodo eh usado errado */
         return Cavaleiro();
 }
+
+int Jogador::alteraCavaleiro(int indice, unsigned int posX, unsigned int posY) {
+    if ( indice >= 0 && indice < 10 ) {
+         vetorCavaleiro[indice].setPosY(posY);
+         vetorCavaleiro[indice].setPosX(posX);
+         return 1;
+    } else
+    /* Caso o indice seja passado errado, retorna um personagem
+     * do tipo zero_p, mas eh quando o metodo eh usado errado */
+        return 0;
+}
+int Jogador::alteraArqueiro(int indice, unsigned int posX, unsigned int posY) {
+    if ( indice >= 0 && indice < 10 ) {
+         vetorArqueiro[indice].setPosY(posY);
+         vetorArqueiro[indice].setPosX(posX);
+         return 1;
+    } else 
+    /* Caso o indice seja passado errado, retorna um personagem
+     * do tipo zero_p, mas eh quando o metodo eh usado errado */
+        return 0;
+}
+int Jogador::alteraGuerreiro(int indice, unsigned int posX, unsigned int posY) {
+    if ( indice >= 0 && indice < 10 ) {
+         vetorGuerreiro[indice].setPosY(posY);
+         vetorGuerreiro[indice].setPosX(posX);
+         return 1;
+    } else
+    /* Caso o indice seja passado errado, retorna um personagem
+     * do tipo zero_p, mas eh quando o metodo eh usado errado */
+        return 0;
+}
+
+int Jogador::setVetorMina(int posicaoX, int posicaoY) {
+    int i = 0;
+        while ( i < 5 ) {
+                /* As posicoes devem ser recebidas da posicao do quartel
+                    que construiu o cavaleiro */
+                vetorMina[i].setPosX(posicaoX);
+                vetorMina[i].setPosY(posicaoY);
+            i++;
+        }  // end while
+        return 1; 
+}
+int Jogador::setVetorLenhadora(int posicaoX, int posicaoY) {
+    int i = 0;
+        while ( i < 8 ) {
+                 /* As posicoes devem ser recebidas da posicao do quartel
+                    que construiu o cavaleiro */
+                vetorLenhadora[i].setPosX(posicaoX);
+                vetorLenhadora[i].setPosY(posicaoY);
+            i++;
+        }  // end while
+        
+        return 1;  // bem sucedido
+        
+}
+
+int Jogador::setFortaleza(int posicaoX, int posicaoY) {
+                /* As posicoes devem ser recebidas da posicao do quartel
+                    que construiu o cavaleiro */
+                un_Fortaleza.setPosX(posicaoX);
+                un_Fortaleza.setPosY(posicaoY);
+                return 1;  // bem sucedido
+     
+}
+
+int Jogador::alteraMina(int indice, unsigned int posX, unsigned int posY) {
+    if ( indice >= 0 && indice < 5 ) {
+         vetorMina[indice].setPosY(posY);
+         vetorMina[indice].setPosX(posX);
+         return 1;
+    } else
+    /* Caso o indice seja passado errado, retorna um personagem
+     * do tipo zero_p, mas eh quando o metodo eh usado errado */
+        return 0;
+}
+
+int Jogador::alteraLenhadora(int indice, unsigned int posX, unsigned int posY) {
+    if ( indice >= 0 && indice < 8 ) {
+         vetorLenhadora[indice].setPosY(posY);
+         vetorLenhadora[indice].setPosX(posX);
+         return 1;
+    } else
+    /* Caso o indice seja passado errado, retorna um personagem
+     * do tipo zero_p, mas eh quando o metodo eh usado errado */
+        return 0;
+}
+int Jogador::alteraFortaleza(unsigned int posX, unsigned int posY) {
+         un_Fortaleza.setPosY(posY);
+         un_Fortaleza.setPosX(posX);
+         return 1;
+    
+}
+Mina Jogador::getVetorMina(int indice) {
+    if ( indice >= 0 && indice < 5 )
+        return vetorMina[indice];
+    else
+    /* Caso o indice seja passado errado, retorna um personagem
+     * do tipo zero_p, mas eh quando o metodo eh usado errado */
+        return Mina();
+}
+
+Lenhadora Jogador::getVetorLenhadora(int indice) {
+    if ( indice >= 0 && indice < 5 )
+        return vetorLenhadora[indice];
+    else
+    /* Caso o indice seja passado errado, retorna um personagem
+     * do tipo zero_p, mas eh quando o metodo eh usado errado */
+        return Lenhadora();
+}
+Fortaleza Jogador::getun_Fortaleza() {
+    return un_Fortaleza;
+}
+   

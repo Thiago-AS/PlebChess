@@ -53,6 +53,10 @@ class Jogador {
     Arqueiro vetorArqueiro[10];
     Guerreiro vetorGuerreiro[10];
     Cavaleiro vetorCavaleiro[10];
+    Mina vetorMina[5];
+    Lenhadora vetorLenhadora[8];
+    Fortaleza un_Fortaleza;
+
 
     public:
     // construtor e destrutor
@@ -66,6 +70,9 @@ class Jogador {
     int setVetorArqueiro(int, int);
     int setVetorGuerreiro(int, int);
     int setVetorCavaleiro(int, int);
+    int setVetorMina(int, int);
+    int setVetorLenhadora(int, int);
+    int setFortaleza(int, int);
     int inicializaJogador();
     // metodos GET
     int getTime();
@@ -79,7 +86,17 @@ class Jogador {
     int getGanhoOuro();
     int getGanhoMadeira();
     Arqueiro getVetorArqueiro(int);
+    int alteraArqueiro(int indice, unsigned int posX, unsigned int posY);
     Guerreiro getVetorGuerreiro(int);
+    int alteraGuerreiro(int indice, unsigned int posX, unsigned int posY);
     Cavaleiro getVetorCavaleiro(int);
+    int alteraCavaleiro(int indice, unsigned int posX, unsigned int posY);
+    Mina getVetorMina(int);
+    int alteraMina(int indice, unsigned int posX, unsigned int posY);
+    Lenhadora getVetorLenhadora(int);
+    int alteraLenhadora(int indice, unsigned int posX, unsigned int posY);
+    Fortaleza getun_Fortaleza();
+    int alteraFortaleza(unsigned int posX, unsigned int posY);
+    
 };  // jogador
 #endif  // CODE_INCLUDE_ENGINE_HPP_
