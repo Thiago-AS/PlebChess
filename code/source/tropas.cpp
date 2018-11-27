@@ -73,11 +73,11 @@ unsigned int Arqueiro::getAtivo() {
 }
 int Arqueiro::get_status_personagem() {
     printf("Personagem :: Arqueiro \n");
-    printf("O personagem tem \nVida: %d Dano: %d\n", getVida(), getDano());
-    printf("Esta na posicao: X:%d Y:%d\n", getPosX(), getPosY());
+    printf("O personagem tem \nVida: %u Dano: %u\n", getVida(), getDano());
+    printf("Esta na posicao: X:%u Y:%u\n", getPosX(), getPosY());
     printf("Limitacoes: Quantidade de turnos para ser produzido");
-    printf("%d\n", getQt_turnos());
-    printf("\tQuantidade de casas que podem ser andadas %d \n", getQt_casas());
+    printf("%u\n", getQt_turnos());
+    printf("\tQuantidade de casas que podem ser andadas %u \n", getQt_casas());
 }
 Cavaleiro::Cavaleiro() {
           setVida(250);
@@ -152,11 +152,11 @@ unsigned int Cavaleiro::getAtivo() {
 }
 int Cavaleiro::get_status_personagem() {
     printf("Personagem :: Cavaleiro \n");
-    printf("O personagem tem \nVida: %d Dano: %d\n", getVida(), getDano());
-    printf("Esta na posicao: X:%d Y:%d\n", getPosX(), getPosY());
+    printf("O personagem tem \nVida: %u Dano: %u\n", getVida(), getDano());
+    printf("Esta na posicao: X:%u Y:%u\n", getPosX(), getPosY());
     printf("Limitacoes: Quantidade de turnos para ser produzido");
-    printf(" %d \n", getQt_turnos());
-    printf("\tQuantidade de casas que podem ser andadas %d \n", getQt_casas());
+    printf(" %u \n", getQt_turnos());
+    printf("\tQuantidade de casas que podem ser andadas %u \n", getQt_casas());
 }
 
 Guerreiro::Guerreiro() {
@@ -232,11 +232,11 @@ unsigned int Guerreiro::getAtivo() {
 }
 int Guerreiro::get_status_personagem() {
        printf("Personagem :: guerreiro \n");
-    printf("O personagem tem \nVida: %d Dano: %d\n", getVida(), getDano());
-    printf("Esta na posicao: X:%d Y:%d\n", getPosX(), getPosY());
+    printf("O personagem tem \nVida: %u Dano: %u\n", getVida(), getDano());
+    printf("Esta na posicao: X:%u Y:%u\n", getPosX(), getPosY());
     printf("Limitacoes: Quantidade de turnos para ser produzido");
-    printf(" %d \n", getQt_turnos());
-    printf("\tQuantidade de casas que podem ser andadas %d \n", getQt_casas());
+    printf(" %u \n", getQt_turnos());
+    printf("\tQuantidade de casas que podem ser andadas %u \n", getQt_casas());
 }
 
 Unidade_vazio::Unidade_vazio(unsigned int pX, unsigned int pY) {

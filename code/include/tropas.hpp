@@ -88,7 +88,7 @@ class Cavaleiro {
     unsigned int qt_turnos;
     unsigned int qt_casas;
     unsigned int ativo;
-	
+
  public:
         // construtor e destrutor
         Cavaleiro();

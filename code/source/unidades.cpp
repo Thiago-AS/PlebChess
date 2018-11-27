@@ -7,9 +7,9 @@ Mina::Mina() {
           setComprimento(2);
           setLargura(2);
           setConstrucao(50);
-		  setPosX(0);
-		  setPosY(0);
-		  }
+          setPosX(0);
+          setPosY(0);
+          }
 Mina::~Mina() {}
 int Mina::setVida(unsigned int p_vida) {
     rest_eh_positivo(p_vida);
@@ -77,9 +77,9 @@ unsigned int  Mina::getPosY() {
 
 void Mina::get_status_unidade() {
        printf("UNidade :: MINA \n");
-    printf("A unidade tem \nVida: %d Produz: %d\n", getVida(), getQt_materia());
-    printf("Tem: Comprimento:%d Largura:%d\n", getComprimento(), getLargura());
-    printf("Para construir precisa :  %d \n", getConstrucao());
+    printf("A unidade tem \nVida: %u Produz: %u\n", getVida(), getQt_materia());
+    printf("Tem: Comprimento:%u Largura:%u\n", getComprimento(), getLargura());
+    printf("Para construir precisa :  %u \n", getConstrucao());
 }
 Lenhadora::Lenhadora() {
           setVida(100);
@@ -88,8 +88,8 @@ Lenhadora::Lenhadora() {
           setComprimento(2);
           setLargura(2);
           setConstrucao(30);
-		  setPosX(0);
-		  setPosY(0);
+          setPosX(0);
+          setPosY(0);
         }
 Lenhadora::~Lenhadora() {}
 int Lenhadora::setVida(unsigned int p_vida) {
@@ -158,9 +158,9 @@ unsigned int  Lenhadora::getPosY() {
 
 void Lenhadora::get_status_unidade() {
     printf("UNidade :: Lenhadora \n");
-    printf("A unidade tem \nVida: %d Produz: %d\n", getVida(), getQt_materia());
-    printf("Tem: Comprimento:%d Largura:%d\n", getComprimento(), getLargura());
-    printf("Para construir precisa :  %d \n", getConstrucao());
+    printf("A unidade tem \nVida: %u Produz: %u\n", getVida(), getQt_materia());
+    printf("Tem: Comprimento:%u Largura:%u\n", getComprimento(), getLargura());
+    printf("Para construir precisa :  %u \n", getConstrucao());
 }
 Fortaleza::Fortaleza() {
          setVida(500);
@@ -169,8 +169,8 @@ Fortaleza::Fortaleza() {
           setComprimento(4);
           setLargura(2);
           setConstrucao(999999);
-	  setPosX(0);
-	  setPosY(0);
+      setPosX(0);
+      setPosY(0);
 }
 Fortaleza::~Fortaleza() {}
 int Fortaleza::setVida(unsigned int p_vida) {
@@ -238,7 +238,7 @@ unsigned int  Fortaleza::getPosY() {
 
 void Fortaleza::get_status_unidade() {
     printf("UNidade :: Fortaleza \n");
-    printf("A unidade tem \nVida: %d Produz: %d\n", getVida(), getQt_materia());
-    printf("Tem: Comprimento:%d Largura:%d\n", getComprimento(), getLargura());
-    printf("Para construir precisa :  %d \n", getConstrucao());
+    printf("A unidade tem \nVida: %u Produz: %u\n", getVida(), getQt_materia());
+    printf("Tem: Comprimento:%u Largura:%u\n", getComprimento(), getLargura());
+    printf("Para construir precisa :  %u \n", getConstrucao());
   }

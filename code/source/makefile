@@ -21,5 +21,7 @@ testes: $(OBJ)
 
 .PHONY: clean
 
+cpplin: cpplint tropas.cpp testes.cpp unidades.cpp utils.cpp tabuleiro.cpp engine.cpp
+
 clean:
 	rm -f $(ODIR)/*.o *~ core $(INCDIR)/*~ $(ODIR)/*.gcno *~ $(ODIR)/*.gcda *~ testes *~

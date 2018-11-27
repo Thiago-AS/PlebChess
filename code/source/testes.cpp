@@ -45,12 +45,12 @@ TEST_CASE("cavaleiro Construtor - cavaleiro", "[tropas.hpp]" ) {
     p_cav.get_status_personagem();
 }
 TEST_CASE("guerreiro Construtor - Vazio", "[tropas.hpp]" ) {
-    Unidade_vazio p_vazio(0,0);
+    Unidade_vazio p_vazio(0, 0);
     REQUIRE(p_vazio.getPosX() == 0);
     REQUIRE(p_vazio.getPosY() == 0);
-    Unidade_vazio p_vazio1(10,12);
+    Unidade_vazio p_vazio1(10, 12);
     REQUIRE(p_vazio1.getPosX() == 10);
-    REQUIRE(p_vazio1.getPosY() == 12);   
+    REQUIRE(p_vazio1.getPosY() == 12);
 }
 TEST_CASE("Unidade Construtor - fortaleza", "[unidades.hpp]" ) {
     Fortaleza u_for;
@@ -94,7 +94,6 @@ TEST_CASE("Utils", "[utils.hpp]" ) {
 }
 TEST_CASE(" quadrado -> metodos get e set", "[quadrado.hpp]" ) {
     Tabuleiro t1;
-    TipoUnidade nome = TipoUnidade::t_UnidadeVazio;
     t1.print_tabuleiro();
     printf("\n\n\n");
     REQUIRE(t1.insere_fortaleza(12, 0) == 1);
@@ -127,204 +126,201 @@ TEST_CASE(" quadrado -> metodos get e set", "[quadrado.hpp]" ) {
     t1.print_tabuleiro();
 }
 
-
-TEST_CASE( "Inicializacao da Engine", "[engine.hpp]" ) {
-    Engine En0; // inicializa uma classe sem parametros
-    REQUIRE( En0.getTurno() == 1 );
-    REQUIRE( En0.getJogador() == 1 );
-    En0.endTurno(); // encerra um turno para verificar
+TEST_CASE("Inicializacao da Engine", "[engine.hpp]" ) {
+    Engine En0;  // inicializa uma classe sem parametros
+    REQUIRE(En0.getTurno() == 1);
+    REQUIRE(En0.getJogador() == 1);
+    En0.endTurno();  // encerra um turno para verificar
                     // se serao atualizados os valores
-    REQUIRE( En0.getTurno() == 2 );
-    REQUIRE( En0.getJogador() == 2 );
-    En0.endTurno(); // verifica se troca o jog nos 2 casos
-    REQUIRE( En0.getJogador() == 1 );
-	REQUIRE(En0.getUnidadeTAB(12,11) == TipoUnidade::t_UnidadeVazio);
-	REQUIRE(En0.setUnidadeTAB(TipoUnidade::t_arqueiro,13,13) == 1);
-	REQUIRE(En0.getUnidadeTAB(13,13) == TipoUnidade::t_arqueiro);
-	
+    REQUIRE(En0.getTurno() == 2);
+    REQUIRE(En0.getJogador() == 2);
+    En0.endTurno();   // verifica se troca o jog nos 2 casos
+    REQUIRE(En0.getJogador() == 1);
+    REQUIRE(En0.getUnidadeTAB(12, 11) == TipoUnidade::t_UnidadeVazio);
+    REQUIRE(En0.setUnidadeTAB(TipoUnidade::t_arqueiro, 13, 13) == 1);
+    REQUIRE(En0.getUnidadeTAB(13, 13) == TipoUnidade::t_arqueiro);
 }
 
-TEST_CASE( "Inicializacao do Jogador", "[engine.hpp]" ) {
+TEST_CASE("Inicializacao do Jogador", "[engine.hpp]" ) {
     Jogador Jog1(1);  // inicializa no time 1
     int teste;
     teste = Jog1.inicializaJogador();
-    REQUIRE( teste == 1 );
-    REQUIRE( Jog1.getTime() == 1 );
-    REQUIRE( Jog1.getOuro() == 10 );
-    REQUIRE( Jog1.getMadeira() == 10 );
-    REQUIRE( Jog1.getGuerreiros() == 0 );
-    REQUIRE( Jog1.getArqueiros() == 0 );
-    REQUIRE( Jog1.getCavaleiros() == 0 );
-    REQUIRE( Jog1.getMadeireiras() == 0 );
-    REQUIRE( Jog1.getMinas() == 0 );
-    REQUIRE( Jog1.getGanhoOuro() == 5 );
-    REQUIRE( Jog1.getGanhoMadeira() == 5 );
+    REQUIRE(teste == 1);
+    REQUIRE(Jog1.getTime() == 1);
+    REQUIRE(Jog1.getOuro() == 10);
+    REQUIRE(Jog1.getMadeira() == 10);
+    REQUIRE(Jog1.getGuerreiros() == 0);
+    REQUIRE(Jog1.getArqueiros() == 0);
+    REQUIRE(Jog1.getCavaleiros() == 0);
+    REQUIRE(Jog1.getMadeireiras() == 0);
+    REQUIRE(Jog1.getMinas() == 0);
+    REQUIRE(Jog1.getGanhoOuro() == 5);
+    REQUIRE(Jog1.getGanhoMadeira() == 5);
 }
 
-TEST_CASE( "Recursos do Jogador", "[engine.hpp]" ) {
+TEST_CASE("Recursos do Jogador", "[engine.hpp]" ) {
 // Caso sejam adicionadas madeireiras e minas
     Jogador Jog1(1);
     Jog1.setConstrucoes(2, 2);
     Jog1.setGanhoPorTurno();  // deve ser chamada para atualizar os valores
-    REQUIRE( Jog1.getGanhoOuro() == 25 );
-    REQUIRE( Jog1.getGanhoMadeira() == 15 );
+    REQUIRE(Jog1.getGanhoOuro() == 25);
+    REQUIRE(Jog1.getGanhoMadeira() == 15);
 }
-TEST_CASE( "Vetor de Arqueiros", "[engine.hpp]" ) {
+TEST_CASE("Vetor de Arqueiros", "[engine.hpp]" ) {
     Jogador Jog1(1);
     Arqueiro P1;
-    int i=0, teste;
-    for ( i; i<10; i++ ) {
+    int i = 0, teste;
+    for ( i; i < 10; i++ ) {
         teste = Jog1.setVetorArqueiro(10, 8);
     }
-    REQUIRE( teste == 1 );  // bem sucedido
+    REQUIRE(teste == 1);  // bem sucedido
     teste = Jog1.setVetorArqueiro(10, 10);
-    REQUIRE( teste == 0 );
+    REQUIRE(teste == 0);
     // ja esta no limite de arqueiros permitidos
     P1 = Jog1.getVetorArqueiro(0);
     // testes para o primeiro elemento do vetor
-    REQUIRE( P1.getPosX() == 10 );
-    REQUIRE( P1.getPosY() == 8 );
-    REQUIRE( P1.getAtivo() == 1 );
+    REQUIRE(P1.getPosX() == 10);
+    REQUIRE(P1.getPosY() == 8);
+    REQUIRE(P1.getAtivo() == 1);
     P1 = Jog1.getVetorArqueiro(9);
     // testes para o ultimo elemento do vetor
-    REQUIRE( P1.getPosX() == 10 );
-    REQUIRE( P1.getPosY() == 8 );
-    REQUIRE( P1.getAtivo() == 1 );
-    REQUIRE(Jog1.alteraArqueiro(3,17,16) == 1);
+    REQUIRE(P1.getPosX() == 10);
+    REQUIRE(P1.getPosY() == 8);
+    REQUIRE(P1.getAtivo() == 1);
+    REQUIRE(Jog1.alteraArqueiro(3, 17, 16) == 1);
     P1 = Jog1.getVetorArqueiro(3);
     // testes para o ultimo elemento do vetor
-    REQUIRE( P1.getPosX() == 17 );
-    REQUIRE( P1.getPosY() == 16 );
-		P1 = Jog1.getArqueiroBypos(17,16);
-	REQUIRE( P1.getPosX() == 17 );
-    REQUIRE( P1.getPosY() == 16 );
+    REQUIRE(P1.getPosX() == 17);
+    REQUIRE(P1.getPosY() == 16);
+    P1 = Jog1.getArqueiroBypos(17, 16);
+    REQUIRE(P1.getPosX() == 17);
+    REQUIRE(P1.getPosY() == 16);
 }
-TEST_CASE( "Vetor de Guerreiros", "[engine.hpp]" ) {
+TEST_CASE("Vetor de Guerreiros", "[engine.hpp]" ) {
     Jogador Jog1(1);
     Guerreiro P1;
-    int i=0, teste;
-    for ( i; i<10; i++ ) {
+    int i = 0, teste;
+    for ( i; i < 10; i++ ) {
         teste = Jog1.setVetorGuerreiro(10, 8);
     }
-    REQUIRE( teste == 1 );  // bem sucedido
+    REQUIRE(teste == 1);  // bem sucedido
     teste = Jog1.setVetorGuerreiro(10, 10);
-    REQUIRE( teste == 0 );
+    REQUIRE(teste == 0);
     // ja esta no limite de guerreiros permitidos
     P1 = Jog1.getVetorGuerreiro(0);
     // testes para o primeiro elemento do vetor
-    REQUIRE( P1.getPosX() == 10 );
-    REQUIRE( P1.getPosY() == 8 );
-    REQUIRE( P1.getAtivo() == 1 );
+    REQUIRE(P1.getPosX() == 10);
+    REQUIRE(P1.getPosY() == 8);
+    REQUIRE(P1.getAtivo() == 1);
     P1 = Jog1.getVetorGuerreiro(9);
     // testes para o ultimo elemento do vetor
-    REQUIRE( P1.getPosX() == 10 );
-    REQUIRE( P1.getPosY() == 8 );
-    REQUIRE( P1.getAtivo() == 1 );
-    REQUIRE(Jog1.alteraGuerreiro(3,1,11) == 1);
+    REQUIRE(P1.getPosX() == 10);
+    REQUIRE(P1.getPosY() == 8);
+    REQUIRE(P1.getAtivo() == 1);
+    REQUIRE(Jog1.alteraGuerreiro(3, 1, 11) == 1);
     P1 = Jog1.getVetorGuerreiro(3);
     // testes para o ultimo elemento do vetor
-    REQUIRE( P1.getPosX() == 1 );
-    REQUIRE( P1.getPosY() == 11 );
-	P1 = Jog1.getGuerreiroBypos(1,11);
-	REQUIRE( P1.getPosX() == 1 );
-    REQUIRE( P1.getPosY() == 11 );
+    REQUIRE(P1.getPosX() == 1);
+    REQUIRE(P1.getPosY() == 11);
+    P1 = Jog1.getGuerreiroBypos(1, 11);
+    REQUIRE(P1.getPosX() == 1);
+    REQUIRE(P1.getPosY() == 11);
 }
-TEST_CASE( "Vetor de Cavaleiros", "[engine.hpp]" ) {
+TEST_CASE("Vetor de Cavaleiros", "[engine.hpp]" ) {
     Jogador Jog1(1);
     Cavaleiro P1;
-    int i=0, teste;
-    for ( i; i<10; i++ ) {
+    int i = 0, teste;
+    for ( i; i < 10; i++ ) {
         teste = Jog1.setVetorCavaleiro(10, 8);
     }
-    REQUIRE( teste == 1 );  // bem sucedido
+    REQUIRE(teste == 1);  // bem sucedido
     teste = Jog1.setVetorCavaleiro(10, 10);
-    REQUIRE( teste == 0 );
+    REQUIRE(teste == 0);
     // ja esta no limite de cavaleiros permitidos
     P1 = Jog1.getVetorCavaleiro(0);
     // testes para o primeiro elemento do vetor
-    REQUIRE( P1.getPosX() == 10 );
-    REQUIRE( P1.getPosY() == 8 );
-    REQUIRE( P1.getAtivo() == 1 );
+    REQUIRE(P1.getPosX() == 10);
+    REQUIRE(P1.getPosY() == 8);
+    REQUIRE(P1.getAtivo() == 1);
     P1 = Jog1.getVetorCavaleiro(9);
     // testes para o ultimo elemento do vetor
-    REQUIRE( P1.getPosX() == 10 );
-    REQUIRE( P1.getPosY() == 8 );
-    REQUIRE( P1.getAtivo() == 1 );
-    REQUIRE(Jog1.alteraCavaleiro(3,12,11) == 1);
+    REQUIRE(P1.getPosX() == 10);
+    REQUIRE(P1.getPosY() == 8);
+    REQUIRE(P1.getAtivo() == 1);
+    REQUIRE(Jog1.alteraCavaleiro(3, 12, 11) == 1);
     P1 = Jog1.getVetorCavaleiro(3);
     // testes para o ultimo elemento do vetor
-    REQUIRE( P1.getPosX() == 12 );
-    REQUIRE( P1.getPosY() == 11 );
-	P1 = Jog1.getCavaleiroBypos(12,11);
-	REQUIRE( P1.getPosX() == 12 );
-    REQUIRE( P1.getPosY() == 11 );
+    REQUIRE(P1.getPosX() == 12);
+    REQUIRE(P1.getPosY() == 11);
+    P1 = Jog1.getCavaleiroBypos(12, 11);
+    REQUIRE(P1.getPosX() == 12);
+    REQUIRE(P1.getPosY() == 11);
 }
-TEST_CASE( "Vetor Mina", "[engine.hpp]" ) {
+TEST_CASE("Vetor Mina", "[engine.hpp]" ) {
     Jogador Jog1(1);
     Mina P1;
-    int i=0, teste;
-    for ( i; i<5; i++ ) {
+    int i = 0, teste;
+    for ( i; i < 5; i++ ) {
         teste = Jog1.setVetorMina(10, 8);
     }
-    REQUIRE( teste == 1 );  // bem sucedido
+    REQUIRE(teste == 1);  // bem sucedido
     // ja esta no limite de guerreiros permitidos
     P1 = Jog1.getVetorMina(0);
     // testes para o primeiro elemento do vetor
-    REQUIRE( P1.getPosX() == 10 );
-    REQUIRE( P1.getPosY() == 8 );
+    REQUIRE(P1.getPosX() == 10);
+    REQUIRE(P1.getPosY() == 8);
     P1 = Jog1.getVetorMina(3);
     // testes para o ultimo elemento do vetor
-    REQUIRE( P1.getPosX() == 10 );
-    REQUIRE( P1.getPosY() == 8 );
-    REQUIRE(Jog1.alteraMina(3,1,11) == 1);
+    REQUIRE(P1.getPosX() == 10);
+    REQUIRE(P1.getPosY() == 8);
+    REQUIRE(Jog1.alteraMina(3, 1, 11) == 1);
     P1 = Jog1.getVetorMina(3);
     // testes para o ultimo elemento do vetor
-    REQUIRE( P1.getPosX() == 1 );
-    REQUIRE( P1.getPosY() == 11 );
-	P1 = Jog1.getMinaBypos(1,11);
-	REQUIRE( P1.getPosX() == 1 );
-    REQUIRE( P1.getPosY() == 11 );
+    REQUIRE(P1.getPosX() == 1);
+    REQUIRE(P1.getPosY() == 11);
+    P1 = Jog1.getMinaBypos(1, 11);
+    REQUIRE(P1.getPosX() == 1);
+    REQUIRE(P1.getPosY() == 11);
 }
-TEST_CASE( "Vetor de Lenha", "[engine.hpp]" ) {
+TEST_CASE("Vetor de Lenha", "[engine.hpp]" ) {
     Jogador Jog1(1);
     Lenhadora P1;
-    int i=0, teste;
-    for ( i; i<8; i++ ) {
+    int i = 0, teste;
+    for ( i; i < 8; i++ ) {
         teste = Jog1.setVetorLenhadora(10, 8);
     }
-    REQUIRE( teste == 1 );  // bem sucedido
+    REQUIRE(teste == 1);  // bem sucedido
     // ja esta no limite de guerreiros permitidos
     P1 = Jog1.getVetorLenhadora(0);
     // testes para o primeiro elemento do vetor
-    REQUIRE( P1.getPosX() == 10 );
-    REQUIRE( P1.getPosY() == 8 );
+    REQUIRE(P1.getPosX() == 10);
+    REQUIRE(P1.getPosY() == 8);
     P1 = Jog1.getVetorLenhadora(3);
     // testes para o ultimo elemento do vetor
-    REQUIRE( P1.getPosX() == 10 );
-    REQUIRE( P1.getPosY() == 8 );
-    REQUIRE(Jog1.alteraLenhadora(3,1,11) == 1);
+    REQUIRE(P1.getPosX() == 10);
+    REQUIRE(P1.getPosY() == 8);
+    REQUIRE(Jog1.alteraLenhadora(3, 1, 11) == 1);
     P1 = Jog1.getVetorLenhadora(3);
     // testes para o ultimo elemento do vetor
-    REQUIRE( P1.getPosX() == 1 );
-    REQUIRE( P1.getPosY() == 11 );
-	P1 = Jog1.getLenhadoraBypos(1,11);
-	REQUIRE( P1.getPosX() == 1 );
-    REQUIRE( P1.getPosY() == 11 );
+    REQUIRE(P1.getPosX() == 1);
+    REQUIRE(P1.getPosY() == 11);
+    P1 = Jog1.getLenhadoraBypos(1, 11);
+    REQUIRE(P1.getPosX() == 1);
+    REQUIRE(P1.getPosY() == 11);
 }
-TEST_CASE( "Vetor de Fortaleza", "[engine.hpp]" ) {
+TEST_CASE("Vetor de Fortaleza", "[engine.hpp]" ) {
     Jogador Jog1(1);
-    Fortaleza P1;
-    int i=0, teste;
+    Fortaleza P1, P2;
     // ja esta no limite de guerreiros permitidos
-    Jog1.setFortaleza(1,1);
+    Jog1.setFortaleza(1, 1);
     P1 = Jog1.getun_Fortaleza();
     // testes para o primeiro elemento do vetor
-    REQUIRE( P1.getPosX() == 1 );
-    REQUIRE( P1.getPosY() == 1 );
+    REQUIRE(P1.getPosX() == 1);
+    REQUIRE(P1.getPosY() == 1);
     P1 = Jog1.getun_Fortaleza();
-    REQUIRE(Jog1.alteraFortaleza(3,1) == 1);
-    P1 = Jog1.getun_Fortaleza();
+    REQUIRE(Jog1.alteraFortaleza(3, 1) == 1);
+    P2 = Jog1.getun_Fortaleza();
     // testes para o ultimo elemento do vetor
-    REQUIRE( P1.getPosX() == 3 );
-    REQUIRE( P1.getPosY() == 1 );
+    REQUIRE(P2.getPosX() == 3);
+    REQUIRE(P2.getPosY() == 1);
 }

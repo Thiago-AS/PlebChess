@@ -7,13 +7,12 @@
 Engine::Engine() {
     setTurno();
     setJogador();
-	int i = 0, j =0; 
-	for ( i = 0; i < LIN_TABULEIRO; i++) {
-		for (j = 0; j < COL_TABULEIRO; j++) {
-		 tabuleirogame[i][j] = TipoUnidade::t_UnidadeVazio;	
-	    }
-	}
-			
+    int i = 0, j = 0;
+    for (i = 0; i < LIN_TABULEIRO; i++) {
+        for (j = 0; j < COL_TABULEIRO; j++) {
+         tabuleirogame[i][j] = TipoUnidade::t_UnidadeVazio;
+        }
+    }
 }
 Engine::~Engine() {
 }
@@ -46,18 +45,18 @@ int Engine::getTurno() {
 }
 
 TipoUnidade Engine::getUnidadeTAB(unsigned int posX, unsigned int posY) {
- return tabuleirogame[posX][posY];
+  return tabuleirogame[posX][posY];
 }
-int Engine::setUnidadeTAB(TipoUnidade unit, unsigned int posX, unsigned int posY){
- if( posX > LIN_TABULEIRO || posY  > COL_TABULEIRO) {
-	 printf("Posicao invalida\n");
-	 return 0;
- } else {
-	 tabuleirogame[posX][posY] = unit;
-     return 1;	
- }    
-
-}	
+int Engine::setUnidadeTAB(TipoUnidade unit, unsigned int posX,
+    unsigned int posY) {
+  if (posX > LIN_TABULEIRO || posY  > COL_TABULEIRO) {
+     printf("Posicao invalida\n");
+     return 0;
+  } else {
+     tabuleirogame[posX][posY] = unit;
+     return 1;
+  }
+}
 // metodos da classe JOGADOR
 
 Jogador::Jogador(int times) {
@@ -95,14 +94,14 @@ int Jogador::setTropas(int guerr, int arq, int cav) {
     guerreiros = guerr + guerreiros;
     arqueiros = arq + arqueiros;
     cavaleiros = cav + cavaleiros;
-	uni_vazias -= (guerr+arq+cav);
+    uni_vazias -= (guerr+arq+cav);
 }
 
 int Jogador::setConstrucoes(int mina, int madeireira) {
     /* adiciona novas construcoes as ja existentes */
     minas = minas + mina;
     madeireiras = madeireiras + madeireira;
-	uni_vazias -= (mina+madeireira);
+    uni_vazias -= (mina+madeireira);
 }
 
 int Jogador::setGanhoPorTurno() {
@@ -111,8 +110,8 @@ int Jogador::setGanhoPorTurno() {
      * codigo. A implementacao atual eh soh um modelo
      */
 
-    ganhoOuro = (minas*10) + 5;  // quantidade vezes quanto cada da por turno
-    ganhoMadeira = (madeireiras*5) + 5;
+    ganhoOuro = (minas * 10) + 5;  // quantidade vezes quanto cada da por turno
+    ganhoMadeira = (madeireiras * 5) + 5;
 }
 
 int Jogador::getTime() {
@@ -179,16 +178,15 @@ Arqueiro Jogador::getVetorArqueiro(int indice) {
 }
 Arqueiro Jogador::getArqueiroBypos(unsigned int posX, unsigned int posY) {
      int i = 0;
-	 while ( i < 10 ) {
+     while ( i < 10 ) {
         /* As posicoes devem ser recebidas da posicao do quartel
          que construiu o arqueiro */
-        if((vetorArqueiro[i].getPosX() == (posX)) && 
-		    (vetorArqueiro[i].getPosY() == (posY))) {
-				
+        if ((vetorArqueiro[i].getPosX() == (posX)) &&
+            (vetorArqueiro[i].getPosY() == (posY))) {
                 return vetorArqueiro[i];  // bem sucedido
             }  // end if
             i++;
-        }  
+        }
     /* Caso o indice seja passado errado, retorna um personagem
      * do tipo zero_p, mas eh quando o metodo eh usado errado */
         return Arqueiro();
@@ -221,13 +219,12 @@ Guerreiro Jogador::getGuerreiroBypos(unsigned int posX, unsigned int posY) {
      while ( i < 10 ) {
         /* As posicoes devem ser recebidas da posicao do quartel
          que construiu o arqueiro */
-        if((vetorGuerreiro[i].getPosX() == (posX)) && 
-		    (vetorGuerreiro[i].getPosY() == (posY))) {
-				
+        if ((vetorGuerreiro[i].getPosX() == (posX)) &&
+            (vetorGuerreiro[i].getPosY() == (posY))) {
                 return vetorGuerreiro[i];  // bem sucedido
             }  // end if
             i++;
-        }  
+        }
     /* Caso o indice seja passado errado, retorna um personagem
      * do tipo zero_p, mas eh quando o metodo eh usado errado */
         return Guerreiro();
@@ -257,17 +254,16 @@ Cavaleiro Jogador::getVetorCavaleiro(int indice) {
 }
 Cavaleiro Jogador::getCavaleiroBypos(unsigned int posX, unsigned int posY) {
      int i = 0;
-	 while ( i < 10 ) {
+     while ( i < 10 ) {
         /* As posicoes devem ser recebidas da posicao do quartel
          que construiu o arqueiro */
-        if((vetorCavaleiro[i].getPosX() == (posX)) && 
-		    (vetorCavaleiro[i].getPosY() == (posY))) {
-				
+        if ((vetorCavaleiro[i].getPosX() == (posX)) &&
+            (vetorCavaleiro[i].getPosY() == (posY))) {
                 return vetorCavaleiro[i];  // bem sucedido
             }  // end if
             i++;
-        }  
-    /* Caso o indice seja passado errado, retorna um personagem
+        }
+            /* Caso o indice seja passado errado, retorna um personagem
      * do tipo zero_p, mas eh quando o metodo eh usado errado */
         return Cavaleiro();
 }
@@ -277,30 +273,33 @@ int Jogador::alteraCavaleiro(int indice, unsigned int posX, unsigned int posY) {
          vetorCavaleiro[indice].setPosY(posY);
          vetorCavaleiro[indice].setPosX(posX);
          return 1;
-    } else
+    } else {
     /* Caso o indice seja passado errado, retorna um personagem
      * do tipo zero_p, mas eh quando o metodo eh usado errado */
         return 0;
+        }
 }
 int Jogador::alteraArqueiro(int indice, unsigned int posX, unsigned int posY) {
     if ( indice >= 0 && indice < 10 ) {
          vetorArqueiro[indice].setPosY(posY);
          vetorArqueiro[indice].setPosX(posX);
          return 1;
-    } else 
+    } else {
     /* Caso o indice seja passado errado, retorna um personagem
      * do tipo zero_p, mas eh quando o metodo eh usado errado */
         return 0;
+        }
 }
 int Jogador::alteraGuerreiro(int indice, unsigned int posX, unsigned int posY) {
     if ( indice >= 0 && indice < 10 ) {
          vetorGuerreiro[indice].setPosY(posY);
          vetorGuerreiro[indice].setPosX(posX);
          return 1;
-    } else
+    } else {
     /* Caso o indice seja passado errado, retorna um personagem
      * do tipo zero_p, mas eh quando o metodo eh usado errado */
         return 0;
+        }
 }
 
 int Jogador::setVetorMina(int posicaoX, int posicaoY) {
@@ -312,7 +311,7 @@ int Jogador::setVetorMina(int posicaoX, int posicaoY) {
                 vetorMina[i].setPosY(posicaoY);
             i++;
         }  // end while
-        return 1; 
+        return 1;
 }
 int Jogador::setVetorLenhadora(int posicaoX, int posicaoY) {
     int i = 0;
@@ -323,9 +322,7 @@ int Jogador::setVetorLenhadora(int posicaoX, int posicaoY) {
                 vetorLenhadora[i].setPosY(posicaoY);
             i++;
         }  // end while
-        
         return 1;  // bem sucedido
-        
 }
 
 int Jogador::setFortaleza(int posicaoX, int posicaoY) {
@@ -334,7 +331,6 @@ int Jogador::setFortaleza(int posicaoX, int posicaoY) {
                 un_Fortaleza.setPosX(posicaoX);
                 un_Fortaleza.setPosY(posicaoY);
                 return 1;  // bem sucedido
-     
 }
 
 int Jogador::alteraMina(int indice, unsigned int posX, unsigned int posY) {
@@ -342,10 +338,11 @@ int Jogador::alteraMina(int indice, unsigned int posX, unsigned int posY) {
          vetorMina[indice].setPosY(posY);
          vetorMina[indice].setPosX(posX);
          return 1;
-    } else
+    } else {
     /* Caso o indice seja passado errado, retorna um personagem
      * do tipo zero_p, mas eh quando o metodo eh usado errado */
         return 0;
+    }
 }
 
 int Jogador::alteraLenhadora(int indice, unsigned int posX, unsigned int posY) {
@@ -353,29 +350,28 @@ int Jogador::alteraLenhadora(int indice, unsigned int posX, unsigned int posY) {
          vetorLenhadora[indice].setPosY(posY);
          vetorLenhadora[indice].setPosX(posX);
          return 1;
-    } else
+    } else {
     /* Caso o indice seja passado errado, retorna um personagem
      * do tipo zero_p, mas eh quando o metodo eh usado errado */
         return 0;
+    }
 }
 int Jogador::alteraFortaleza(unsigned int posX, unsigned int posY) {
          un_Fortaleza.setPosY(posY);
          un_Fortaleza.setPosX(posX);
          return 1;
-    
 }
 Mina Jogador::getMinaBypos(unsigned int posX, unsigned int posY) {
      int i = 0;
-	 while ( i < 10 ) {
+     while ( i < 10 ) {
         /* As posicoes devem ser recebidas da posicao do quartel
          que construiu o arqueiro */
-        if((vetorMina[i].getPosX() == (posX)) && 
-		    (vetorMina[i].getPosY() == (posY))) {
-				
+        if ((vetorMina[i].getPosX() == (posX)) &&
+            (vetorMina[i].getPosY() == (posY))) {
                 return vetorMina[i];  // bem sucedido
             }  // end if
             i++;
-        }  
+        }
     /* Caso o indice seja passado errado, retorna um personagem
      * do tipo zero_p, mas eh quando o metodo eh usado errado */
         return Mina();
@@ -390,16 +386,15 @@ Mina Jogador::getVetorMina(int indice) {
 }
 Lenhadora Jogador::getLenhadoraBypos(unsigned int posX, unsigned int posY) {
      int i = 0;
-	 while ( i < 10 ) {
+     while ( i < 10 ) {
         /* As posicoes devem ser recebidas da posicao do quartel
          que construiu o arqueiro */
-        if((vetorLenhadora[i].getPosX() == (posX)) && 
-		    (vetorLenhadora[i].getPosY() == (posY))) {
-				
+        if ((vetorLenhadora[i].getPosX() == (posX)) &&
+            (vetorLenhadora[i].getPosY() == (posY))) {
                 return vetorLenhadora[i];  // bem sucedido
             }  // end if
             i++;
-        }  
+        }
     /* Caso o indice seja passado errado, retorna um personagem
      * do tipo zero_p, mas eh quando o metodo eh usado errado */
         return Lenhadora();
@@ -415,4 +410,3 @@ Lenhadora Jogador::getVetorLenhadora(int indice) {
 Fortaleza Jogador::getun_Fortaleza() {
     return un_Fortaleza;
 }
-   
