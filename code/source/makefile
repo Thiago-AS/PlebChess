@@ -7,10 +7,10 @@ LDIR =../lib
 
 LIBS=-lm -lSDL2 -lSDL2_image
 
-_DEPS = gui.h gui_manager.h
+_DEPS = gui.h gui_manager.h texture_manager.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_OBJ = gui.o gui_manager.o main.o
+_OBJ = gui.o gui_manager.o texture_manager.o main.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 $(ODIR)/%.o: %.cpp $(DEPS)

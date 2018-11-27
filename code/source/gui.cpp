@@ -1,6 +1,7 @@
 // "Copyright 2018"
 #include "../include/gui.h"
 
+SDL_Texture* hearth = NULL;
 Gui* Gui::instance = NULL;
 bool Gui::initialized = false;
 
@@ -56,11 +57,12 @@ bool Gui::Init() {
   } else {
     SDL_SetRenderDrawColor(mRenderer, 255, 255, 255, 255);
   }
+  hearth = TextureManager::LoadTexture("../assets/hearth.png", mRenderer);
   return true;
 }
 
 void Gui::Render() {
   SDL_RenderClear(mRenderer);
-  // add stuff to render
+  SDL_RenderCopy(mRenderer, hearth, NULL, NULL);
   SDL_RenderPresent(mRenderer);
 }

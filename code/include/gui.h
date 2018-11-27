@@ -4,6 +4,7 @@
 
 #include <SDL2/SDL.h>
 #include <iostream>
+#include "./texture_manager.h"
 
 using namespace std;
 
