@@ -137,6 +137,10 @@ TEST_CASE( "Inicializacao da Engine", "[engine.hpp]" ) {
     REQUIRE( En0.getJogador() == 2 );
     En0.endTurno(); // verifica se troca o jog nos 2 casos
     REQUIRE( En0.getJogador() == 1 );
+	REQUIRE(getUnidade(12,11) == t_UnidadeVazio);
+	REQUIRE(setUnidade(t_arqueiro,13,13) == 1);
+	REQUIRE(getUnidade(12,11) == t_arqueiro);
+	
 }
 
 TEST_CASE( "Inicializacao do Jogador", "[engine.hpp]" ) {
@@ -190,6 +194,9 @@ TEST_CASE( "Vetor de Arqueiros", "[engine.hpp]" ) {
     // testes para o ultimo elemento do vetor
     REQUIRE( P1.getPosX() == 17 );
     REQUIRE( P1.getPosY() == 16 );
+		P1 = Jog1.getArqueiroBypos(17,16);
+	REQUIRE( P1.getPosX() == 17 );
+    REQUIRE( P1.getPosY() == 16 );
 }
 TEST_CASE( "Vetor de Guerreiros", "[engine.hpp]" ) {
     Jogador Jog1(1);
@@ -216,6 +223,9 @@ TEST_CASE( "Vetor de Guerreiros", "[engine.hpp]" ) {
     P1 = Jog1.getVetorGuerreiro(3);
     // testes para o ultimo elemento do vetor
     REQUIRE( P1.getPosX() == 1 );
+    REQUIRE( P1.getPosY() == 11 );
+	P1 = Jog1.getGuerreiroBypos(1,11);
+	REQUIRE( P1.getPosX() == 1 );
     REQUIRE( P1.getPosY() == 11 );
 }
 TEST_CASE( "Vetor de Cavaleiros", "[engine.hpp]" ) {
@@ -244,6 +254,9 @@ TEST_CASE( "Vetor de Cavaleiros", "[engine.hpp]" ) {
     // testes para o ultimo elemento do vetor
     REQUIRE( P1.getPosX() == 12 );
     REQUIRE( P1.getPosY() == 11 );
+	P1 = Jog1.getCavaleiroBypos(12,11);
+	REQUIRE( P1.getPosX() == 12 );
+    REQUIRE( P1.getPosY() == 11 );
 }
 TEST_CASE( "Vetor Mina", "[engine.hpp]" ) {
     Jogador Jog1(1);
@@ -267,6 +280,9 @@ TEST_CASE( "Vetor Mina", "[engine.hpp]" ) {
     // testes para o ultimo elemento do vetor
     REQUIRE( P1.getPosX() == 1 );
     REQUIRE( P1.getPosY() == 11 );
+	P1 = Jog1.getMinaBypos(1,11);
+	REQUIRE( P1.getPosX() == 1 );
+    REQUIRE( P1.getPosY() == 11 );
 }
 TEST_CASE( "Vetor de Lenha", "[engine.hpp]" ) {
     Jogador Jog1(1);
@@ -289,6 +305,9 @@ TEST_CASE( "Vetor de Lenha", "[engine.hpp]" ) {
     P1 = Jog1.getVetorLenhadora(3);
     // testes para o ultimo elemento do vetor
     REQUIRE( P1.getPosX() == 1 );
+    REQUIRE( P1.getPosY() == 11 );
+	P1 = Jog1.getLenhadoraBypos(1,11);
+	REQUIRE( P1.getPosX() == 1 );
     REQUIRE( P1.getPosY() == 11 );
 }
 TEST_CASE( "Vetor de Fortaleza", "[engine.hpp]" ) {
