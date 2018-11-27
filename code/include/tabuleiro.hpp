@@ -6,9 +6,10 @@
 #ifndef TABULEIRO_HPP_
 #define TABULEIRO_HPP_
 // includes
-#include "quadrado.hpp"
 #include "utils.hpp"
+#include "engine.hpp"
 using namespace std;
+
 /**
 * @brief Classe que contem as especificacoes do tabuleiro e como esta sendo usado.
 * Descricao: Contem construtor e destrutor além dos metodos getters and setters que
@@ -16,7 +17,6 @@ using namespace std;
 */
 class Tabuleiro {
  private:
-  Quadrado *quadrado;
   char tabuleiro[COL_TABULEIRO][LIN_TABULEIRO];
 
  public:

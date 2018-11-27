@@ -110,4 +110,21 @@ class Cavaleiro {
         unsigned int getAtivo();
         int get_status_personagem();
 };
+class Unidade_vazio {
+ private :
+    unsigned int posX;
+    unsigned int posY;
+
+ public :
+// construtor e destrutor
+        Unidade_vazio(unsigned int pX, unsigned int pY);
+        ~Unidade_vazio();
+        // metodos getter and setters
+        int setPosX(unsigned int p_posX);
+        int setPosY(unsigned int p_posY);
+        unsigned int getPosX();
+        unsigned int getPosY();
+};
+
+
 #endif

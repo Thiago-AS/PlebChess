@@ -3,8 +3,8 @@
 Arqueiro::Arqueiro() {
           setVida(100);
           setDano(40);
-          setPosY(0);
           setPosX(0);
+          setPosY(0);
           setQt_turnos(2);
           setQt_casas(2);
           setAtivo(0);
@@ -82,8 +82,8 @@ int Arqueiro::get_status_personagem() {
 Cavaleiro::Cavaleiro() {
           setVida(250);
           setDano(20);
-          setPosY(0);
           setPosX(0);
+          setPosY(0);
           setQt_turnos(2);
           setQt_casas(3);
           setAtivo(0);
@@ -162,8 +162,8 @@ int Cavaleiro::get_status_personagem() {
 Guerreiro::Guerreiro() {
           setVida(150);
           setDano(30);
-          setPosY(0);
           setPosX(0);
+          setPosY(0);
           setQt_turnos(1);
           setQt_casas(1);
           setAtivo(0);
@@ -237,4 +237,30 @@ int Guerreiro::get_status_personagem() {
     printf("Limitacoes: Quantidade de turnos para ser produzido");
     printf(" %d \n", getQt_turnos());
     printf("\tQuantidade de casas que podem ser andadas %d \n", getQt_casas());
+}
+
+Unidade_vazio::Unidade_vazio(unsigned int pX, unsigned int pY) {
+          setPosX(pX);
+          setPosY(pY);
+}
+Unidade_vazio::~Unidade_vazio(void) {
+}
+       // metodos getter and setters
+int  Unidade_vazio::setPosX(unsigned int p_posX) {
+    rest_eh_positivo(p_posX);
+    rest_limiteLin_sup(p_posX);
+    posX = p_posX;
+    return 1;
+}
+int  Unidade_vazio::setPosY(unsigned int p_posY) {
+    rest_eh_positivo(p_posY);
+    rest_limiteCol_sup(p_posY);
+    posY = p_posY;
+    return 1;
+}
+unsigned int  Unidade_vazio::getPosX() {
+    return posX;
+}
+unsigned int  Unidade_vazio::getPosY() {
+    return posY;
 }

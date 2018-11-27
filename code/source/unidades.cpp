@@ -6,7 +6,10 @@ Mina::Mina() {
           setQt_materia(10);
           setComprimento(2);
           setLargura(2);
-          setConstrucao(50);}
+          setConstrucao(50);
+		  setPosX(0);
+		  setPosY(0);
+		  }
 Mina::~Mina() {}
 int Mina::setVida(unsigned int p_vida) {
     rest_eh_positivo(p_vida);
@@ -85,6 +88,8 @@ Lenhadora::Lenhadora() {
           setComprimento(2);
           setLargura(2);
           setConstrucao(30);
+		  setPosX(0);
+		  setPosY(0);
         }
 Lenhadora::~Lenhadora() {}
 int Lenhadora::setVida(unsigned int p_vida) {
@@ -163,7 +168,10 @@ Fortaleza::Fortaleza() {
           setQt_materia(0);
           setComprimento(4);
           setLargura(2);
-          setConstrucao(999999);}
+          setConstrucao(999999);
+	  setPosX(0);
+	  setPosY(0);
+}
 Fortaleza::~Fortaleza() {}
 int Fortaleza::setVida(unsigned int p_vida) {
     rest_eh_positivo(p_vida);
