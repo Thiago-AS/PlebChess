@@ -38,6 +38,7 @@ class Engine {
         Engine();
         ~Engine();
         TipoUnidade tabuleirogame[LIN_TABULEIRO][COL_TABULEIRO];
+        int tabela_time[LIN_TABULEIRO][COL_TABULEIRO];
         // getters and setters
         int setTurno();  // seta o turno inicial como 1
         int endTurno();  // acaba o turno do jogador, e incrementa o turno atual
@@ -57,7 +58,11 @@ class Engine {
         */
         TipoUnidade getUnidadeTAB( int posX, int posY);
         int setUnidadeTAB(TipoUnidade unit, int posX, int posY);
+        int eh_possivel_inserir(unsigned int posX,  unsigned posY);
+        int  getTabelaTime( int posX, int posY);
+        int setTabelaTime(int value, int posX, int posY);
         void printTAB();
+        void printTabelaTime();
 };
 class Jogador {
  private:
