@@ -9,7 +9,7 @@ using namespace std;
 
 class GameObject {
  public:
-  GameObject(string, SDL_Renderer*, int, int);
+  GameObject(string, int, int);
   ~GameObject();
   void Update();
   void Render();
@@ -19,7 +19,6 @@ class GameObject {
   int y_pos;
   SDL_Texture* obj_texture;
   SDL_Rect src_rect, dst_rect;
-  SDL_Renderer* renderer;
 };
 
 

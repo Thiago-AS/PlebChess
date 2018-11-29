@@ -15,15 +15,15 @@ class Gui {
   static Gui* instance;
   static bool initialized;
   SDL_Window* mWindow;
-  SDL_Renderer* mRenderer;
-
+  
   Gui();
   ~Gui();
   bool Init();
 
  public:
   const int SCREEN_WIDTH = 800;
-  const int SCREEN_HEIGHT = 600;
+  const int SCREEN_HEIGHT = 640;
+  static SDL_Renderer* gRenderer;
 
   static Gui* Instance();
   static void Release();

@@ -3,6 +3,7 @@
 
 Gui* Gui::instance = NULL;
 bool Gui::initialized = false;
+SDL_Renderer* Gui::gRenderer = NULL;
 
 GameObject* hearth;
 
@@ -25,7 +26,7 @@ bool Gui::Initialized() {
 }
 
 Gui::Gui() {
-  mRenderer = NULL;
+  gRenderer = NULL;
   mWindow = NULL;
   initialized = Init();
 }
@@ -33,8 +34,8 @@ Gui::Gui() {
 Gui::~Gui() {
   SDL_DestroyWindow(mWindow);
   mWindow = NULL;
-  SDL_DestroyRenderer(mRenderer);
-  mRenderer = NULL;
+  SDL_DestroyRenderer(gRenderer);
+  gRenderer = NULL;
 
   SDL_Quit();
 }
@@ -52,13 +53,13 @@ bool Gui::Init() {
     return false;
   }
 
-  mRenderer = SDL_CreateRenderer(mWindow, -1, 0);
-  if (mRenderer == NULL) {
+  gRenderer = SDL_CreateRenderer(mWindow, -1, 0);
+  if (gRenderer == NULL) {
     cout << "Falha ao criar renderer: " << SDL_GetError() << endl;
   } else {
-    SDL_SetRenderDrawColor(mRenderer, 255, 255, 255, 255);
+    SDL_SetRenderDrawColor(gRenderer, 255, 255, 255, 255);
   }
-  hearth = new GameObject("../assets/hearth.png", mRenderer, 0, 0);
+  hearth = new GameObject("../assets/hearth.png", 0, 0);
   return true;
 }
 
@@ -67,7 +68,7 @@ void Gui::Update() {
 }
 
 void Gui::Render() {
-  SDL_RenderClear(mRenderer);
+  SDL_RenderClear(gRenderer);
   hearth->Render();
-  SDL_RenderPresent(mRenderer);
+  SDL_RenderPresent(gRenderer);
 }

@@ -9,7 +9,7 @@ using namespace std;
 
 class TextureManager {
  public:
-  static SDL_Texture* LoadTexture(string, SDL_Renderer* renderer);
+  static SDL_Texture* LoadTexture(string);
 };
 
 #endif
