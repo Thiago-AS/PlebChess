@@ -44,6 +44,7 @@ void GuiManager::HandleEvents() {
 void GuiManager::Run() {
   while (!quit) {
     HandleEvents();
+    gui->Update();
     gui->Render();
   }
 }

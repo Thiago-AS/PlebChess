@@ -5,10 +5,15 @@
 #include <string>
 #include "./gui.h"
 
+using namespace std;
+
 class GameObject {
  public:
   GameObject(string, SDL_Renderer*, int, int);
   ~GameObject();
+  void Update();
+  void Render();
+
  private:
   int x_pos;
   int y_pos;

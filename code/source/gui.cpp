@@ -1,9 +1,10 @@
 // "Copyright 2018"
 #include "../include/gui.h"
 
-SDL_Texture* hearth = NULL;
 Gui* Gui::instance = NULL;
 bool Gui::initialized = false;
+
+GameObject* hearth;
 
 Gui* Gui::Instance() {
   if (instance == NULL)
@@ -57,12 +58,16 @@ bool Gui::Init() {
   } else {
     SDL_SetRenderDrawColor(mRenderer, 255, 255, 255, 255);
   }
-  hearth = TextureManager::LoadTexture("../assets/hearth.png", mRenderer);
+  hearth = new GameObject("../assets/hearth.png", mRenderer, 0, 0);
   return true;
+}
+
+void Gui::Update() {
+  hearth->Update();
 }
 
 void Gui::Render() {
   SDL_RenderClear(mRenderer);
-  SDL_RenderCopy(mRenderer, hearth, NULL, NULL);
+  hearth->Render();
   SDL_RenderPresent(mRenderer);
 }

@@ -2,7 +2,6 @@
 #ifndef TEXTURE_MANAGER_H
 #define TEXTURE_MANAGER_H
 
-#include <SDL2/SDL_image.h>
 #include <string>
 #include "./gui.h"
 
