@@ -15,7 +15,7 @@
 
 using namespace std;
 #define LIN_TABULEIRO 30
-#define COL_TABULEIRO 20
+#define COL_TABULEIRO 30
 
 /**
 * @fn int rest_eh_positivo(int ind);

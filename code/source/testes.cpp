@@ -104,7 +104,7 @@ TEST_CASE("Utils", "[utils.hpp]" ) {
     REQUIRE(rest_limiteLin_sup(12) == 1);
     REQUIRE(rest_limiteLin_sup(200) == 0);
 }
-TEST_CASE(" quadrado -> metodos get e set", "[quadrado.hpp]" ) {
+TEST_CASE(" quadrado -> metodos get e set", "[tabuleiro.hpp]" ) {
     Tabuleiro t1;
     t1.print_tabuleiro();
     printf("\n\n\n");
@@ -179,27 +179,26 @@ TEST_CASE("Recursos do Jogador", "[engine.hpp]" ) {
     REQUIRE(Jog1.getGanhoMadeira() == 15);
 }
 TEST_CASE("Vetor de Arqueiros", "[engine.hpp]" ) {
+    Engine En0;
     Jogador Jog1(1);
     Arqueiro P1;
     int i = 0, teste;
     for ( i; i < 10; i++ ) {
-        teste = Jog1.setVetorArqueiro(10, 8);
+        teste = Jog1.setVetorArqueiro(10, 8,&En0);
     }
     REQUIRE(teste == 1);  // bem sucedido
-    teste = Jog1.setVetorArqueiro(10, 10);
-    REQUIRE(teste == 0);
-    // ja esta no limite de arqueiros permitidos
+    Jog1.setVetorArqueiro(10, 10, &En0);
     P1 = Jog1.getVetorArqueiro(0);
     // testes para o primeiro elemento do vetor
     REQUIRE(P1.getPosX() == 10);
-    REQUIRE(P1.getPosY() == 8);
+    REQUIRE(P1.getPosY() == 10);
     REQUIRE(P1.getAtivo() == 1);
     P1 = Jog1.getVetorArqueiro(9);
     // testes para o ultimo elemento do vetor
     REQUIRE(P1.getPosX() == 10);
-    REQUIRE(P1.getPosY() == 8);
+    REQUIRE(P1.getPosY() == 10);
     REQUIRE(P1.getAtivo() == 1);
-    REQUIRE(Jog1.alteraArqueiro(3, 17, 16) == 1);
+    REQUIRE(Jog1.alteraArqueiro(3, 17, 16, &En0) == 1);
     P1 = Jog1.getVetorArqueiro(3);
     // testes para o ultimo elemento do vetor
     REQUIRE(P1.getPosX() == 17);
@@ -209,27 +208,26 @@ TEST_CASE("Vetor de Arqueiros", "[engine.hpp]" ) {
     REQUIRE(P1.getPosY() == 16);
 }
 TEST_CASE("Vetor de Guerreiros", "[engine.hpp]" ) {
+    Engine  En0;  // inicializa uma classe sem parametrosJogador Jog1(1);
     Jogador Jog1(1);
     Guerreiro P1;
     int i = 0, teste;
     for ( i; i < 10; i++ ) {
-        teste = Jog1.setVetorGuerreiro(10, 8);
+        teste = Jog1.setVetorGuerreiro(10, 8,&En0);
     }
     REQUIRE(teste == 1);  // bem sucedido
-    teste = Jog1.setVetorGuerreiro(10, 10);
-    REQUIRE(teste == 0);
-    // ja esta no limite de guerreiros permitidos
+    Jog1.setVetorGuerreiro(10, 10,&En0);
     P1 = Jog1.getVetorGuerreiro(0);
     // testes para o primeiro elemento do vetor
     REQUIRE(P1.getPosX() == 10);
-    REQUIRE(P1.getPosY() == 8);
+    REQUIRE(P1.getPosY() == 10);
     REQUIRE(P1.getAtivo() == 1);
     P1 = Jog1.getVetorGuerreiro(9);
     // testes para o ultimo elemento do vetor
     REQUIRE(P1.getPosX() == 10);
-    REQUIRE(P1.getPosY() == 8);
+    REQUIRE(P1.getPosY() == 10);
     REQUIRE(P1.getAtivo() == 1);
-    REQUIRE(Jog1.alteraGuerreiro(3, 1, 11) == 1);
+    REQUIRE(Jog1.alteraGuerreiro(3, 1, 11, &En0) == 1);
     P1 = Jog1.getVetorGuerreiro(3);
     // testes para o ultimo elemento do vetor
     REQUIRE(P1.getPosX() == 1);
@@ -239,27 +237,26 @@ TEST_CASE("Vetor de Guerreiros", "[engine.hpp]" ) {
     REQUIRE(P1.getPosY() == 11);
 }
 TEST_CASE("Vetor de Cavaleiros", "[engine.hpp]" ) {
+    Engine En0;  // inicializa uma classe sem parametros
     Jogador Jog1(1);
     Cavaleiro P1;
     int i = 0, teste;
     for ( i; i < 10; i++ ) {
-        teste = Jog1.setVetorCavaleiro(10, 8);
+        teste = Jog1.setVetorCavaleiro(10, 8, &En0);
     }
     REQUIRE(teste == 1);  // bem sucedido
-    teste = Jog1.setVetorCavaleiro(10, 10);
-    REQUIRE(teste == 0);
-    // ja esta no limite de cavaleiros permitidos
+    Jog1.setVetorCavaleiro(10, 10, &En0);
     P1 = Jog1.getVetorCavaleiro(0);
     // testes para o primeiro elemento do vetor
     REQUIRE(P1.getPosX() == 10);
-    REQUIRE(P1.getPosY() == 8);
+    REQUIRE(P1.getPosY() == 10);
     REQUIRE(P1.getAtivo() == 1);
     P1 = Jog1.getVetorCavaleiro(9);
     // testes para o ultimo elemento do vetor
     REQUIRE(P1.getPosX() == 10);
-    REQUIRE(P1.getPosY() == 8);
+    REQUIRE(P1.getPosY() == 10);
     REQUIRE(P1.getAtivo() == 1);
-    REQUIRE(Jog1.alteraCavaleiro(3, 12, 11) == 1);
+    REQUIRE(Jog1.alteraCavaleiro(3, 12, 11, &En0) == 1);
     P1 = Jog1.getVetorCavaleiro(3);
     // testes para o ultimo elemento do vetor
     REQUIRE(P1.getPosX() == 12);
@@ -269,11 +266,12 @@ TEST_CASE("Vetor de Cavaleiros", "[engine.hpp]" ) {
     REQUIRE(P1.getPosY() == 11);
 }
 TEST_CASE("Vetor Mina", "[engine.hpp]" ) {
+    Engine En0;  // inicializa uma classe sem parametros
     Jogador Jog1(1);
     Mina P1;
     int i = 0, teste;
     for ( i; i < 5; i++ ) {
-        teste = Jog1.setVetorMina(10, 8);
+        teste = Jog1.setVetorMina(10, 8, &En0);
     }
     REQUIRE(teste == 1);  // bem sucedido
     // ja esta no limite de guerreiros permitidos
@@ -285,7 +283,7 @@ TEST_CASE("Vetor Mina", "[engine.hpp]" ) {
     // testes para o ultimo elemento do vetor
     REQUIRE(P1.getPosX() == 10);
     REQUIRE(P1.getPosY() == 8);
-    REQUIRE(Jog1.alteraMina(3, 1, 11) == 1);
+    REQUIRE(Jog1.alteraMina(3, 1, 11, &En0) == 1);
     P1 = Jog1.getVetorMina(3);
     // testes para o ultimo elemento do vetor
     REQUIRE(P1.getPosX() == 1);
@@ -295,11 +293,12 @@ TEST_CASE("Vetor Mina", "[engine.hpp]" ) {
     REQUIRE(P1.getPosY() == 11);
 }
 TEST_CASE("Vetor de Lenha", "[engine.hpp]" ) {
+    Engine En0;  // inicializa uma classe sem parametros
     Jogador Jog1(1);
     Lenhadora P1;
     int i = 0, teste;
     for ( i; i < 8; i++ ) {
-        teste = Jog1.setVetorLenhadora(10, 8);
+        teste = Jog1.setVetorLenhadora(10, 8, &En0);
     }
     REQUIRE(teste == 1);  // bem sucedido
     // ja esta no limite de guerreiros permitidos
@@ -311,7 +310,7 @@ TEST_CASE("Vetor de Lenha", "[engine.hpp]" ) {
     // testes para o ultimo elemento do vetor
     REQUIRE(P1.getPosX() == 10);
     REQUIRE(P1.getPosY() == 8);
-    REQUIRE(Jog1.alteraLenhadora(3, 1, 11) == 1);
+    REQUIRE(Jog1.alteraLenhadora(3, 1, 11, &En0) == 1);
     P1 = Jog1.getVetorLenhadora(3);
     // testes para o ultimo elemento do vetor
     REQUIRE(P1.getPosX() == 1);
@@ -321,18 +320,67 @@ TEST_CASE("Vetor de Lenha", "[engine.hpp]" ) {
     REQUIRE(P1.getPosY() == 11);
 }
 TEST_CASE("Vetor de Fortaleza", "[engine.hpp]" ) {
+    Engine En0;  // inicializa uma classe sem parametros
     Jogador Jog1(1);
     Fortaleza P1, P2;
     // ja esta no limite de guerreiros permitidos
-    Jog1.setFortaleza(1, 1);
+    Jog1.setFortaleza(1, 1,  &En0);
     P1 = Jog1.getun_Fortaleza();
     // testes para o primeiro elemento do vetor
     REQUIRE(P1.getPosX() == 1);
     REQUIRE(P1.getPosY() == 1);
     P1 = Jog1.getun_Fortaleza();
-    REQUIRE(Jog1.alteraFortaleza(3, 1) == 1);
+    REQUIRE(Jog1.alteraFortaleza(3, 1, &En0) == 1);
     P2 = Jog1.getun_Fortaleza();
     // testes para o ultimo elemento do vetor
     REQUIRE(P2.getPosX() == 3);
     REQUIRE(P2.getPosY() == 1);
+}
+TEST_CASE("TESTE TAB Engine", "[engine.hpp]" ) {
+    Engine En0;  // inicializa uma classe sem parametros
+    Jogador Jog1(1);  // inicializa no time 1
+    int teste, i = 0;
+    teste = Jog1.inicializaJogador();
+    REQUIRE(teste == 1);
+    Arqueiro A1;
+    for ( i; i < 10; i++ ) {
+        teste = Jog1.setVetorArqueiro(-1, -1,&En0);
+    }
+    REQUIRE(Jog1.alteraArqueiro(3, 17, 16, &En0) == 1);
+    REQUIRE(En0.getUnidadeTAB(17,16) == TipoUnidade::t_arqueiro);
+    Guerreiro G1;
+    for ( i; i < 10; i++ ) {
+        teste = Jog1.setVetorGuerreiro(-1, -1,&En0);
+    }
+    REQUIRE(teste == 1);  // bem sucedido
+    REQUIRE(Jog1.alteraGuerreiro(3, 21, 11, &En0) == 1);
+    REQUIRE(En0.getUnidadeTAB(21,11) == TipoUnidade::t_guerreiro);
+    Cavaleiro C1;
+    for ( i; i < 10; i++ ) {
+        teste = Jog1.setVetorCavaleiro(-1, -1, &En0);
+    }
+    REQUIRE(teste == 1);  // bem sucedido
+    REQUIRE(Jog1.alteraCavaleiro(3, 12, 11, &En0) == 1);
+    REQUIRE(En0.getUnidadeTAB(12,11) == TipoUnidade::t_cavaleiro);
+    Mina M1;
+    for ( i; i < 5; i++ ) {
+        teste = Jog1.setVetorMina(-1, -1, &En0);
+    }
+    REQUIRE(teste == 1);  // bem sucedido
+    REQUIRE(Jog1.alteraMina(3, 11, 11, &En0) == 1);
+    REQUIRE(En0.getUnidadeTAB(11,11) == TipoUnidade::t_mina);
+    Lenhadora L1;
+    for ( i; i < 8; i++ ) {
+        teste = Jog1.setVetorLenhadora(-1, -1, &En0);
+    }
+    REQUIRE(teste == 1);  // bem sucedido
+    REQUIRE(Jog1.alteraLenhadora(3, 1, 11, &En0) == 1);
+    REQUIRE(En0.getUnidadeTAB(1,11) == TipoUnidade::t_lenhadora);
+    Fortaleza F1, F2;
+    // ja esta no limite de guerreiros permitidos
+    Jog1.setFortaleza(1, 1,  &En0);
+    REQUIRE(Jog1.alteraFortaleza(3, 1, &En0) == 1);
+    REQUIRE(En0.getUnidadeTAB(3,1) == TipoUnidade::t_fortaleza);
+    printf("\n\n\n\n");
+    En0.printTAB();
 }

@@ -1,7 +1,8 @@
 // "Copyright 2018 Grupo MP"
 #include "../include/utils.hpp"
 int rest_eh_positivo(int ind) {
-    if (ind >= 0) {
+    //  o valor -1 sera usado como local dos objetos nao usados.
+    if (ind >= -1) {
         return 1;
     } else {
         printf("Valor invalido\n\n");
