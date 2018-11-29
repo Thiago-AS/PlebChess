@@ -9,3 +9,7 @@ SDL_Texture* TextureManager::LoadTexture(string file_name) {
 
   return texture;
 }
+
+void TextureManager::Draw(SDL_Texture* texture, SDL_Rect src, SDL_Rect dst) {
+  SDL_RenderCopy(Gui::gRenderer, texture, &src, &dst);
+}

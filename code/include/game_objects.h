@@ -21,5 +21,18 @@ class GameObject {
   SDL_Rect src_rect, dst_rect;
 };
 
+class Map{
+ public:
+  Map();
+  ~Map();
 
-#endif
+  void DrawMap();
+
+ private:
+  SDL_Rect src, dst;
+  SDL_Texture* tile;
+
+  static char map[10][10];
+};
+
+#endif  // GAME_OBJECTS_H

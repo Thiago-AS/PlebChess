@@ -10,6 +10,7 @@ using namespace std;
 class TextureManager {
  public:
   static SDL_Texture* LoadTexture(string);
+  static void Draw(SDL_Texture*, SDL_Rect, SDL_Rect);
 };
 
 #endif

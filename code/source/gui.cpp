@@ -6,6 +6,7 @@ bool Gui::initialized = false;
 SDL_Renderer* Gui::gRenderer = NULL;
 
 GameObject* hearth;
+Map* map;
 
 Gui* Gui::Instance() {
   if (instance == NULL)
@@ -60,6 +61,7 @@ bool Gui::Init() {
     SDL_SetRenderDrawColor(gRenderer, 255, 255, 255, 255);
   }
   hearth = new GameObject("../assets/hearth.png", 0, 0);
+  map = new Map();
   return true;
 }
 
@@ -69,6 +71,7 @@ void Gui::Update() {
 
 void Gui::Render() {
   SDL_RenderClear(gRenderer);
+  map->DrawMap();
   hearth->Render();
   SDL_RenderPresent(gRenderer);
 }

@@ -15,7 +15,7 @@ class Gui {
   static Gui* instance;
   static bool initialized;
   SDL_Window* mWindow;
-  
+
   Gui();
   ~Gui();
   bool Init();
