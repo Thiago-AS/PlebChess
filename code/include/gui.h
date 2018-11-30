@@ -34,7 +34,11 @@ class Gui {
 =======
   static TTF_Font * game_font;
   static GameScreen current_screen;
+<<<<<<< HEAD
 >>>>>>> Carregando TTF
+=======
+  static bool quit;
+>>>>>>> Adicionando verificação de botoes
 
   static Gui* Instance();
   static void Release();

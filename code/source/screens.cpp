@@ -36,17 +36,21 @@ void MainMenu::LoadScreen() {
   screen_objects.AddObject(cursor);
 }
 
-void MainMenu::EventHandler(SDL_Event* event) {
+void MainMenu::EventHandler(SDL_MouseButtonEvent &button_event) {
   int mouse_over;
-  mouse_over = screen_objects.HandleMouse(event);
+  mouse_over = screen_objects.HandleMouse(button_event);
   switch (mouse_over) {
     case 0:
+      cout << "AK0" << endl;
       break;
     case 1:
+      cout << "AK1" << endl;
       break;
     case 2:
+      Gui::quit = true;
       break;
     default:
+      cout << "nenhum botao" << endl;
       break;
   }
 }

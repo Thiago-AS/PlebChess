@@ -11,7 +11,7 @@ class GameObject {
  public:
   GameObject(SDL_Texture*, int, int, int, int);
   ~GameObject();
-  bool HandleMouse(SDL_Event*);
+  bool HandleMouse(SDL_MouseButtonEvent&);
   void Update(int, int, int, int);
   void Render();
 
@@ -26,7 +26,7 @@ class VectorObjects {
  public:
   void AddObject(GameObject*);
   GameObject* GetObject(int);
-  int HandleMouse(SDL_Event*);
+  int HandleMouse(SDL_MouseButtonEvent&);
   void Draw();
   void Update();
   void Clean();

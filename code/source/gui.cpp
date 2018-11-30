@@ -6,6 +6,7 @@
 
 Gui* Gui::instance = NULL;
 bool Gui::initialized = false;
+bool Gui::quit = false;
 SDL_Renderer* Gui::gRenderer = NULL;
 TTF_Font* Gui::game_font = NULL;
 GameScreen Gui::current_screen;
@@ -85,6 +86,30 @@ bool Gui::Init() {
   main_menu = new MainMenu();
   main_menu->LoadScreen();
   return true;
+}
+
+void Gui::HandleEvents() {
+  SDL_Event events;
+  SDL_PollEvent(&events);
+  switch (events.type) {
+    case SDL_QUIT:
+      quit = true;
+      break;
+
+    case SDL_MOUSEBUTTONDOWN:
+      switch (Gui::current_screen) {
+        case GameScreen::MAIN_MENU:
+          main_menu->EventHandler(events.button);
+          break;
+
+        default:
+          break;
+      }
+      break;
+
+    default:
+      break;
+  }
 }
 
 void Gui::Update() {

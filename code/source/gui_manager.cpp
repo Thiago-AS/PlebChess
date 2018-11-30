@@ -16,11 +16,10 @@ void GuiManager::Release() {
 }
 
 GuiManager::GuiManager() {
-  quit = false;
   gui = Gui::Instance();
 
   if (!Gui::Initialized())
-    quit = true;
+    Gui::quit = true;
 }
 
 GuiManager::~GuiManager() {
@@ -28,22 +27,9 @@ GuiManager::~GuiManager() {
   gui = NULL;
 }
 
-void GuiManager::HandleEvents() {
-  SDL_Event events;
-  SDL_PollEvent(&events);
-  switch (events.type) {
-    case SDL_QUIT:
-      quit = true;
-      break;
-
-    default:
-      break;
-  }
-}
-
 void GuiManager::Run() {
-  while (!quit) {
-    HandleEvents();
+  while (!Gui::quit) {
+    gui->HandleEvents();
     gui->Update();
     gui->Render();
   }

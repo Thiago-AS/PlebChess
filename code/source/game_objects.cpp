@@ -28,27 +28,27 @@ void GameObject::Update(int new_x, int new_y, int new_width, int new_height) {
   dst_rect.h = new_height;
 }
 
-bool GameObject::HandleMouse(SDL_Event* event) {
-  if ( event->type == SDL_MOUSEMOTION || event->type == SDL_MOUSEBUTTONDOWN ||
-       event->type == SDL_MOUSEBUTTONUP ) {
-      int x, y;
-      SDL_GetMouseState(&x, &y);
-
+bool GameObject::HandleMouse(SDL_MouseButtonEvent &button_event) {
+    if (button_event.button = SDL_BUTTON_LEFT) {
+      int x = button_event.x , y = button_event.y;
       bool inside = true;
 
-      if (dst_rect.x < dst_rect.x) {
+      if (x < dst_rect.x) {
         inside = false;
-      } else if (dst_rect.x > dst_rect.x + dst_rect.w) {
+      } else if (x > dst_rect.x + dst_rect.w) {
         inside = false;
-      } else if (dst_rect.y < dst_rect.y) {
+      } else if (y < dst_rect.y) {
         inside = false;
-      } else if (dst_rect.y > dst_rect.y + dst_rect.h) {
+      } else if (y > dst_rect.y + dst_rect.h) {
         inside = false;
       }
-
       return inside;
+<<<<<<< HEAD
   }
 >>>>>>> Mudando função de atualização de posição
+=======
+    }
+>>>>>>> Adicionando verificação de botoes
 }
 
 void GameObject::Render() {
@@ -72,10 +72,10 @@ void VectorObjects::Update() {
 
 }
 
-int VectorObjects::HandleMouse(SDL_Event* event) {
+int VectorObjects::HandleMouse(SDL_MouseButtonEvent& button_event) {
   if (!objects_vector.empty()) {
     for (int i = 0; i < objects_vector.size(); i++) {
-      if (objects_vector.at(i)->HandleMouse(event))
+      if (objects_vector.at(i)->HandleMouse(button_event))
         return i;
     }
   }

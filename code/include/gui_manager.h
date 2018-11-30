@@ -7,7 +7,6 @@
 class GuiManager {
  private:
   static GuiManager* instance;
-  bool quit;
   Gui* gui;
 
   GuiManager();
@@ -18,7 +17,6 @@ class GuiManager {
   static void Release();
 
   void Run();
-  void HandleEvents();
 };
 
 #endif  // GUI_MANAGER_H
