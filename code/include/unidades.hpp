@@ -3,8 +3,9 @@
 * @file Unidades.hpp
 * @brief Arquivo com as funcoes que sao usadas para implementar as funcoes que contaram o numero de linhas. 
 */
-#ifndef MINA_HPP_
-#define MINA_HPP_
+#ifndef CODE_INCLUDE_UNIDADES_HPP_
+#define CODE_INCLUDE_UNIDADES_HPP_
+
 // includes
 #include "utils.hpp"
 #include <iostream>

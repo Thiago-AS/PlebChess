@@ -3,8 +3,8 @@
 * @file tropas.hpp
 * @brief Arquivo com as funcoes que sao usadas para implementar as funcoes que contaram o numero de linhas. 
 */
-#ifndef TROPAS_HPP_
-#define TROPAS_HPP_
+#ifndef CODE_INCLUDE_TROPAS_HPP_
+#define CODE_INCLUDE_TROPAS_HPP_
 // includes
 #include "utils.hpp"
 #include <iostream>

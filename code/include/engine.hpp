@@ -15,14 +15,14 @@
 #include "../include/unidades.hpp"
 using namespace std;
 enum Possibilidade {
-	p_nada,
-	p_construir,
-	p_personagem
+    p_nada,
+    p_construir,
+    p_personagem
 };
 enum Acao {
-	movimentar,
-	atacar,
-	impossivel
+    movimentar,
+    atacar,
+    impossivel
 };
 /**
  * @brief Enumeracao da Classe tipo de unidades que o jogo pode ter.
@@ -67,13 +67,14 @@ class Engine {
         *    Interface implicita: Nao ha
         * Assertiva Saida: devolve o valor de nome
         */
-        TipoUnidade getUnidadeTAB( int posX, int posY);
+        TipoUnidade getUnidadeTAB(int posX, int posY);
         int setUnidadeTAB(TipoUnidade unit, int posX, int posY);
         int eh_possivel_inserir(unsigned int posX,  unsigned posY);
-        int  getTabelaTime( int posX, int posY);
+        int  getTabelaTime(int posX, int posY);
         Acao getTabelaP(int posX, int posY);
         int setTabelaP(Acao, int posX, int posY);
         int setTabelaTime(int value, int posX, int posY);
+        void zeraTABpersonagem();
         void printTAB();
         void printTABpersonagem();
         void printTABverb();
@@ -135,23 +136,30 @@ class Jogador {
     int getGanhoMadeira();
     Arqueiro getVetorArqueiro(int);
     Arqueiro getArqueiroBypos(unsigned int posX, unsigned int posY);
-    int alteraArqueiro(int indice, unsigned int posX, unsigned int posY, Engine * engine);
+    int alteraArqueiro(int indice, unsigned int posX, unsigned int posY,
+        Engine * engine);
     Guerreiro getVetorGuerreiro(int);
     Guerreiro getGuerreiroBypos(unsigned int posX, unsigned int posY);
-    int alteraGuerreiro(int indice, unsigned int posX, unsigned int posY, Engine * engine);
+    int alteraGuerreiro(int indice, unsigned int posX, unsigned int posY,
+        Engine * engine);
     Cavaleiro getVetorCavaleiro(int);
     Cavaleiro getCavaleiroBypos(unsigned int posX, unsigned int posY);
-    int alteraCavaleiro(int indice, unsigned int posX, unsigned int posY, Engine * engine);
+    int alteraCavaleiro(int indice, unsigned int posX, unsigned int posY,
+        Engine * engine);
     Mina getVetorMina(int);
     Mina getMinaBypos(unsigned int posX, unsigned int posY);
-    int alteraMina(int indice, unsigned int posX, unsigned int posY, Engine * engine);
+    int alteraMina(int indice, unsigned int posX, unsigned int posY,
+        Engine * engine);
     Lenhadora getVetorLenhadora(int);
     Lenhadora getLenhadoraBypos(unsigned int posX, unsigned int posY);
-    int alteraLenhadora(int indice, unsigned int posX, unsigned int posY, Engine * engine);
+    int alteraLenhadora(int indice, unsigned int posX, unsigned int posY,
+        Engine * engine);
     Fortaleza getun_Fortaleza();
     int alteraFortaleza(unsigned int posX, unsigned int posY, Engine * engine);
-	// metodos de jogo
-	Possibilidade verificarPoss(unsigned int posX, unsigned int posY, Engine * engine);
-	int acaoPersonagem(unsigned int posX, unsigned int posY, Engine * engine);
+    // metodos de jogo
+    Possibilidade verificarPoss(unsigned int posX, unsigned int posY,
+        Engine * engine);
+    int acaoPersonagem(unsigned int posX, unsigned int posY, Engine * engine);
+    int EscolherAcaoPos(unsigned int posX, unsigned int posY, Engine * engine);
 };  // jogador
 #endif  // CODE_INCLUDE_ENGINE_HPP_

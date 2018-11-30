@@ -95,7 +95,7 @@ Cavaleiro::Cavaleiro() {
           setQt_turnos(2);
           setQt_casas(3);
           setAtivo(0);
-          setHumano(0);          
+          setHumano(0);
 }
 Cavaleiro::~Cavaleiro(void) {
 }
