@@ -90,25 +90,11 @@ bool Gui::Init() {
 
 void Gui::HandleEvents() {
   SDL_Event events;
-  SDL_PollEvent(&events);
-  switch (events.type) {
-    case SDL_QUIT:
+  while (SDL_PollEvent(&events) != 0) {
+    if (events.type == SDL_QUIT) {
       quit = true;
-      break;
-
-    case SDL_MOUSEBUTTONDOWN:
-      switch (Gui::current_screen) {
-        case GameScreen::MAIN_MENU:
-          main_menu->EventHandler(events.button);
-          break;
-
-        default:
-          break;
-      }
-      break;
-
-    default:
-      break;
+    }
+    main_menu->EventHandler(events);
   }
 }
 

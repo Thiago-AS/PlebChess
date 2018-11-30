@@ -36,21 +36,45 @@ void MainMenu::LoadScreen() {
   screen_objects.AddObject(cursor);
 }
 
-void MainMenu::EventHandler(SDL_MouseButtonEvent &button_event) {
+void MainMenu::EventHandler(SDL_Event &event) {
   int mouse_over;
-  mouse_over = screen_objects.HandleMouse(button_event);
-  switch (mouse_over) {
-    case 0:
-      cout << "AK0" << endl;
+  switch (event.type) {
+    case SDL_MOUSEBUTTONDOWN:
+      mouse_over = screen_objects.HandleMouse(event.button);
+      switch (mouse_over) {
+        case 0:
+          Gui::current_screen = GameScreen::NEW_GAME;
+          break;
+        case 1:
+          Gui::current_screen = GameScreen::LOAD_GAME;
+          break;
+        case 2:
+          Gui::quit = true;
+          break;
+        default:
+          break;
+      }
       break;
-    case 1:
-      cout << "AK1" << endl;
+
+    case SDL_MOUSEMOTION:
+      mouse_over = screen_objects.HandleMouse(event.button);
+      switch (mouse_over) {
+        case 0:
+          cursor->Update(240, 185);
+          break;
+        case 1:
+          cursor->Update(240, 225);
+          break;
+        case 2:
+          cursor->Update(240, 265);
+          break;
+        default:
+          cursor->Update(-500, -500);
+          break;
+      }
       break;
-    case 2:
-      Gui::quit = true;
-      break;
+
     default:
-      cout << "nenhum botao" << endl;
       break;
   }
 }

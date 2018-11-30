@@ -12,7 +12,7 @@ class GameObject {
   GameObject(SDL_Texture*, int, int, int, int);
   ~GameObject();
   bool HandleMouse(SDL_MouseButtonEvent&);
-  void Update(int, int, int, int);
+  void Update(int, int);
   void Render();
 
  private:

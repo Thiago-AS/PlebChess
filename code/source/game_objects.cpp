@@ -11,25 +11,15 @@ GameObject::GameObject(SDL_Texture* texture, int x_pos, int y_pos,
   obj_texture = texture;
 }
 
-<<<<<<< HEAD
-void GameObject::Update() {
-  dst_rect.x = x_pos;
-  dst_rect.y = y_pos;
-  dst_rect.w = width;
-  dst_rect.h = height;
-=======
 GameObject::~GameObject() {
 }
 
-void GameObject::Update(int new_x, int new_y, int new_width, int new_height) {
+void GameObject::Update(int new_x, int new_y) {
   dst_rect.x = new_x;
   dst_rect.y = new_y;
-  dst_rect.w = new_width;
-  dst_rect.h = new_height;
 }
 
 bool GameObject::HandleMouse(SDL_MouseButtonEvent &button_event) {
-    if (button_event.button = SDL_BUTTON_LEFT) {
       int x = button_event.x , y = button_event.y;
       bool inside = true;
 
@@ -43,20 +33,12 @@ bool GameObject::HandleMouse(SDL_MouseButtonEvent &button_event) {
         inside = false;
       }
       return inside;
-<<<<<<< HEAD
-  }
->>>>>>> Mudando função de atualização de posição
-=======
-    }
->>>>>>> Adicionando verificação de botoes
 }
 
 void GameObject::Render() {
   SDL_RenderCopy(Gui::gRenderer, obj_texture, NULL, &dst_rect);
 }
 
-<<<<<<< HEAD
-=======
 void GameObject::Clean() {
 }
 
@@ -69,7 +51,6 @@ GameObject* VectorObjects::GetObject(int position) {
 }
 
 void VectorObjects::Update() {
-
 }
 
 int VectorObjects::HandleMouse(SDL_MouseButtonEvent& button_event) {
@@ -98,7 +79,6 @@ void VectorObjects::Clean() {
   }
 }
 
->>>>>>> Carregando TTF
 char Map::map[10][10] = {
   { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
   { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -113,11 +93,11 @@ char Map::map[10][10] = {
 };
 
 Map::Map() {
-  tile = TextureManager::LoadTexture("../assets/dirt.png");
+  tile = TextureManager::LoadTexture("../assets/grass.png");
   src.x = src.y = 0;
   dst.x = dst.y = 0;
-  src.w = dst.w = 32;
-  src.h = dst.h = 32;
+  src.w = dst.w = 64;
+  src.h = dst.h = 64;
 }
 
 Map::~Map() {
@@ -130,8 +110,8 @@ void Map::DrawMap() {
     for (int column = 0; column < 10; column++) {
       tile_type = map[row][column];
 
-      dst.x = column * 32;
-      dst.y = row * 32;
+      dst.x = column * 64;
+      dst.y = row * 64;
 
       switch (tile_type) {
         case 0:

@@ -12,7 +12,9 @@ using namespace std;
 <<<<<<< HEAD
 =======
 enum class GameScreen: int {
-    MAIN_MENU = 0
+    MAIN_MENU = 0,
+    NEW_GAME = 1,
+    LOAD_GAME = 2
 };
 
 >>>>>>> Carregando TTF
