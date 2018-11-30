@@ -24,10 +24,10 @@ using namespace std;
 * @return 1 caso de certo, 0 c.c.
 * Hipoteses: A funcao deve devolver 1 se for maior ou igual a zero.
 * Requesitos: Ind deve ser um inteiro.
-* Assertiva Entrada:  Ind >= 0
+* Assertiva Entrada:  Ind >= -1
 *    Interface explicita: Ind
 *    Interface implicita: Nao ha
-* Assertiva Saida: Se ind >= 0 entao retorna 1, c.c 0.
+* Assertiva Saida: Se ind >= -1 entao retorna 1, c.c 0.
 */
 int rest_eh_positivo(int ind);
 /**

@@ -727,3 +727,14 @@ Lenhadora Jogador::getVetorLenhadora(int indice) {
 Fortaleza Jogador::getun_Fortaleza() {
     return un_Fortaleza;
 }
+Possibilidade Jogador::verificaPoss(unsigned int posX, unsigned int posY, Engine * engine); {
+    if (engine->getUnidadeTAB(posX,posY) == TipoUnidade::t_UnidadeVazio)) {
+		return p_construir;
+	} else if (engine->getUnidadeTAB(posX,posY) == TipoUnidade::t_fortaleza 
+	|| engine->getUnidadeTAB(posX,posY) == TipoUnidade::t_mina
+	|| engine->getUnidadeTAB(posX,posY) == TipoUnidade::t_lenhadora) {
+		return p_nada;
+	} else {
+		p_personagem;
+	}
+}

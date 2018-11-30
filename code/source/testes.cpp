@@ -313,14 +313,16 @@ TEST_CASE("TESTE TAB Engine", "[engine.hpp]" ) {
     }
     REQUIRE(Jog1.alteraArqueiro(3, 17, 16, &En0) == 1);
     REQUIRE(En0.getUnidadeTAB(17,16) == TipoUnidade::t_arqueiro);
-    Guerreiro G1;
+    REQUIRE(Jog1.verificarPoss(17, 16, &En0) == p_personagem);
+	Guerreiro G1;
     for ( i; i < 10; i++ ) {
         teste = Jog1.setVetorGuerreiro(-1, -1,&En0);
     }
     REQUIRE(teste == 1);  // bem sucedido
     REQUIRE(Jog1.alteraGuerreiro(3, 21, 11, &En0) == 1);
     REQUIRE(En0.getUnidadeTAB(21,11) == TipoUnidade::t_guerreiro);
-    Cavaleiro C1;
+    REQUIRE(Jog1.verificarPoss(21, 11, &En0) == p_personagem);
+	Cavaleiro C1;
     for ( i; i < 10; i++ ) {
         teste = Jog1.setVetorCavaleiro(-1, -1, &En0);
     }
@@ -334,6 +336,13 @@ TEST_CASE("TESTE TAB Engine", "[engine.hpp]" ) {
     REQUIRE(teste == 1);  // bem sucedido
     REQUIRE(Jog1.alteraMina(3, 10, 10, &En0) == 1);
     REQUIRE(En0.getUnidadeTAB(10,10) == TipoUnidade::t_mina);
+	REQUIRE(En0.getUnidadeTAB(11,10) == TipoUnidade::t_mina);
+    REQUIRE(En0.getUnidadeTAB(10,11) == TipoUnidade::t_mina);
+    REQUIRE(En0.getUnidadeTAB(11,11) == TipoUnidade::t_mina);
+    REQUIRE(Jog1.verificarPoss(10, 10, &En0) == p_nada);
+	REQUIRE(Jog1.verificarPoss(11, 10, &En0) == p_nada);
+	REQUIRE(Jog1.verificarPoss(10, 11, &En0) == p_nada);
+	REQUIRE(Jog1.verificarPoss(11, 11, &En0) == p_nada);
     Lenhadora L1;
     for ( i; i < 8; i++ ) {
         teste = Jog1.setVetorLenhadora(-1, -1, &En0);
@@ -341,11 +350,40 @@ TEST_CASE("TESTE TAB Engine", "[engine.hpp]" ) {
     REQUIRE(teste == 1);  // bem sucedido
     REQUIRE(Jog1.alteraLenhadora(3, 1, 11, &En0) == 1);
     REQUIRE(En0.getUnidadeTAB(1,11) == TipoUnidade::t_lenhadora);
-    Fortaleza F1, F2;
+	REQUIRE(En0.getUnidadeTAB(2,11) == TipoUnidade::t_lenhadora);
+	REQUIRE(En0.getUnidadeTAB(1,10) == TipoUnidade::t_lenhadora);
+	REQUIRE(En0.getUnidadeTAB(2,10) == TipoUnidade::t_lenhadora);
+    REQUIRE(Jog1.verificarPoss(1, 11, &En0) == p_nada);
+	REQUIRE(Jog1.verificarPoss(1, 12, &En0) == p_nada);
+	REQUIRE(Jog1.verificarPoss(2, 10, &En0) == p_nada);
+	REQUIRE(Jog1.verificarPoss(2, 11, &En0) == p_nada);
+	Fortaleza F1, F2;
     // ja esta no limite de guerreiros permitidos
     Jog1.setFortaleza(1, 1,  &En0);
     REQUIRE(Jog1.alteraFortaleza(0, 21, &En0) == 1);
     REQUIRE(En0.getUnidadeTAB(0,21) == TipoUnidade::t_fortaleza);
+	REQUIRE(En0.getUnidadeTAB(1,21) == TipoUnidade::t_fortaleza);
+	REQUIRE(En0.getUnidadeTAB(2,21) == TipoUnidade::t_fortaleza);
+	REQUIRE(En0.getUnidadeTAB(3,21) == TipoUnidade::t_fortaleza);
+	REQUIRE(En0.getUnidadeTAB(0,22) == TipoUnidade::t_fortaleza);
+	REQUIRE(En0.getUnidadeTAB(1,22) == TipoUnidade::t_fortaleza);
+    REQUIRE(En0.getUnidadeTAB(2,22) == TipoUnidade::t_fortaleza);
+	REQUIRE(En0.getUnidadeTAB(3,22) == TipoUnidade::t_fortaleza);
+    REQUIRE(Jog1.verificarPoss(0, 21, &En0) == p_nada);
+	REQUIRE(Jog1.verificarPoss(1, 21, &En0) == p_nada);
+	REQUIRE(Jog1.verificarPoss(2, 21, &En0) == p_nada);
+	REQUIRE(Jog1.verificarPoss(3, 21, &En0) == p_nada);
+	REQUIRE(Jog1.verificarPoss(0, 22, &En0) == p_nada);
+	REQUIRE(Jog1.verificarPoss(1, 22, &En0) == p_nada);
+	REQUIRE(Jog1.verificarPoss(2, 22, &En0) == p_nada);
+	REQUIRE(Jog1.verificarPoss(3, 22, &En0) == p_nada);
+	
     printf("\n\n\n\n");
     En0.printTAB();
+	En0.printTabelaTime();
+	REQUIRE(Jog1.verificarPoss(3, 27, &En0) == p_construir);
+	REQUIRE(Jog1.verificarPoss(7, 22, &En0) == p_construir);
+	REQUIRE(Jog1.verificarPoss(7, 26, &En0) == p_construir);
+	REQUIRE(Jog1.verificarPoss(26, 26, &En0) == p_construir);
+	REQUIRE(Jog1.verificarPoss(2, 17, &En0) == p_construir);
 }

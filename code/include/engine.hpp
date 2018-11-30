@@ -14,6 +14,11 @@
 #include "../include/tropas.hpp"
 #include "../include/unidades.hpp"
 using namespace std;
+enum Possibilidade {
+	p_nada;
+	p_construir;
+	p_personagem;	
+}
 /**
  * @brief Enumeracao da Classe tipo de unidades que o jogo pode ter.
  * Descricao: Contem todas as unidades que pode estar presente em um quadrado do mapa.
@@ -135,5 +140,7 @@ class Jogador {
     int alteraLenhadora(int indice, unsigned int posX, unsigned int posY, Engine * engine);
     Fortaleza getun_Fortaleza();
     int alteraFortaleza(unsigned int posX, unsigned int posY, Engine * engine);
+	// metodos de jogo
+	Possibilidade verificaPoss(unsigned int posX, unsigned int posY, Engine * engine);
 };  // jogador
 #endif  // CODE_INCLUDE_ENGINE_HPP_
