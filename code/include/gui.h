@@ -4,12 +4,18 @@
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 #include <iostream>
-#include "./texture_manager.h"
-#include "./game_objects.h"
 
 using namespace std;
 
+<<<<<<< HEAD
+=======
+enum class GameScreen: int {
+    MAIN_MENU = 0
+};
+
+>>>>>>> Carregando TTF
 class Gui {
  private:
   static Gui* instance;
@@ -24,6 +30,11 @@ class Gui {
   const int SCREEN_WIDTH = 800;
   const int SCREEN_HEIGHT = 640;
   static SDL_Renderer* gRenderer;
+<<<<<<< HEAD
+=======
+  static TTF_Font * game_font;
+  static GameScreen current_screen;
+>>>>>>> Carregando TTF
 
   static Gui* Instance();
   static void Release();

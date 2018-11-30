@@ -19,6 +19,36 @@ void GameObject::Render() {
   SDL_RenderCopy(Gui::gRenderer, obj_texture, NULL, &dst_rect);
 }
 
+<<<<<<< HEAD
+=======
+void GameObject::Clean() {
+}
+
+void VectorObjects::AddObject(GameObject* object) {
+  objects_vector.push_back(object);
+}
+
+GameObject* VectorObjects::GetObject(int position) {
+  return objects_vector.at(position);
+}
+
+void VectorObjects::Draw() {
+  if (!objects_vector.empty()) {
+    for (int i = 0; i < objects_vector.size(); i++) {
+      objects_vector.at(i)->Render();
+    }
+  }
+}
+
+void VectorObjects::Clean() {
+  if (!objects_vector.empty()) {
+    for (int i = 0; i < objects_vector.size(); i++) {
+      objects_vector.at(i)->Clean();
+    }
+  }
+}
+
+>>>>>>> Carregando TTF
 char Map::map[10][10] = {
   { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
   { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },

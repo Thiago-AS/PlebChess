@@ -5,12 +5,12 @@ CFLAGS=-I$(IDIR) -ftest-coverage -fprofile-arcs
 ODIR=obj
 LDIR =../lib
 
-LIBS=-lm -lSDL2 -lSDL2_image
+LIBS=-lm -lSDL2 -lSDL2_image -lSDL2_ttf
 
-_DEPS = gui.h gui_manager.h texture_manager.h game_objects.h
+_DEPS = gui.h gui_manager.h texture_manager.h game_objects.h screens.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_OBJ = gui.o gui_manager.o game_objects.o texture_manager.o main.o
+_OBJ = gui.o gui_manager.o game_objects.o texture_manager.o screens.o main.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 $(ODIR)/%.o: %.cpp $(DEPS)
