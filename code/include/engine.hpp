@@ -17,12 +17,12 @@ using namespace std;
 enum Possibilidade {
 	p_nada,
 	p_construir,
-	p_personagem,	
+	p_personagem
 };
 enum Acao {
 	movimentar,
 	atacar,
-	impossivel,
+	impossivel
 };
 /**
  * @brief Enumeracao da Classe tipo de unidades que o jogo pode ter.
@@ -71,6 +71,8 @@ class Engine {
         int setUnidadeTAB(TipoUnidade unit, int posX, int posY);
         int eh_possivel_inserir(unsigned int posX,  unsigned posY);
         int  getTabelaTime( int posX, int posY);
+        Acao getTabelaP(int posX, int posY);
+        int setTabelaP(Acao, int posX, int posY);
         int setTabelaTime(int value, int posX, int posY);
         void printTAB();
         void printTABpersonagem();

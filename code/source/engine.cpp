@@ -85,6 +85,14 @@ int  Engine::getTabelaTime( int posX, int posY) {
   return tabela_time[posX][posY];
 
 }
+Acao  Engine::getTabelaP( int posX, int posY) {
+    if(posX == -1 || posY == -1 ) {
+        return impossivel;
+    }
+
+  return tabela_personagem[posX][posY];
+
+}
 int Engine::setTabelaTime(int value, int posX, int posY) {
   if (posX == -1 || posY == -1) {
     return 1;
@@ -98,7 +106,10 @@ int Engine::setTabelaTime(int value, int posX, int posY) {
   }
 
 }
-
+int Engine::setTabelaP(Acao value, int posX, int posY) {    
+     tabela_personagem[posX][posY] = value;
+     return 1;
+  }
 int Engine::eh_possivel_inserir(unsigned int posX,  unsigned int posY) {
     if(posX == -1 || posY == -1) {
         return 1;
@@ -169,15 +180,15 @@ void Engine::printTABpersonagem() {
     int i, j;
     for (i = 0; i < LIN_TABULEIRO; i++) {
         for (j = 0; j < COL_TABULEIRO; j++) {
-          if(tabela_personagem[i][j] == impossivel) {
+          if(getTabelaP(i, j) == impossivel) {
                 printf("X ");
             
          }
-         if(tabela_personagem[i][j] == atacar) {
+         if(getTabelaP(i, j) == atacar) {
                 printf("A ");
             
          }
-         if(tabela_personagem[i][j] == movimentar) {
+         if(getTabelaP(i, j) == movimentar) {
                 printf("M ");
             
          }
@@ -828,7 +839,7 @@ Possibilidade Jogador::verificarPoss(unsigned int posX, unsigned int posY, Engin
 
 int Jogador::acaoPersonagem(unsigned int posX, unsigned int posY, Engine * engine) {
    
-int i, lim_i, j, lim_j;   
+int i, lim_i, j, lim_j, i2, j2;   
 if (engine->getUnidadeTAB(posX, posY) == TipoUnidade::t_cavaleiro) {
            if (posX - 3 < 0 ) {
                i = 0;
@@ -851,22 +862,23 @@ if (engine->getUnidadeTAB(posX, posY) == TipoUnidade::t_cavaleiro) {
             lim_j = posY + 3;
            }
 
-
-for ( i ; i <= lim_i; i++) {
-    for (j ; j <= lim_j; j++ ) {
-    if (i != posX && j != posY) {
-    if (engine->getUnidadeTAB(i,j) == TipoUnidade::t_UnidadeVazio) {
-        engine->tabela_personagem[i][j] = movimentar;
-    } 
-    if ((engine->getUnidadeTAB(i,j) == TipoUnidade::t_fortaleza 
-    || engine->getUnidadeTAB(i,j) == TipoUnidade::t_mina
-    || engine->getUnidadeTAB(i,j) == TipoUnidade::t_lenhadora
-    || engine->getUnidadeTAB(i,j) == TipoUnidade::t_arqueiro
-    || engine->getUnidadeTAB(i,j) == TipoUnidade::t_guerreiro
-    || engine->getUnidadeTAB(i,j) == TipoUnidade:: t_cavaleiro) && engine->getTabelaTime(i,j) == 0) {
-        engine->tabela_personagem[i][j] = atacar;
+for ( i2 = i ; i2 <= lim_i; i2++) {
+    for (j2 = j ; j2 <= lim_j; j2++ ) {
+    if (i2 == posX && j2 == posY) {
+        continue;
+    } else {    
+    if (engine->getUnidadeTAB(i2,j2) == TipoUnidade::t_UnidadeVazio) {
+        engine->tabela_personagem[i2][j2] = movimentar;
+            } 
+    else if ((engine->getUnidadeTAB(i2,j2) == TipoUnidade::t_fortaleza 
+    || engine->getUnidadeTAB(i2,j2) == TipoUnidade::t_mina
+    || engine->getUnidadeTAB(i2,j2) == TipoUnidade::t_lenhadora
+    || engine->getUnidadeTAB(i2,j2) == TipoUnidade::t_arqueiro
+    || engine->getUnidadeTAB(i2,j2) == TipoUnidade::t_guerreiro
+    || engine->getUnidadeTAB(i2,j2) == TipoUnidade:: t_cavaleiro) && engine->getTabelaTime(i,j) == 1) {
+        engine->tabela_personagem[i2][i2] = atacar;
     } else {
-        engine->tabela_personagem[i][j] = impossivel;
+        engine->tabela_personagem[i2][j2] = impossivel;
     }
     }
     }
@@ -894,28 +906,29 @@ if (engine->getUnidadeTAB(posX, posY) == TipoUnidade::t_arqueiro) {
             lim_j = posY + 2;
            }
 
-
-for ( i ; i <= lim_i; i++) {
-    for (j ; j <= lim_j; j++ ) {
-    if (i != posX && j != posY) {
-    if (engine->getUnidadeTAB(i,j) == TipoUnidade::t_UnidadeVazio) {
-        engine->tabela_personagem[i][j] = movimentar;
-    } 
-    if ((engine->getUnidadeTAB(i,j) == TipoUnidade::t_fortaleza 
-    || engine->getUnidadeTAB(i,j) == TipoUnidade::t_mina
-    || engine->getUnidadeTAB(i,j) == TipoUnidade::t_lenhadora
-    || engine->getUnidadeTAB(i,j) == TipoUnidade::t_arqueiro
-    || engine->getUnidadeTAB(i,j) == TipoUnidade::t_guerreiro
-    || engine->getUnidadeTAB(i,j) == TipoUnidade:: t_cavaleiro) && engine->getTabelaTime(i,j) == 0) {
-        engine->tabela_personagem[i][j] = atacar;
+for ( i2 = i ; i2 <= lim_i; i2++) {
+    for (j2= j ; j2 <= lim_j; j2++ ) {
+    if (i2 == posX && j2 == posY) {
+     continue;
     } else {
-        engine->tabela_personagem[i][j] = impossivel;
+    if (engine->getUnidadeTAB(i2,j2) == TipoUnidade::t_UnidadeVazio) {
+        engine->tabela_personagem[i2][j2] = movimentar;
+    } 
+     else if ((engine->getUnidadeTAB(i2,j2) == TipoUnidade::t_fortaleza 
+    || engine->getUnidadeTAB(i2,j2) == TipoUnidade::t_mina
+    || engine->getUnidadeTAB(i2,j2) == TipoUnidade::t_lenhadora
+    || engine->getUnidadeTAB(i2,j2) == TipoUnidade::t_arqueiro
+    || engine->getUnidadeTAB(i2,j2) == TipoUnidade::t_guerreiro
+    || engine->getUnidadeTAB(i2,j2) == TipoUnidade:: t_cavaleiro) && engine->getTabelaTime(i,j) == 1) {
+        engine->tabela_personagem[i2][j2] = atacar;
+    } else {
+        engine->tabela_personagem[i2][j2] = impossivel;
     }
     }
     }
  }   
 }
-if (engine->getUnidadeTAB(posX, posY) == TipoUnidade::t_arqueiro) {
+if (engine->getUnidadeTAB(posX, posY) == TipoUnidade::t_guerreiro) {
            if (posX - 1 < 0 ) {
                i = 0;
            } else {
@@ -937,22 +950,24 @@ if (engine->getUnidadeTAB(posX, posY) == TipoUnidade::t_arqueiro) {
             lim_j = posY + 1;
            }
 
-
-for ( i ; i <= lim_i; i++) {
-    for (j ; j <= lim_j; j++ ) {
-    if (i != posX && j != posY) {
-    if (engine->getUnidadeTAB(i,j) == TipoUnidade::t_UnidadeVazio) {
-        engine->tabela_personagem[i][j] = movimentar;
-    } 
-    if ((engine->getUnidadeTAB(i,j) == TipoUnidade::t_fortaleza 
-    || engine->getUnidadeTAB(i,j) == TipoUnidade::t_mina
-    || engine->getUnidadeTAB(i,j) == TipoUnidade::t_lenhadora
-    || engine->getUnidadeTAB(i,j) == TipoUnidade::t_arqueiro
-    || engine->getUnidadeTAB(i,j) == TipoUnidade::t_guerreiro
-    || engine->getUnidadeTAB(i,j) == TipoUnidade:: t_cavaleiro) && engine->getTabelaTime(i,j) == 0) {
-        engine->tabela_personagem[i][j] = atacar;
+for ( i2 = i ; i2 <= lim_i; i2++) {
+    for (j2 = j; j2 <= lim_j; j2++ ) {
+    if (i2 == posX && j2 == posY) {
+        continue;
     } else {
-        engine->tabela_personagem[i][j] = impossivel;
+    if (engine->getUnidadeTAB(i2,j2) == TipoUnidade::t_UnidadeVazio) {
+        printf("X\n");
+        engine->setTabelaP(movimentar, i2, j2);
+    } 
+    else if ((engine->getUnidadeTAB(i2,j2) == TipoUnidade::t_fortaleza 
+    || engine->getUnidadeTAB(i2,j2) == TipoUnidade::t_mina
+    || engine->getUnidadeTAB(i2,j2) == TipoUnidade::t_lenhadora
+    || engine->getUnidadeTAB(i2,j2) == TipoUnidade::t_arqueiro
+    || engine->getUnidadeTAB(i2,j2) == TipoUnidade::t_guerreiro
+    || engine->getUnidadeTAB(i2,j2) == TipoUnidade:: t_cavaleiro) && engine->getTabelaTime(i,j) == 1) {
+        engine->setTabelaP(atacar, i2, j2);
+      } else {
+        engine->setTabelaP(impossivel, i2, j2);
     }
     }
     }
@@ -960,7 +975,5 @@ for ( i ; i <= lim_i; i++) {
 
 
 }
-
-return 1;
 
 }

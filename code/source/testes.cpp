@@ -386,9 +386,12 @@ TEST_CASE("TESTE TAB Engine", "[engine.hpp]" ) {
     printf("\n\n\n\n");
     En0.printTAB();
     En0.printTABverb();
+    printf("\n\n\n\n");
 	En0.printTabelaTime();
+        printf("\n\n\n\n");
     En0.printTABpersonagem();
     Jog1.acaoPersonagem(12,11,&En0);
+    REQUIRE(En0.getTabelaP(9,9) == movimentar);
     En0.printTABpersonagem();
     Jog1.acaoPersonagem(21,11,&En0);
     En0.printTABpersonagem();
