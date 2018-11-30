@@ -55,9 +55,61 @@ class Mina {
 * entao vida = p_vida, caso der certo retorna 1.
 */
         int setVida(unsigned int p_vida);
+/**
+* @fn int setQt_materia(unsigned int materia);
+* @brief Metodo que seta o valor de material gerado pela mina.
+* @param materia deve ser um valor maior igual a 0
+* @return 1 caso de certo, 0 c.c.
+* Hipoteses: Se materia for um valor possivel seta .
+* Requesitos: deve ser int.
+* Assertiva Entrada:  materia >= 0
+*    Interface explicita: materia
+*    Interface implicita:
+* Assertiva Saida: Se materia for maior que 0 
+* entao Qt_materia = materia, caso der certo retorna 1.
+*/
         int setQt_materia(unsigned int materia);
+/**
+* @fn int setLargura(unsigned int p_lar);
+* @brief Metodo que seta o valor da largura da mina.
+* @param p_lar deve ser um valor maior igual a 0
+* @return 1 caso de certo, 0 c.c.
+* Hipoteses: Se p_lar for um valor possivel seta .
+* Requesitos: deve ser int.
+* Assertiva Entrada:  p_lar >= 0
+*    Interface explicita: p_lar
+*    Interface implicita:
+* Assertiva Saida: Se p_lar for maior que 0 
+* entao vida = p_lar, caso der certo retorna 1.
+*/
         int setLargura(unsigned int p_lar);
+/**
+* @fn int setComprimento(unsigned int p_com);
+* @brief Metodo que seta o valor da comprimento da mina.
+* @param p_com deve ser um valor maior igual a 0
+* @return 1 caso de certo, 0 c.c.
+* Hipoteses: Se p_com for um valor possivel seta .
+* Requesitos: deve ser int.
+* Assertiva Entrada:  p_com >= 0
+*    Interface explicita: p_com
+*    Interface implicita:
+* Assertiva Saida: Se p_com for maior que 0 
+* entao vida = p_com, caso der certo retorna 1.
+*/
         int setComprimento(unsigned int p_com);
+/**
+* @fn int setConstrucao(unsigned int p_const);
+* @brief Metodo que seta o valor para construir uma mina.
+* @param p_const deve ser um valor maior igual a 0
+* @return 1 caso de certo, 0 c.c.
+* Hipoteses: Se p_const for um valor possivel seta .
+* Requesitos: deve ser int.
+* Assertiva Entrada:  p_const >= 0
+*    Interface explicita: p_const
+*    Interface implicita:
+* Assertiva Saida: Se p_const for maior que 0 
+* entao Qt_materia = p_const, caso der certo retorna 1.
+*/
         int setConstrucao(unsigned int p_const);
 /**
 * @fn int setPosX(unsigned int p_posX);
@@ -87,6 +139,19 @@ class Mina {
 * entao posY = p_posY, caso der certo retorna 1.
 */
         int setPosY(unsigned int p_posY);
+/**
+* @fn int setRecurso(tipo_recurso p_recurso);
+* @brief Metodo que seta tipo de recurso de mina.
+* @param p_recurso deve ser um valor valido para o enum tipo_recurso
+* @return 1 caso de certo, 0 c.c.
+* Hipoteses: Se p_recurso for um valor possivel seta .
+* Requesitos: deve ser de tipo_recurso.
+* Assertiva Entrada:  p_recurso >= 0
+*    Interface explicita: p_recurso
+*    Interface implicita:
+* Assertiva Saida: Se p_recurso for maior que 0 
+* entao recurso = p_recurso, caso der certo retorna 1.
+*/
         int setRecurso(tipo_recurso p_recurso);
 /**
 * @fn int setHumano(bool humano);
@@ -125,9 +190,53 @@ class Mina {
 * Assertiva Saida: devolve o valor de vida
 */
         unsigned int getVida();
+/**
+* @fn unsigned int getLargura();
+* @brief Retorna o int referente a largura.
+* @return Retorna largura
+* Hipoteses: O objeto passado deve ser do tipo mina.
+* Requesitos: Metodo deve retornar o valor da largura
+* Assertiva Entrada:  Nao ha
+*    Interface explicita: Nao ha
+*    Interface implicita: Nao ha
+* Assertiva Saida: devolve o valor de largura
+*/
         unsigned int getLargura();
+/**
+* @fn unsigned int getComprimento();
+* @brief Retorna o int referente a comprimento.
+* @return Retorna comprimento
+* Hipoteses: O objeto passado deve ser do tipo mina.
+* Requesitos: Metodo deve retornar o valor da comprimento
+* Assertiva Entrada:  Nao ha
+*    Interface explicita: Nao ha
+*    Interface implicita: Nao ha
+* Assertiva Saida: devolve o valor de comprimento
+*/
         unsigned int getComprimento();
+/**
+* @fn unsigned int getQt_materia();
+* @brief Retorna o int referente a material produzido.
+* @return Retorna qt_materia
+* Hipoteses: O objeto passado deve ser do tipo mina.
+* Requesitos: Metodo deve retornar o valor produzido
+* Assertiva Entrada:  Nao ha
+*    Interface explicita: Nao ha
+*    Interface implicita: Nao ha
+* Assertiva Saida: devolve o valor de produzido por turno
+*/
         unsigned int getQt_materia();
+/**
+* @fn unsigned int getConstrucao();
+* @brief Retorna o int referente ao custo para construir mina.
+* @return Retorna construcao
+* Hipoteses: O objeto passado deve ser do tipo mina.
+* Requesitos: Metodo deve retornar o valor para produzir
+* Assertiva Entrada:  Nao ha
+*    Interface explicita: Nao ha
+*    Interface implicita: Nao ha
+* Assertiva Saida: devolve o valor de custo da mina
+*/
         unsigned int getConstrucao();
 /**
 * @fn unsigned int getPosX();
@@ -153,6 +262,17 @@ class Mina {
 * Assertiva Saida: devolve a a vida do mina.
 */	
         unsigned int getPosY();
+/**
+* @fn         tipo_recurso getRecurso();
+* @brief Retorna o enum do recurso.
+* @return Retorna o tipo do recurso
+* Hipoteses: O objeto passado deve ser do tipo mina.
+* Requesitos: Metodo deve retornar o tipo do recurso
+* Assertiva Entrada:  Nao ha
+*    Interface explicita: Nao ha
+*    Interface implicita: Nao ha
+* Assertiva Saida: devolve o valor o tipo do recurso
+*/
         tipo_recurso getRecurso();
 /**
 * @fn int get_status_unidade();
