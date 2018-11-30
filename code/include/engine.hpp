@@ -15,10 +15,10 @@
 #include "../include/unidades.hpp"
 using namespace std;
 enum Possibilidade {
-	p_nada;
-	p_construir;
-	p_personagem;	
-}
+	p_nada,
+	p_construir,
+	p_personagem,	
+};
 /**
  * @brief Enumeracao da Classe tipo de unidades que o jogo pode ter.
  * Descricao: Contem todas as unidades que pode estar presente em um quadrado do mapa.
@@ -67,6 +67,7 @@ class Engine {
         int  getTabelaTime( int posX, int posY);
         int setTabelaTime(int value, int posX, int posY);
         void printTAB();
+        void printTABverb();
         void printTabelaTime();
 };
 class Jogador {
@@ -141,6 +142,6 @@ class Jogador {
     Fortaleza getun_Fortaleza();
     int alteraFortaleza(unsigned int posX, unsigned int posY, Engine * engine);
 	// metodos de jogo
-	Possibilidade verificaPoss(unsigned int posX, unsigned int posY, Engine * engine);
+	Possibilidade verificarPoss(unsigned int posX, unsigned int posY, Engine * engine);
 };  // jogador
 #endif  // CODE_INCLUDE_ENGINE_HPP_

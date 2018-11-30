@@ -159,6 +159,64 @@ void Engine::printTAB() {
         printf("\n");
     }    
 }
+void Engine::printTABverb() {
+    int i, j;
+    for (i = 0; i < LIN_TABULEIRO; i++) {
+        for (j = 0; j < COL_TABULEIRO; j++) {
+         if(tabuleirogame[i][j] == TipoUnidade::t_UnidadeVazio) {
+                 printf("-");
+         }
+         if(tabuleirogame[i][j] == TipoUnidade::t_arqueiro) {
+            if(getTabelaTime(i,j) == 1) {
+                 printf("A");
+            } else {
+                printf("a");
+            }
+                 
+         }
+         if(tabuleirogame[i][j] == TipoUnidade::t_guerreiro) {
+                 if(getTabelaTime(i,j) == 1) {
+                 printf("G");
+            } else {
+                printf("g");
+            }
+         }
+         if(tabuleirogame[i][j] == TipoUnidade::t_cavaleiro) {
+             if(getTabelaTime(i,j) == 1) {
+                 printf("C");
+            } else {
+                printf("c");
+            }
+         }
+         if(tabuleirogame[i][j] == TipoUnidade::t_mina) {
+            if(getTabelaTime(i,j) == 1) {
+                 printf("M");
+            } else {
+                printf("m");
+            }
+         }
+         if(tabuleirogame[i][j] == TipoUnidade::t_fortaleza) {
+                if(getTabelaTime(i,j) == 1) {
+                 printf("F");
+            } else {
+                printf("f");
+            }
+         }
+         if(tabuleirogame[i][j] == TipoUnidade::t_lenhadora) {
+              if(getTabelaTime(i,j) == 1) {
+                 printf("L");
+            } else {
+                printf("l");
+            }
+         }
+         printf("(%d)[%d,%d] /", tabela_time[i][j],i, j);
+         if ((i+j) % 5 == 0) {
+            printf("\n");
+         }
+        }
+        printf("\n");
+    }    
+}
 void Engine::printTabelaTime() {
     int i, j;
     for (i = 0; i < LIN_TABULEIRO; i++) {
@@ -727,14 +785,15 @@ Lenhadora Jogador::getVetorLenhadora(int indice) {
 Fortaleza Jogador::getun_Fortaleza() {
     return un_Fortaleza;
 }
-Possibilidade Jogador::verificaPoss(unsigned int posX, unsigned int posY, Engine * engine); {
-    if (engine->getUnidadeTAB(posX,posY) == TipoUnidade::t_UnidadeVazio)) {
+Possibilidade Jogador::verificarPoss(unsigned int posX, unsigned int posY, Engine * engine) {
+    if (engine->getUnidadeTAB(posX,posY) == TipoUnidade::t_UnidadeVazio) {
 		return p_construir;
-	} else if (engine->getUnidadeTAB(posX,posY) == TipoUnidade::t_fortaleza 
+	} 
+    if (engine->getUnidadeTAB(posX,posY) == TipoUnidade::t_fortaleza 
 	|| engine->getUnidadeTAB(posX,posY) == TipoUnidade::t_mina
 	|| engine->getUnidadeTAB(posX,posY) == TipoUnidade::t_lenhadora) {
 		return p_nada;
 	} else {
-		p_personagem;
+		return p_personagem;
 	}
 }

@@ -351,12 +351,12 @@ TEST_CASE("TESTE TAB Engine", "[engine.hpp]" ) {
     REQUIRE(Jog1.alteraLenhadora(3, 1, 11, &En0) == 1);
     REQUIRE(En0.getUnidadeTAB(1,11) == TipoUnidade::t_lenhadora);
 	REQUIRE(En0.getUnidadeTAB(2,11) == TipoUnidade::t_lenhadora);
-	REQUIRE(En0.getUnidadeTAB(1,10) == TipoUnidade::t_lenhadora);
-	REQUIRE(En0.getUnidadeTAB(2,10) == TipoUnidade::t_lenhadora);
+	REQUIRE(En0.getUnidadeTAB(1,12) == TipoUnidade::t_lenhadora);
+	REQUIRE(En0.getUnidadeTAB(2,12) == TipoUnidade::t_lenhadora);
     REQUIRE(Jog1.verificarPoss(1, 11, &En0) == p_nada);
 	REQUIRE(Jog1.verificarPoss(1, 12, &En0) == p_nada);
-	REQUIRE(Jog1.verificarPoss(2, 10, &En0) == p_nada);
 	REQUIRE(Jog1.verificarPoss(2, 11, &En0) == p_nada);
+	REQUIRE(Jog1.verificarPoss(2, 12, &En0) == p_nada);
 	Fortaleza F1, F2;
     // ja esta no limite de guerreiros permitidos
     Jog1.setFortaleza(1, 1,  &En0);
@@ -377,13 +377,14 @@ TEST_CASE("TESTE TAB Engine", "[engine.hpp]" ) {
 	REQUIRE(Jog1.verificarPoss(1, 22, &En0) == p_nada);
 	REQUIRE(Jog1.verificarPoss(2, 22, &En0) == p_nada);
 	REQUIRE(Jog1.verificarPoss(3, 22, &En0) == p_nada);
+    REQUIRE(Jog1.verificarPoss(3, 27, &En0) == p_construir);
+    REQUIRE(Jog1.verificarPoss(7, 22, &En0) == p_construir);
+    REQUIRE(Jog1.verificarPoss(7, 26, &En0) == p_construir);
+    REQUIRE(Jog1.verificarPoss(26, 26, &En0) == p_construir);
+    REQUIRE(Jog1.verificarPoss(2, 17, &En0) == p_construir);
 	
     printf("\n\n\n\n");
     En0.printTAB();
+    En0.printTABverb();
 	En0.printTabelaTime();
-	REQUIRE(Jog1.verificarPoss(3, 27, &En0) == p_construir);
-	REQUIRE(Jog1.verificarPoss(7, 22, &En0) == p_construir);
-	REQUIRE(Jog1.verificarPoss(7, 26, &En0) == p_construir);
-	REQUIRE(Jog1.verificarPoss(26, 26, &En0) == p_construir);
-	REQUIRE(Jog1.verificarPoss(2, 17, &En0) == p_construir);
 }
