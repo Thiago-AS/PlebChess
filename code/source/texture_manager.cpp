@@ -13,8 +13,14 @@ SDL_Texture* TextureManager::LoadTexture(string file_name) {
 SDL_Texture* TextureManager::LoadTTF(TTF_Font* font, string text) {
   SDL_Surface* temp_surface = TTF_RenderText_Solid(font, text.c_str(),
                                                    {0, 0, 0});
+  if (temp_surface == NULL) {
+    cout << "Failed to load ttf surface: " << TTF_GetError() << endl;
+  }
   SDL_Texture* texture = SDL_CreateTextureFromSurface(Gui::gRenderer,
                                                       temp_surface);
+  if (texture == NULL) {
+    cout << "Failed to load ttf texture: " << SDL_GetError() << endl;
+  }
   SDL_FreeSurface(temp_surface);
 
   return texture;

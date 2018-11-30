@@ -11,6 +11,7 @@ TTF_Font* Gui::game_font = NULL;
 GameScreen Gui::current_screen;
 
 GameObject* hearth;
+GameObject* start_button;
 MainMenu* main_menu;
 Map* map;
 
@@ -35,10 +36,7 @@ bool Gui::Initialized() {
 Gui::Gui() {
   gRenderer = NULL;
   mWindow = NULL;
-<<<<<<< HEAD
-=======
   current_screen = GameScreen::MAIN_MENU;
->>>>>>> Carregando TTF
   initialized = Init();
 }
 
@@ -82,15 +80,18 @@ bool Gui::Init() {
     }
   }
 
-  hearth = new GameObject("../assets/hearth.png", 0, 0);
+  hearth = new GameObject(TextureManager::LoadTexture("../assets/hearth.png"),
+                          0, 0, 64, 64);
   map = new Map();
   main_menu = new MainMenu();
+  int w1, h1;
+  SDL_Texture* fontSup = TextureManager::LoadTTF(Gui::game_font, "START GAME");
+  SDL_QueryTexture(fontSup, NULL, NULL, &w1, &h1);
+  start_button = new GameObject(fontSup, 300, 200, w1, h1);
   return true;
 }
 
 void Gui::Update() {
-<<<<<<< HEAD
-=======
   switch (Gui::current_screen) {
     case GameScreen::MAIN_MENU:
       main_menu->Update();
@@ -99,14 +100,12 @@ void Gui::Update() {
     default:
       break;
   }
->>>>>>> Carregando TTF
   hearth->Update();
+  start_button->Update();
 }
 
 void Gui::Render() {
   SDL_RenderClear(gRenderer);
-<<<<<<< HEAD
-=======
   switch (Gui::current_screen) {
     case GameScreen::MAIN_MENU:
       main_menu->Render();
@@ -115,8 +114,20 @@ void Gui::Render() {
     default:
       break;
   }
->>>>>>> Carregando TTF
   map->DrawMap();
   hearth->Render();
+=======
+  // switch (Gui::current_screen) {
+  //   case GameScreen::MAIN_MENU:
+  //     main_menu->Render();
+  //     break;
+  //
+  //   default:
+  //     break;
+  // }
+  //map->DrawMap();
+  //hearth->Render();
+  start_button->Render();
+>>>>>>> Arrumando TTF
   SDL_RenderPresent(gRenderer);
 }

@@ -2,17 +2,20 @@
 #include "../include/game_objects.h"
 #include "../include/texture_manager.h"
 
-GameObject::GameObject(string texture_sheet, int x_pos, int y_pos) {
+GameObject::GameObject(SDL_Texture* texture, int x_pos, int y_pos,
+                       int width, int height) {
   this->x_pos = x_pos;
   this->y_pos = y_pos;
-  obj_texture = TextureManager::LoadTexture(texture_sheet.c_str());
+  this->height = height;
+  this->width = width;
+  obj_texture = texture;
 }
 
 void GameObject::Update() {
   dst_rect.x = x_pos;
   dst_rect.y = y_pos;
-  dst_rect.w = 64;
-  dst_rect.h = 64;
+  dst_rect.w = width;
+  dst_rect.h = height;
 }
 
 void GameObject::Render() {
