@@ -4,18 +4,51 @@
 
 GameObject::GameObject(SDL_Texture* texture, int x_pos, int y_pos,
                        int width, int height) {
-  this->x_pos = x_pos;
-  this->y_pos = y_pos;
-  this->height = height;
-  this->width = width;
+  this->dst_rect.x = x_pos;
+  this->dst_rect.y = y_pos;
+  this->dst_rect.h = height;
+  this->dst_rect.w = width;
   obj_texture = texture;
 }
 
+<<<<<<< HEAD
 void GameObject::Update() {
   dst_rect.x = x_pos;
   dst_rect.y = y_pos;
   dst_rect.w = width;
   dst_rect.h = height;
+=======
+GameObject::~GameObject() {
+}
+
+void GameObject::Update(int new_x, int new_y, int new_width, int new_height) {
+  dst_rect.x = new_x;
+  dst_rect.y = new_y;
+  dst_rect.w = new_width;
+  dst_rect.h = new_height;
+}
+
+bool GameObject::HandleMouse(SDL_Event* event) {
+  if ( event->type == SDL_MOUSEMOTION || event->type == SDL_MOUSEBUTTONDOWN ||
+       event->type == SDL_MOUSEBUTTONUP ) {
+      int x, y;
+      SDL_GetMouseState(&x, &y);
+
+      bool inside = true;
+
+      if (dst_rect.x < dst_rect.x) {
+        inside = false;
+      } else if (dst_rect.x > dst_rect.x + dst_rect.w) {
+        inside = false;
+      } else if (dst_rect.y < dst_rect.y) {
+        inside = false;
+      } else if (dst_rect.y > dst_rect.y + dst_rect.h) {
+        inside = false;
+      }
+
+      return inside;
+  }
+>>>>>>> Mudando função de atualização de posição
 }
 
 void GameObject::Render() {
@@ -33,6 +66,20 @@ void VectorObjects::AddObject(GameObject* object) {
 
 GameObject* VectorObjects::GetObject(int position) {
   return objects_vector.at(position);
+}
+
+void VectorObjects::Update() {
+
+}
+
+int VectorObjects::HandleMouse(SDL_Event* event) {
+  if (!objects_vector.empty()) {
+    for (int i = 0; i < objects_vector.size(); i++) {
+      if (objects_vector.at(i)->HandleMouse(event))
+        return i;
+    }
+  }
+  return -1;
 }
 
 void VectorObjects::Draw() {

@@ -11,18 +11,31 @@ class GameObject {
  public:
   GameObject(SDL_Texture*, int, int, int, int);
   ~GameObject();
-  void Update();
+  bool HandleMouse(SDL_Event*);
+  void Update(int, int, int, int);
   void Render();
 
  private:
-  int x_pos;
-  int y_pos;
-  int width;
-  int height;
   SDL_Texture* obj_texture;
   SDL_Rect src_rect, dst_rect;
 };
 
+<<<<<<< HEAD
+=======
+class VectorObjects {
+ public:
+  void AddObject(GameObject*);
+  GameObject* GetObject(int);
+  int HandleMouse(SDL_Event*);
+  void Draw();
+  void Update();
+  void Clean();
+
+ private:
+  vector<GameObject*> objects_vector;
+};
+
+>>>>>>> Mudando função de atualização de posição
 class Map{
  public:
   Map();

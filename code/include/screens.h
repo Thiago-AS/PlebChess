@@ -9,7 +9,7 @@ class MainMenu {
   MainMenu();
   ~MainMenu();
 
-  void EventHandler(SDL_Event);
+  void EventHandler(SDL_Event*);
   void LoadScreen();
   void Update();
   void Render();

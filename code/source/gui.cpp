@@ -11,7 +11,6 @@ TTF_Font* Gui::game_font = NULL;
 GameScreen Gui::current_screen;
 
 GameObject* hearth;
-GameObject* start_button;
 MainMenu* main_menu;
 Map* map;
 
@@ -84,10 +83,7 @@ bool Gui::Init() {
                           0, 0, 64, 64);
   map = new Map();
   main_menu = new MainMenu();
-  int w1, h1;
-  SDL_Texture* fontSup = TextureManager::LoadTTF(Gui::game_font, "START GAME");
-  SDL_QueryTexture(fontSup, NULL, NULL, &w1, &h1);
-  start_button = new GameObject(fontSup, 300, 200, w1, h1);
+  main_menu->LoadScreen();
   return true;
 }
 
@@ -100,8 +96,6 @@ void Gui::Update() {
     default:
       break;
   }
-  hearth->Update();
-  start_button->Update();
 }
 
 void Gui::Render() {
@@ -114,9 +108,6 @@ void Gui::Render() {
     default:
       break;
   }
-  map->DrawMap();
-  hearth->Render();
-=======
   // switch (Gui::current_screen) {
   //   case GameScreen::MAIN_MENU:
   //     main_menu->Render();
@@ -128,6 +119,9 @@ void Gui::Render() {
   //map->DrawMap();
   //hearth->Render();
   start_button->Render();
->>>>>>> Arrumando TTF
+=======
+  // map->DrawMap();
+  // hearth->Render();
+>>>>>>> Mudando função de atualização de posição
   SDL_RenderPresent(gRenderer);
 }
