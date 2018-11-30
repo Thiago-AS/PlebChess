@@ -387,4 +387,12 @@ TEST_CASE("TESTE TAB Engine", "[engine.hpp]" ) {
     En0.printTAB();
     En0.printTABverb();
 	En0.printTabelaTime();
+    En0.printTABpersonagem();
+    Jog1.acaoPersonagem(12,11,&En0);
+    En0.printTABpersonagem();
+    Jog1.acaoPersonagem(21,11,&En0);
+    En0.printTABpersonagem();
+    Jog1.acaoPersonagem(17,16,&En0);
+    En0.printTABpersonagem();
+
 }

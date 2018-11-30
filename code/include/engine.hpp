@@ -19,6 +19,11 @@ enum Possibilidade {
 	p_construir,
 	p_personagem,	
 };
+enum Acao {
+	movimentar,
+	atacar,
+	impossivel,
+};
 /**
  * @brief Enumeracao da Classe tipo de unidades que o jogo pode ter.
  * Descricao: Contem todas as unidades que pode estar presente em um quadrado do mapa.
@@ -44,6 +49,7 @@ class Engine {
         ~Engine();
         TipoUnidade tabuleirogame[LIN_TABULEIRO][COL_TABULEIRO];
         int tabela_time[LIN_TABULEIRO][COL_TABULEIRO];
+        Acao tabela_personagem[LIN_TABULEIRO][COL_TABULEIRO];
         // getters and setters
         int setTurno();  // seta o turno inicial como 1
         int endTurno();  // acaba o turno do jogador, e incrementa o turno atual
@@ -67,6 +73,7 @@ class Engine {
         int  getTabelaTime( int posX, int posY);
         int setTabelaTime(int value, int posX, int posY);
         void printTAB();
+        void printTABpersonagem();
         void printTABverb();
         void printTabelaTime();
 };
@@ -143,5 +150,6 @@ class Jogador {
     int alteraFortaleza(unsigned int posX, unsigned int posY, Engine * engine);
 	// metodos de jogo
 	Possibilidade verificarPoss(unsigned int posX, unsigned int posY, Engine * engine);
+	int acaoPersonagem(unsigned int posX, unsigned int posY, Engine * engine);
 };  // jogador
 #endif  // CODE_INCLUDE_ENGINE_HPP_

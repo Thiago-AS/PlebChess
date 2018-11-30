@@ -18,6 +18,12 @@ Engine::Engine() {
          tabela_time[i][j] = 5;
         }
     }
+   for (i = 0; i < LIN_TABULEIRO; i++) {
+        for (j = 0; j < COL_TABULEIRO; j++) {
+         tabela_personagem[i][j] = impossivel;
+        }
+    }
+
 
 }
 Engine::~Engine() {
@@ -158,6 +164,28 @@ void Engine::printTAB() {
         }
         printf("\n");
     }    
+}
+void Engine::printTABpersonagem() {
+    int i, j;
+    for (i = 0; i < LIN_TABULEIRO; i++) {
+        for (j = 0; j < COL_TABULEIRO; j++) {
+          if(tabela_personagem[i][j] == impossivel) {
+                printf("X ");
+            
+         }
+         if(tabela_personagem[i][j] == atacar) {
+                printf("A ");
+            
+         }
+         if(tabela_personagem[i][j] == movimentar) {
+                printf("M ");
+            
+         }
+
+        }
+        printf("\n");
+    }
+    printf("\n\n\n");    
 }
 void Engine::printTABverb() {
     int i, j;
@@ -796,4 +824,143 @@ Possibilidade Jogador::verificarPoss(unsigned int posX, unsigned int posY, Engin
 	} else {
 		return p_personagem;
 	}
+}
+
+int Jogador::acaoPersonagem(unsigned int posX, unsigned int posY, Engine * engine) {
+   
+int i, lim_i, j, lim_j;   
+if (engine->getUnidadeTAB(posX, posY) == TipoUnidade::t_cavaleiro) {
+           if (posX - 3 < 0 ) {
+               i = 0;
+           } else {
+            i = posX - 3;
+           } 
+           if (posX + 3 >= COL_TABULEIRO) {
+            lim_i = COL_TABULEIRO;
+           } else {
+            lim_i = posX + 3;
+           }
+           if (posY - 3 < 0 ) {
+               j = 0;
+           } else {
+            j = posY - 3;
+           } 
+           if (posY + 3 >= LIN_TABULEIRO) {
+            lim_j = LIN_TABULEIRO;
+           } else {
+            lim_j = posY + 3;
+           }
+
+
+for ( i ; i <= lim_i; i++) {
+    for (j ; j <= lim_j; j++ ) {
+    if (i != posX && j != posY) {
+    if (engine->getUnidadeTAB(i,j) == TipoUnidade::t_UnidadeVazio) {
+        engine->tabela_personagem[i][j] = movimentar;
+    } 
+    if ((engine->getUnidadeTAB(i,j) == TipoUnidade::t_fortaleza 
+    || engine->getUnidadeTAB(i,j) == TipoUnidade::t_mina
+    || engine->getUnidadeTAB(i,j) == TipoUnidade::t_lenhadora
+    || engine->getUnidadeTAB(i,j) == TipoUnidade::t_arqueiro
+    || engine->getUnidadeTAB(i,j) == TipoUnidade::t_guerreiro
+    || engine->getUnidadeTAB(i,j) == TipoUnidade:: t_cavaleiro) && engine->getTabelaTime(i,j) == 0) {
+        engine->tabela_personagem[i][j] = atacar;
+    } else {
+        engine->tabela_personagem[i][j] = impossivel;
+    }
+    }
+    }
+ }   
+}
+if (engine->getUnidadeTAB(posX, posY) == TipoUnidade::t_arqueiro) {
+           if (posX - 2 < 0 ) {
+               i = 0;
+           } else {
+            i = posX - 2;
+           } 
+           if (posX + 2 >= COL_TABULEIRO) {
+            lim_i = COL_TABULEIRO;
+           } else {
+            lim_i = posX + 2;
+           }
+           if (posY - 2 < 0 ) {
+               j = 0;
+           } else {
+            j = posY - 2;
+           } 
+           if (posY + 2 >= LIN_TABULEIRO) {
+            lim_j = LIN_TABULEIRO;
+           } else {
+            lim_j = posY + 2;
+           }
+
+
+for ( i ; i <= lim_i; i++) {
+    for (j ; j <= lim_j; j++ ) {
+    if (i != posX && j != posY) {
+    if (engine->getUnidadeTAB(i,j) == TipoUnidade::t_UnidadeVazio) {
+        engine->tabela_personagem[i][j] = movimentar;
+    } 
+    if ((engine->getUnidadeTAB(i,j) == TipoUnidade::t_fortaleza 
+    || engine->getUnidadeTAB(i,j) == TipoUnidade::t_mina
+    || engine->getUnidadeTAB(i,j) == TipoUnidade::t_lenhadora
+    || engine->getUnidadeTAB(i,j) == TipoUnidade::t_arqueiro
+    || engine->getUnidadeTAB(i,j) == TipoUnidade::t_guerreiro
+    || engine->getUnidadeTAB(i,j) == TipoUnidade:: t_cavaleiro) && engine->getTabelaTime(i,j) == 0) {
+        engine->tabela_personagem[i][j] = atacar;
+    } else {
+        engine->tabela_personagem[i][j] = impossivel;
+    }
+    }
+    }
+ }   
+}
+if (engine->getUnidadeTAB(posX, posY) == TipoUnidade::t_arqueiro) {
+           if (posX - 1 < 0 ) {
+               i = 0;
+           } else {
+            i = posX - 1;
+           } 
+           if (posX + 1 >= COL_TABULEIRO) {
+            lim_i = COL_TABULEIRO;
+           } else {
+            lim_i = posX + 1;
+           }
+           if (posY - 1 < 0 ) {
+               j = 0;
+           } else {
+            j = posY - 1;
+           } 
+           if (posY + 1 >= LIN_TABULEIRO) {
+            lim_j = LIN_TABULEIRO;
+           } else {
+            lim_j = posY + 1;
+           }
+
+
+for ( i ; i <= lim_i; i++) {
+    for (j ; j <= lim_j; j++ ) {
+    if (i != posX && j != posY) {
+    if (engine->getUnidadeTAB(i,j) == TipoUnidade::t_UnidadeVazio) {
+        engine->tabela_personagem[i][j] = movimentar;
+    } 
+    if ((engine->getUnidadeTAB(i,j) == TipoUnidade::t_fortaleza 
+    || engine->getUnidadeTAB(i,j) == TipoUnidade::t_mina
+    || engine->getUnidadeTAB(i,j) == TipoUnidade::t_lenhadora
+    || engine->getUnidadeTAB(i,j) == TipoUnidade::t_arqueiro
+    || engine->getUnidadeTAB(i,j) == TipoUnidade::t_guerreiro
+    || engine->getUnidadeTAB(i,j) == TipoUnidade:: t_cavaleiro) && engine->getTabelaTime(i,j) == 0) {
+        engine->tabela_personagem[i][j] = atacar;
+    } else {
+        engine->tabela_personagem[i][j] = impossivel;
+    }
+    }
+    }
+ }
+
+
+}
+
+return 1;
+
 }
