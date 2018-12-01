@@ -18,11 +18,14 @@ Engine::Engine() {
          tabela_time[i][j] = 5;
         }
     }
-
+    for (i = 0; i < LIN_TABULEIRO; i++) {
+        for (j = 0; j < COL_TABULEIRO; j++) {
+         tabela_personagem[i][j] = impossivel;
+        }
+    }
 }
 Engine::~Engine() {
 }
-
 int Engine::setTurno() {
     turnoAtual = 1;
     return 1;
@@ -30,7 +33,7 @@ int Engine::setTurno() {
 
 int Engine::endTurno() {
     turnoAtual++;
-    if ( jogadorAtual == 1 )
+    if (jogadorAtual == 1 )
         jogadorAtual = 2;
     else
         jogadorAtual = 1;
@@ -51,7 +54,7 @@ int Engine::getTurno() {
 }
 
 TipoUnidade Engine::getUnidadeTAB(int posX, int posY) {
-    if(posX == -1 || posY == -1 ) {
+    if (posX == -1 || posY == -1) {
         return TipoUnidade::    t_UnidadeVazio;
     }
 
@@ -61,7 +64,7 @@ int Engine::setUnidadeTAB(TipoUnidade unit, int posX,
      int posY) {
   if (posX == -1 || posY == -1) {
     return 1;
-  }  
+  }
   if (posX > LIN_TABULEIRO || posY  > COL_TABULEIRO) {
      printf("%d e %d Posicao invalida\n", posX, posY);
      return 0;
@@ -71,18 +74,23 @@ int Engine::setUnidadeTAB(TipoUnidade unit, int posX,
   }
 }
 
-int  Engine::getTabelaTime( int posX, int posY) {
-    if(posX == -1 || posY == -1 ) {
+int  Engine::getTabelaTime(int posX, int posY) {
+    if (posX == -1 || posY == -1) {
         return 5;
     }
 
   return tabela_time[posX][posY];
-
+}
+Acao  Engine::getTabelaP(int posX, int posY) {
+    if (posX == -1 || posY == -1) {
+        return impossivel;
+    }
+  return tabela_personagem[posX][posY];
 }
 int Engine::setTabelaTime(int value, int posX, int posY) {
   if (posX == -1 || posY == -1) {
     return 1;
-  }  
+  }
   if (posX > LIN_TABULEIRO || posY  > COL_TABULEIRO) {
      printf("%d e %d Posicao invalida\n", posX, posY);
      return 0;
@@ -90,11 +98,13 @@ int Engine::setTabelaTime(int value, int posX, int posY) {
      tabela_time[posX][posY] = value;
      return 1;
   }
-
 }
-
+int Engine::setTabelaP(Acao value, int posX, int posY) {
+     tabela_personagem[posX][posY] = value;
+     return 1;
+  }
 int Engine::eh_possivel_inserir(unsigned int posX,  unsigned int posY) {
-    if(posX == -1 || posY == -1) {
+    if (posX == -1 || posY == -1) {
         return 1;
     }
     if (tabuleirogame[posX][posY] == TipoUnidade::t_UnidadeVazio) {
@@ -108,47 +118,46 @@ void Engine::printTAB() {
     int i, j;
     for (i = 0; i < LIN_TABULEIRO; i++) {
         for (j = 0; j < COL_TABULEIRO; j++) {
-         if(tabuleirogame[i][j] == TipoUnidade::t_UnidadeVazio) {
+         if (tabuleirogame[i][j] == TipoUnidade::t_UnidadeVazio) {
                  printf("-");
          }
-         if(tabuleirogame[i][j] == TipoUnidade::t_arqueiro) {
-            if(getTabelaTime(i,j) == 1) {
+         if (tabuleirogame[i][j] == TipoUnidade::t_arqueiro) {
+            if (getTabelaTime(i, j) == 1) {
                  printf("A");
             } else {
                 printf("a");
             }
-                 
          }
-         if(tabuleirogame[i][j] == TipoUnidade::t_guerreiro) {
-                 if(getTabelaTime(i,j) == 1) {
+         if (tabuleirogame[i][j] == TipoUnidade::t_guerreiro) {
+                 if (getTabelaTime(i, j) == 1) {
                  printf("G");
             } else {
                 printf("g");
             }
          }
-         if(tabuleirogame[i][j] == TipoUnidade::t_cavaleiro) {
-             if(getTabelaTime(i,j) == 1) {
+         if (tabuleirogame[i][j] == TipoUnidade::t_cavaleiro) {
+             if (getTabelaTime(i, j) == 1) {
                  printf("C");
             } else {
                 printf("c");
             }
          }
-         if(tabuleirogame[i][j] == TipoUnidade::t_mina) {
-            if(getTabelaTime(i,j) == 1) {
+         if (tabuleirogame[i][j] == TipoUnidade::t_mina) {
+            if (getTabelaTime(i, j) == 1) {
                  printf("M");
             } else {
                 printf("m");
             }
          }
-         if(tabuleirogame[i][j] == TipoUnidade::t_fortaleza) {
-                if(getTabelaTime(i,j) == 1) {
+         if (tabuleirogame[i][j] == TipoUnidade::t_fortaleza) {
+                if (getTabelaTime(i, j) == 1) {
                  printf("F");
             } else {
                 printf("f");
             }
          }
-         if(tabuleirogame[i][j] == TipoUnidade::t_lenhadora) {
-              if(getTabelaTime(i,j) == 1) {
+         if (tabuleirogame[i][j] == TipoUnidade::t_lenhadora) {
+              if (getTabelaTime(i, j) == 1) {
                  printf("L");
             } else {
                 printf("l");
@@ -157,16 +166,99 @@ void Engine::printTAB() {
          printf(" ");
         }
         printf("\n");
-    }    
+    }
+}
+void Engine::printTABpersonagem() {
+    int i, j;
+    for (i = 0; i < LIN_TABULEIRO; i++) {
+        for (j = 0; j < COL_TABULEIRO; j++) {
+          if (getTabelaP(i, j) == impossivel) {
+                printf("- ");
+         }
+         if (getTabelaP(i, j) == atacar) {
+                printf("A ");
+         }
+         if (getTabelaP(i, j) == movimentar) {
+                printf("M ");
+         }
+        }
+        printf("\n");
+    }
+    printf("\n\n\n");
+}
+void Engine::printTABverb() {
+    int i, j;
+    for (i = 0; i < LIN_TABULEIRO; i++) {
+        for (j = 0; j < COL_TABULEIRO; j++) {
+         if (tabuleirogame[i][j] == TipoUnidade::t_UnidadeVazio) {
+                 printf("-");
+         }
+         if (tabuleirogame[i][j] == TipoUnidade::t_arqueiro) {
+            if (getTabelaTime(i, j) == 1) {
+                 printf("A");
+            } else {
+                printf("a");
+            }
+         }
+         if (tabuleirogame[i][j] == TipoUnidade::t_guerreiro) {
+                 if (getTabelaTime(i, j) == 1) {
+                 printf("G");
+            } else {
+                printf("g");
+            }
+         }
+         if (tabuleirogame[i][j] == TipoUnidade::t_cavaleiro) {
+             if (getTabelaTime(i, j) == 1) {
+                 printf("C");
+            } else {
+                printf("c");
+            }
+         }
+         if (tabuleirogame[i][j] == TipoUnidade::t_mina) {
+            if (getTabelaTime(i, j) == 1) {
+                 printf("M");
+            } else {
+                printf("m");
+            }
+         }
+         if (tabuleirogame[i][j] == TipoUnidade::t_fortaleza) {
+                if (getTabelaTime(i, j) == 1) {
+                 printf("F");
+            } else {
+                printf("f");
+            }
+         }
+         if (tabuleirogame[i][j] == TipoUnidade::t_lenhadora) {
+              if (getTabelaTime(i, j) == 1) {
+                 printf("L");
+            } else {
+                printf("l");
+            }
+         }
+         printf("(%d)[%d,%d] /", tabela_time[i][j], i, j);
+         if ((i+j) % 5 == 0) {
+            printf("\n");
+         }
+        }
+        printf("\n");
+    }
 }
 void Engine::printTabelaTime() {
     int i, j;
     for (i = 0; i < LIN_TABULEIRO; i++) {
         for (j = 0; j < COL_TABULEIRO; j++) {
-            printf("%d ",tabela_time[i][j] );
+            printf("%d ", tabela_time[i][j]);
         }
         printf("\n");
-    }    
+    }
+}
+void Engine::zeraTABpersonagem() {
+    int i, j;
+    for (i = 0; i < LIN_TABULEIRO; i++) {
+        for (j = 0; j < COL_TABULEIRO; j++) {
+          tabela_personagem[i][j] = impossivel;
+        }
+    }
 }
 // metodos da classe JOGADOR
 
@@ -178,15 +270,13 @@ Jogador::Jogador(int times) {
     setTropas(0, 0, 0);
     setConstrucoes(0, 0);
     setGanhoPorTurno();
-    setVetorArqueiro(-1,-1, &en);
-    setVetorCavaleiro(-1,-1, &en);
-    setVetorGuerreiro(-1,-1, &en);
-    setVetorMina(-1,-1, &en);
-    setVetorLenhadora(-1,-1, &en);
-    setFortaleza(-1,-1, &en);
-    
+    setVetorArqueiro(-1, -1, &en, times);
+    setVetorCavaleiro(-1, -1, &en, times);
+    setVetorGuerreiro(-1, -1, &en, times);
+    setVetorMina(-1, -1, &en, times);
+    setVetorLenhadora(-1, -1, &en, times);
+    setFortaleza(-1, -1, &en, times);
 }
-
 Jogador::~Jogador() {
 }
 
@@ -206,6 +296,7 @@ int Jogador::inicializaJogador() {
 int Jogador::setRecursos(int ouro1, int madeira1) {
     ouro = ouro1;
     madeira = madeira1;
+    return 1;
 }
 
 int Jogador::setTropas(int guerr, int arq, int cav) {
@@ -214,6 +305,7 @@ int Jogador::setTropas(int guerr, int arq, int cav) {
     arqueiros = arq + arqueiros;
     cavaleiros = cav + cavaleiros;
     uni_vazias -= (guerr+arq+cav);
+    return 1;
 }
 
 int Jogador::setConstrucoes(int mina, int madeireira) {
@@ -231,6 +323,7 @@ int Jogador::setGanhoPorTurno() {
 
     ganhoOuro = (minas * 10) + 5;  // quantidade vezes quanto cada da por turno
     ganhoMadeira = (madeireiras * 5) + 5;
+    return 1;
 }
 
 int Jogador::getTime() {
@@ -272,27 +365,30 @@ int Jogador::getGanhoOuro() {
 int Jogador::getGanhoMadeira() {
     return ganhoMadeira;
 }
-int Jogador::setVetorArqueiro(int posicaoX, int posicaoY, Engine * engine) {
+int Jogador::setVetorArqueiro(int posicaoX, int posicaoY,
+    Engine * engine, bool times) {
     int i = 0;
-        while ( i < 10 ) {
+        while (i < 10) {
                 vetorArqueiro[i].setAtivo(1);  // ativa o arqueiro
                 /* As posicoes devem ser recebidas da posicao do quartel
                     que construiu o arqueiro */
-                if(!engine->eh_possivel_inserir(posicaoX,posicaoY)) {
+                if (!engine->eh_possivel_inserir(posicaoX, posicaoY)) {
                     printf("Eh impossivel inserir - ha elemento\n");
                     return 0;
                 }
-                vetorArqueiro[i].setHumano(1);
-                engine->setTabelaTime(vetorArqueiro[i].getHumano(),posicaoX,posicaoY);
+                vetorArqueiro[i].setHumano(times);
+                engine->setTabelaTime(vetorArqueiro[i].getHumano(),
+                    posicaoX, posicaoY);
                 vetorArqueiro[i].setPosX(posicaoX);
                 vetorArqueiro[i].setPosY(posicaoY);
-                engine->setUnidadeTAB(TipoUnidade::t_arqueiro,posicaoX,posicaoY);
+                engine->setUnidadeTAB(TipoUnidade::t_arqueiro,
+                    posicaoX, posicaoY);
             i++;
         }  // end while
         return 1;  // bem sucedido
     }
 Arqueiro Jogador::getVetorArqueiro(int indice) {
-    if ( indice >= 0 && indice < 10 )
+    if (indice >= 0 && indice < 10 )
         return vetorArqueiro[indice];
     else
     /* Caso o indice seja passado errado, retorna um personagem
@@ -301,7 +397,7 @@ Arqueiro Jogador::getVetorArqueiro(int indice) {
 }
 Arqueiro Jogador::getArqueiroBypos(unsigned int posX, unsigned int posY) {
      int i = 0;
-     while ( i < 10 ) {
+     while (i < 10) {
         /* As posicoes devem ser recebidas da posicao do quartel
          que construiu o arqueiro */
         if ((vetorArqueiro[i].getPosX() == (posX)) &&
@@ -314,27 +410,30 @@ Arqueiro Jogador::getArqueiroBypos(unsigned int posX, unsigned int posY) {
      * do tipo zero_p, mas eh quando o metodo eh usado errado */
         return Arqueiro();
 }
-int Jogador::setVetorGuerreiro(int posicaoX, int posicaoY, Engine * engine) {
+int Jogador::setVetorGuerreiro(int posicaoX, int posicaoY,
+    Engine * engine, bool times) {
     int i = 0;
-        while ( i < 10 ) {
+        while (i < 10) {
                 vetorGuerreiro[i].setAtivo(1);  // ativa o guerreiro
                 /* As posicoes devem ser recebidas da posicao do quartel
                     que construiu o guerreiro */
-               if(!engine->eh_possivel_inserir(posicaoX,posicaoY)) {
+               if (!engine->eh_possivel_inserir(posicaoX, posicaoY)) {
                     printf("Eh impossivel inserir - ha elemento\n");
                     return 0;
                 }
-                vetorGuerreiro[i].setHumano(1);
-                engine->setTabelaTime(vetorGuerreiro[i].getHumano(),posicaoX,posicaoY);
+                vetorGuerreiro[i].setHumano(times);
+                engine->setTabelaTime(vetorGuerreiro[i].getHumano(),
+                    posicaoX, posicaoY);
                 vetorGuerreiro[i].setPosX(posicaoX);
                 vetorGuerreiro[i].setPosY(posicaoY);
-                engine->setUnidadeTAB(TipoUnidade::t_guerreiro,posicaoX,posicaoY);
+                engine->setUnidadeTAB(TipoUnidade::t_guerreiro,
+                    posicaoX, posicaoY);
             i++;
         }  // end while
         return 1;  // bem sucedido
 }
 Guerreiro Jogador::getVetorGuerreiro(int indice) {
-    if ( indice >= 0 && indice < 10 )
+    if (indice >= 0 && indice < 10 )
         return vetorGuerreiro[indice];
     else
     /* Caso o indice seja passado errado, retorna um personagem
@@ -343,7 +442,7 @@ Guerreiro Jogador::getVetorGuerreiro(int indice) {
 }
 Guerreiro Jogador::getGuerreiroBypos(unsigned int posX, unsigned int posY) {
      int i = 0;
-     while ( i < 10 ) {
+     while (i < 10) {
         /* As posicoes devem ser recebidas da posicao do quartel
          que construiu o arqueiro */
         if ((vetorGuerreiro[i].getPosX() == (posX)) &&
@@ -356,29 +455,31 @@ Guerreiro Jogador::getGuerreiroBypos(unsigned int posX, unsigned int posY) {
      * do tipo zero_p, mas eh quando o metodo eh usado errado */
         return Guerreiro();
 }
-int Jogador::setVetorCavaleiro(int posicaoX, int posicaoY, Engine * engine) {
+int Jogador::setVetorCavaleiro(int posicaoX, int posicaoY,
+    Engine * engine, bool times) {
     int i = 0;
-        while ( i < 10 ) {
+        while (i < 10) {
                 vetorCavaleiro[i].setAtivo(1);  // ativa o cavaleiro
                 /* As posicoes devem ser recebidas da posicao do quartel
                     que construiu o cavaleiro */
-                if(!engine->eh_possivel_inserir(posicaoX,posicaoY)) {
+                if (!engine->eh_possivel_inserir(posicaoX, posicaoY)) {
                     printf("Eh impossivel inserir - ha elemento\n");
                     return 0;
                 }
-                vetorCavaleiro[i].setHumano(1);
-                engine->setTabelaTime(vetorCavaleiro[i].getHumano(),posicaoX,posicaoY);
+                vetorCavaleiro[i].setHumano(times);
+                engine->setTabelaTime(vetorCavaleiro[i].getHumano(),
+                    posicaoX, posicaoY);
                 vetorCavaleiro[i].setPosX(posicaoX);
                 vetorCavaleiro[i].setPosY(posicaoY);
-                engine->setUnidadeTAB(TipoUnidade::t_cavaleiro,posicaoX,posicaoY);
-
+                engine->setUnidadeTAB(TipoUnidade::t_cavaleiro, posicaoX,
+                    posicaoY);
             i++;
         }  // end while
 
-        return 1;  
+        return 1;
 }
 Cavaleiro Jogador::getVetorCavaleiro(int indice) {
-    if ( indice >= 0 && indice < 10 )
+    if (indice >= 0 && indice < 10 )
         return vetorCavaleiro[indice];
     else
     /* Caso o indice seja passado errado, retorna um personagem
@@ -387,7 +488,7 @@ Cavaleiro Jogador::getVetorCavaleiro(int indice) {
 }
 Cavaleiro Jogador::getCavaleiroBypos(unsigned int posX, unsigned int posY) {
      int i = 0;
-     while ( i < 10 ) {
+     while (i < 10) {
         /* As posicoes devem ser recebidas da posicao do quartel
          que construiu o arqueiro */
         if ((vetorCavaleiro[i].getPosX() == (posX)) &&
@@ -401,16 +502,17 @@ Cavaleiro Jogador::getCavaleiroBypos(unsigned int posX, unsigned int posY) {
         return Cavaleiro();
 }
 
-int Jogador::alteraCavaleiro(int indice, unsigned int posX, unsigned int posY, Engine * engine) {
-    if ( indice >= 0 && indice < 10 ) {
-        if(!engine->eh_possivel_inserir(posX,posY)) {
+int Jogador::alteraCavaleiro(int indice, unsigned int posX,
+    unsigned int posY, Engine * engine) {
+    if (indice >= 0 && indice < 10) {
+        if (!engine->eh_possivel_inserir(posX, posY)) {
                     printf("Eh impossivel inserir - ha elemento\n");
                     return 0;
          }
-         engine->setTabelaTime(vetorCavaleiro[indice].getHumano(),posX,posY);
+         engine->setTabelaTime(vetorCavaleiro[indice].getHumano(), posX, posY);
          vetorCavaleiro[indice].setPosY(posY);
          vetorCavaleiro[indice].setPosX(posX);
-        engine->setUnidadeTAB(TipoUnidade::t_cavaleiro,posX,posY);
+        engine->setUnidadeTAB(TipoUnidade::t_cavaleiro, posX, posY);
          return 1;
     } else {
     /* Caso o indice seja passado errado, retorna um personagem
@@ -418,16 +520,17 @@ int Jogador::alteraCavaleiro(int indice, unsigned int posX, unsigned int posY, E
         return 0;
         }
 }
-int Jogador::alteraArqueiro(int indice, unsigned int posX, unsigned int posY, Engine * engine) {
-    if ( indice >= 0 && indice < 10 ) {
-        if(!engine->eh_possivel_inserir(posX,posY)) {
+int Jogador::alteraArqueiro(int indice, unsigned int posX,
+    unsigned int posY, Engine * engine) {
+    if (indice >= 0 && indice < 10) {
+        if (!engine->eh_possivel_inserir(posX, posY)) {
               printf("Eh impossivel inserir - ha elemento\n");
               return 0;
        }
         engine->setTabelaTime(vetorArqueiro[indice].getHumano(), posX, posY);
          vetorArqueiro[indice].setPosY(posY);
          vetorArqueiro[indice].setPosX(posX);
-         engine->setUnidadeTAB(TipoUnidade::t_arqueiro,posX,posY);
+         engine->setUnidadeTAB(TipoUnidade::t_arqueiro, posX, posY);
 
          return 1;
     } else {
@@ -436,16 +539,17 @@ int Jogador::alteraArqueiro(int indice, unsigned int posX, unsigned int posY, En
         return 0;
         }
 }
-int Jogador::alteraGuerreiro(int indice, unsigned int posX, unsigned int posY, Engine * engine) {
-    if ( indice >= 0 && indice < 10 ) {
-            if(!engine->eh_possivel_inserir(posX, posY)) {
+int Jogador::alteraGuerreiro(int indice, unsigned int posX,
+    unsigned int posY, Engine * engine) {
+    if (indice >= 0 && indice < 10) {
+            if (!engine->eh_possivel_inserir(posX, posY)) {
                 printf("Eh impossivel inserir - ha elemento\n");
                 return 0;
            }
-        engine->setTabelaTime(vetorGuerreiro[indice].getHumano(),posX,posY);
+        engine->setTabelaTime(vetorGuerreiro[indice].getHumano(), posX, posY);
         vetorGuerreiro[indice].setPosY(posY);
         vetorGuerreiro[indice].setPosX(posX);
-        engine->setUnidadeTAB(TipoUnidade::t_guerreiro,posX,posY);
+        engine->setUnidadeTAB(TipoUnidade::t_guerreiro, posX, posY);
 
          return 1;
     } else {
@@ -455,33 +559,39 @@ int Jogador::alteraGuerreiro(int indice, unsigned int posX, unsigned int posY, E
         }
 }
 
-int Jogador::setVetorMina(int posicaoX, int posicaoY, Engine * engine) {
+int Jogador::setVetorMina(int posicaoX, int posicaoY,
+    Engine * engine, bool times) {
     int i = 0;
-        while ( i < 5 ) {
+        while (i < 5) {
                 /* As posicoes devem ser recebidas da posicao do quartel
                     que construiu o cavaleiro */
                 if (posicaoX != -1 && posicaoY != -1) {
-                if(!((engine->eh_possivel_inserir(posicaoX,posicaoY))
+                if (!((engine->eh_possivel_inserir(posicaoX, posicaoY))
                     &&  (engine->eh_possivel_inserir(posicaoX, posicaoY))
                     && (engine->eh_possivel_inserir(posicaoX, posicaoY+1))
                     && (engine->eh_possivel_inserir(posicaoX+1, posicaoY))
                     && (engine->eh_possivel_inserir(posicaoX+1, posicaoY+1)))) {
-                    printf("%d  %d\n",posicaoY, posicaoX );
+                    printf("%d  %d\n", posicaoY, posicaoX);
                     return 0;
-                } if (!((rest_limiteCol_sup(posicaoY+1)) ||   (rest_limiteLin_sup(posicaoX+1))) ) {
-                    return 0; 
+                }
+                if (!((rest_limiteCol_sup(posicaoY+1)) ||
+                    (rest_limiteLin_sup(posicaoX+1)))) {
+                    return 0;
                 }
                 }
-                vetorArqueiro[i].setHumano(1);
+                vetorArqueiro[i].setHumano(times);
                 if (posicaoX != -1 && posicaoY != -1) {
-                engine->setTabelaTime(1,posicaoX,posicaoY);
-                engine->setTabelaTime(1,posicaoX+1,posicaoY);
-                engine->setTabelaTime(1,posicaoX,posicaoY+1);
-                engine->setTabelaTime(1,posicaoX+1,posicaoY+1);
-                engine->setUnidadeTAB(TipoUnidade::t_mina,posicaoX,posicaoY);
-                engine->setUnidadeTAB(TipoUnidade::t_mina,posicaoX+1,posicaoY);
-                engine->setUnidadeTAB(TipoUnidade::t_mina,posicaoX,posicaoY+1);
-                engine->setUnidadeTAB(TipoUnidade::t_mina,posicaoX+1,posicaoY+1);
+                engine->setTabelaTime(1, posicaoX, posicaoY);
+                engine->setTabelaTime(1, posicaoX+1, posicaoY);
+                engine->setTabelaTime(1, posicaoX, posicaoY+1);
+                engine->setTabelaTime(1, posicaoX+1, posicaoY+1);
+                engine->setUnidadeTAB(TipoUnidade::t_mina, posicaoX, posicaoY);
+                engine->setUnidadeTAB(TipoUnidade::t_mina, posicaoX+1,
+                    posicaoY);
+                engine->setUnidadeTAB(TipoUnidade::t_mina, posicaoX,
+                    posicaoY+1);
+                engine->setUnidadeTAB(TipoUnidade::t_mina, posicaoX+1,
+                    posicaoY+1);
                }
                 vetorMina[i].setPosX(posicaoX);
                 vetorMina[i].setPosY(posicaoY);
@@ -489,35 +599,42 @@ int Jogador::setVetorMina(int posicaoX, int posicaoY, Engine * engine) {
         }  // end while
         return 1;
 }
-int Jogador::setVetorLenhadora(int posicaoX, int posicaoY, Engine * engine) {
+int Jogador::setVetorLenhadora(int posicaoX, int posicaoY,
+    Engine * engine, bool times) {
     int i = 0;
-        while ( i < 8 ) {
+        while (i < 8) {
                  /* As posicoes devem ser recebidas da posicao do quartel
                     que construiu o cavaleiro */
                 if (posicaoX != -1 && posicaoY != -1) {
-                if(!((engine->eh_possivel_inserir(posicaoX,posicaoY))
+                if (!((engine->eh_possivel_inserir(posicaoX, posicaoY))
                     &&  (engine->eh_possivel_inserir(posicaoX, posicaoY))
                     && (engine->eh_possivel_inserir(posicaoX, posicaoY+1))
                     && (engine->eh_possivel_inserir(posicaoX+1, posicaoY))
                     && (engine->eh_possivel_inserir(posicaoX+1, posicaoY+1)))) {
                     printf("Eh impossivel inserir - ha elemento\n");
                     return 0;
-                } if (!((rest_limiteCol_sup(posicaoY+1)) ||   (rest_limiteLin_sup(posicaoX+1))) ) {
-                    return 0; 
+                }
+                if (!((rest_limiteCol_sup(posicaoY+1)) ||
+                    (rest_limiteLin_sup(posicaoX+1)))) {
+                    return 0;
                 }
                 }
-                vetorLenhadora[i].setHumano(1);
+                vetorLenhadora[i].setHumano(times);
                 vetorLenhadora[i].setPosX(posicaoX);
                 vetorLenhadora[i].setPosY(posicaoY);
-                if( posicaoX != -1 && posicaoY != -1 ) {
-                engine->setTabelaTime(1,posicaoX,posicaoY);
-                engine->setTabelaTime(1,posicaoX+1,posicaoY);
-                engine->setTabelaTime(1,posicaoX,posicaoY+1);
-                engine->setTabelaTime(1,posicaoX+1,posicaoY+1);
-                engine->setUnidadeTAB(TipoUnidade::t_lenhadora,posicaoX,posicaoY);
-                engine->setUnidadeTAB(TipoUnidade::t_lenhadora,posicaoX,posicaoY+1);
-                engine->setUnidadeTAB(TipoUnidade::t_lenhadora,posicaoX+1,posicaoY);
-                engine->setUnidadeTAB(TipoUnidade::t_lenhadora,posicaoX+1,posicaoY+1);
+                if (posicaoX != -1 && posicaoY != -1) {
+                engine->setTabelaTime(1, posicaoX, posicaoY);
+                engine->setTabelaTime(1, posicaoX+1, posicaoY);
+                engine->setTabelaTime(1, posicaoX, posicaoY+1);
+                engine->setTabelaTime(1, posicaoX+1, posicaoY+1);
+                engine->setUnidadeTAB(TipoUnidade::t_lenhadora,
+                    posicaoX, posicaoY);
+                engine->setUnidadeTAB(TipoUnidade::t_lenhadora,
+                    posicaoX, posicaoY+1);
+                engine->setUnidadeTAB(TipoUnidade::t_lenhadora,
+                    posicaoX+1, posicaoY);
+                engine->setUnidadeTAB(TipoUnidade::t_lenhadora,
+                    posicaoX+1, posicaoY+1);
                 }
 
             i++;
@@ -525,11 +642,12 @@ int Jogador::setVetorLenhadora(int posicaoX, int posicaoY, Engine * engine) {
         return 1;  // bem sucedido
 }
 
-int Jogador::setFortaleza(int posicaoX, int posicaoY, Engine * engine) {
+int Jogador::setFortaleza(int posicaoX, int posicaoY,
+    Engine * engine, bool times) {
                 /* As posicoes devem ser recebidas da posicao do quartel
                     que construiu o cavaleiro */
-            if ( posicaoX != -1 && posicaoY != -1 ) { 
-                if(!((engine->eh_possivel_inserir(posicaoX,posicaoY))
+            if (posicaoX != -1 && posicaoY != -1) {
+                if (!((engine->eh_possivel_inserir(posicaoX, posicaoY))
                     &&  (engine->eh_possivel_inserir(posicaoX, posicaoY))
                     && (engine->eh_possivel_inserir(posicaoX, posicaoY+1))
                     && (engine->eh_possivel_inserir(posicaoX+1, posicaoY))
@@ -540,56 +658,68 @@ int Jogador::setFortaleza(int posicaoX, int posicaoY, Engine * engine) {
                     && (engine->eh_possivel_inserir(posicaoX+3, posicaoY+1)))) {
                     printf("Eh impossivel inserir - ha elemento\n");
                     return 0;
-                } if (  !((rest_limiteCol_sup(posicaoY+3)) ||   (rest_limiteLin_sup(posicaoX+1))) ) {
-                    return 0; 
+                }
+                if (!((rest_limiteCol_sup(posicaoY+3)) ||
+                    (rest_limiteLin_sup(posicaoX+1)))) {
+                    return 0;
                 }
                 }
+                un_Fortaleza.setHumano(times);
                 un_Fortaleza.setPosX(posicaoX);
                 un_Fortaleza.setPosY(posicaoY);
-                if ( posicaoX != -1 && posicaoY != -1) {                
-                engine->setTabelaTime(1,posicaoX,posicaoY);
-                engine->setTabelaTime(1,posicaoX+1,posicaoY);
-                engine->setTabelaTime(1,posicaoX,posicaoY+1);
-                engine->setTabelaTime(1,posicaoX+1,posicaoY+1);
-                engine->setTabelaTime(1,posicaoX+2,posicaoY);
-                engine->setTabelaTime(1,posicaoX+3,posicaoY);
-                engine->setTabelaTime(1,posicaoX+2,posicaoY+1);
-                engine->setTabelaTime(1,posicaoX+3,posicaoY+1);   
-                engine->setUnidadeTAB(TipoUnidade::t_lenhadora,posicaoX,posicaoY);
-                engine->setUnidadeTAB(TipoUnidade::t_lenhadora,posicaoX+1,posicaoY);
-                engine->setUnidadeTAB(TipoUnidade::t_lenhadora,posicaoX+2,posicaoY);
-                engine->setUnidadeTAB(TipoUnidade::t_lenhadora,posicaoX+3,posicaoY);
-                engine->setUnidadeTAB(TipoUnidade::t_lenhadora,posicaoX,posicaoY+1);
-                engine->setUnidadeTAB(TipoUnidade::t_lenhadora,posicaoX+1,posicaoY+1);
-                engine->setUnidadeTAB(TipoUnidade::t_lenhadora,posicaoX+2,posicaoY+1);
-                engine->setUnidadeTAB(TipoUnidade::t_lenhadora,posicaoX+3,posicaoY+1);
+                if (posicaoX != -1 && posicaoY != -1) {
+                engine->setTabelaTime(1, posicaoX, posicaoY);
+                engine->setTabelaTime(1, posicaoX+1, posicaoY);
+                engine->setTabelaTime(1, posicaoX, posicaoY+1);
+                engine->setTabelaTime(1, posicaoX+1, posicaoY+1);
+                engine->setTabelaTime(1, posicaoX+2, posicaoY);
+                engine->setTabelaTime(1, posicaoX+3, posicaoY);
+                engine->setTabelaTime(1, posicaoX+2, posicaoY+1);
+                engine->setTabelaTime(1, posicaoX+3, posicaoY+1);
+                engine->setUnidadeTAB(TipoUnidade::t_lenhadora,
+                    posicaoX, posicaoY);
+                engine->setUnidadeTAB(TipoUnidade::t_lenhadora,
+                    posicaoX+1, posicaoY);
+                engine->setUnidadeTAB(TipoUnidade::t_lenhadora,
+                    posicaoX+2, posicaoY);
+                engine->setUnidadeTAB(TipoUnidade::t_lenhadora,
+                    posicaoX+3, posicaoY);
+                engine->setUnidadeTAB(TipoUnidade::t_lenhadora,
+                    posicaoX, posicaoY+1);
+                engine->setUnidadeTAB(TipoUnidade::t_lenhadora,
+                    posicaoX+1, posicaoY+1);
+                engine->setUnidadeTAB(TipoUnidade::t_lenhadora,
+                    posicaoX+2, posicaoY+1);
+                engine->setUnidadeTAB(TipoUnidade::t_lenhadora,
+                    posicaoX+3, posicaoY+1);
                 }
-                
                 return 1;  // bem sucedido
 }
-
-int Jogador::alteraMina(int indice, unsigned int posX, unsigned int posY, Engine * engine) {
-    if ( indice >= 0 && indice < 5 ) {
-        if ( posX != -1 && posY != -1 ) { 
-                if(!((engine->eh_possivel_inserir(posX,posY))
+int Jogador::alteraMina(int indice, unsigned int posX,
+    unsigned int posY, Engine * engine) {
+    if (indice >= 0 && indice < 5) {
+        if (posX != -1 && posY != -1) {
+                if (!((engine->eh_possivel_inserir(posX, posY))
                     &&  (engine->eh_possivel_inserir(posX, posY))
                     && (engine->eh_possivel_inserir(posX, posY+1))
                     && (engine->eh_possivel_inserir(posX+1, posY))
                     && (engine->eh_possivel_inserir(posX+1, posY+1)))) {
                     printf("Eh impossivel inserir - ha elemento\n");
                     return 0;
-                } if (  !(rest_limiteCol_sup(posY+1)) ||   !(rest_limiteLin_sup(posX+1)) ) {
+                }
+                if (!(rest_limiteCol_sup(posY+1)) ||
+                    !(rest_limiteLin_sup(posX+1))) {
                     printf("Eh impossivel inserir - ha elemento\n");
-                    return 0; 
+                    return 0;
                 }
                 }
                 vetorMina[indice].setPosY(posY);
                 vetorMina[indice].setPosX(posX);
-                if( posX != -1 && posY != -1 ) {
-                engine->setTabelaTime(1,posX,posY);
-                engine->setTabelaTime(1,posX+1,posY);
-                engine->setTabelaTime(1,posX,posY+1);
-                engine->setTabelaTime(1,posX+1,posY+1);
+                if (posX != -1 && posY != -1) {
+                engine->setTabelaTime(1, posX, posY);
+                engine->setTabelaTime(1, posX+1, posY);
+                engine->setTabelaTime(1, posX, posY+1);
+                engine->setTabelaTime(1, posX+1, posY+1);
                 engine->setUnidadeTAB(TipoUnidade::t_mina, posX, posY);
                 engine->setUnidadeTAB(TipoUnidade::t_mina, posX+1, posY);
                 engine->setUnidadeTAB(TipoUnidade::t_mina, posX, posY+1);
@@ -605,27 +735,30 @@ int Jogador::alteraMina(int indice, unsigned int posX, unsigned int posY, Engine
     }
 }
 
-int Jogador::alteraLenhadora(int indice, unsigned int posX, unsigned int posY, Engine * engine) {
-    if ( indice >= 0 && indice < 8 ) {
-        if ( posX == -1 || posY == -1 ) { 
-          if(!((engine->eh_possivel_inserir(posX,posY))
+int Jogador::alteraLenhadora(int indice, unsigned int posX,
+    unsigned int posY, Engine * engine) {
+    if (indice >= 0 && indice < 8) {
+        if (posX == -1 || posY == -1) {
+          if (!((engine->eh_possivel_inserir(posX, posY))
                     &&  (engine->eh_possivel_inserir(posX, posY))
                     && (engine->eh_possivel_inserir(posX, posY+1))
                     && (engine->eh_possivel_inserir(posX+1, posY))
                     && (engine->eh_possivel_inserir(posX+1, posY+1)))) {
                     printf("Eh impossivel inserir - ha elemento\n");
                     return 0;
-                } if (  !(rest_limiteCol_sup(posY+1))  ||  ! (rest_limiteLin_sup(posX+1)) ) {
-                    return 0; 
+                }
+                if (!(rest_limiteCol_sup(posY+1))  ||
+                    !(rest_limiteLin_sup(posX+1))) {
+                    return 0;
                 }
              }
                 vetorLenhadora[indice].setPosY(posY);
                 vetorLenhadora[indice].setPosX(posX);
-                if (posX != -1 && posY != -1 ) {
-                engine->setTabelaTime(1,posX,posY);
-                engine->setTabelaTime(1,posX+1,posY);
-                engine->setTabelaTime(1,posX,posY+1);
-                engine->setTabelaTime(1,posX+1,posY+1);
+                if (posX != -1 && posY != -1) {
+                engine->setTabelaTime(1, posX, posY);
+                engine->setTabelaTime(1, posX+1, posY);
+                engine->setTabelaTime(1, posX, posY+1);
+                engine->setTabelaTime(1, posX+1, posY+1);
          engine->setUnidadeTAB(TipoUnidade::t_lenhadora, posX, posY);
          engine->setUnidadeTAB(TipoUnidade::t_lenhadora, posX+1, posY);
          engine->setUnidadeTAB(TipoUnidade::t_lenhadora, posX, posY+1);
@@ -638,10 +771,10 @@ int Jogador::alteraLenhadora(int indice, unsigned int posX, unsigned int posY, E
         return 0;
     }
 }
-int Jogador::alteraFortaleza(unsigned int posX, unsigned int posY, Engine * engine) {
-    if ( posX != -1 && posY != -1 ) { 
-               
-        if(!((engine->eh_possivel_inserir(posX,posY))
+int Jogador::alteraFortaleza(unsigned int posX, unsigned int posY,
+    Engine * engine) {
+    if (posX != -1 && posY != -1) {
+        if (!((engine->eh_possivel_inserir(posX, posY))
                     &&  (engine->eh_possivel_inserir(posX, posY))
                     && (engine->eh_possivel_inserir(posX, posY+1))
                     && (engine->eh_possivel_inserir(posX+1, posY))
@@ -652,35 +785,37 @@ int Jogador::alteraFortaleza(unsigned int posX, unsigned int posY, Engine * engi
                     && (engine->eh_possivel_inserir(posX+3, posY+1)))) {
                     printf("Eh impossivel inserir - ha elemento\n");
                     return 0;
-                } if (  !(rest_limiteCol_sup(posY+3)) ||  !(rest_limiteLin_sup(posX+1)) ) {
-                    return 0; 
+                }
+                if (!(rest_limiteCol_sup(posY+3)) ||
+                    !(rest_limiteLin_sup(posX+1))) {
+                    return 0;
         }
        }
         un_Fortaleza.setPosY(posY);
         un_Fortaleza.setPosX(posX);
-        if ( posX != -1 && posY != -1 ) { 
-        engine->setTabelaTime(1,posX,posY);
-        engine->setTabelaTime(1,posX+1,posY);
-        engine->setTabelaTime(1,posX,posY+1);
-        engine->setTabelaTime(1,posX+1,posY+1);
-        engine->setTabelaTime(1,posX+2,posY);
-        engine->setTabelaTime(1,posX+3,posY);
-        engine->setTabelaTime(1,posX+2,posY+1);
-        engine->setTabelaTime(1,posX+3,posY+1);   
-        engine->setUnidadeTAB(TipoUnidade::t_fortaleza,posX,posY);
-        engine->setUnidadeTAB(TipoUnidade::t_fortaleza,posX+1,posY);
-        engine->setUnidadeTAB(TipoUnidade::t_fortaleza,posX+2,posY);
-        engine->setUnidadeTAB(TipoUnidade::t_fortaleza,posX+3,posY);
-        engine->setUnidadeTAB(TipoUnidade::t_fortaleza,posX,posY+1);
-        engine->setUnidadeTAB(TipoUnidade::t_fortaleza,posX+1,posY+1);
-        engine->setUnidadeTAB(TipoUnidade::t_fortaleza,posX+2,posY+1);
-        engine->setUnidadeTAB(TipoUnidade::t_fortaleza,posX+3,posY+1);
-        }        
+        if (posX != -1 && posY != -1) {
+        engine->setTabelaTime(1, posX, posY);
+        engine->setTabelaTime(1, posX+1, posY);
+        engine->setTabelaTime(1, posX, posY+1);
+        engine->setTabelaTime(1, posX+1, posY+1);
+        engine->setTabelaTime(1, posX+2, posY);
+        engine->setTabelaTime(1, posX+3, posY);
+        engine->setTabelaTime(1, posX+2, posY+1);
+        engine->setTabelaTime(1, posX+3, posY+1);
+        engine->setUnidadeTAB(TipoUnidade::t_fortaleza, posX, posY);
+        engine->setUnidadeTAB(TipoUnidade::t_fortaleza, posX+1, posY);
+        engine->setUnidadeTAB(TipoUnidade::t_fortaleza, posX+2, posY);
+        engine->setUnidadeTAB(TipoUnidade::t_fortaleza, posX+3, posY);
+        engine->setUnidadeTAB(TipoUnidade::t_fortaleza, posX, posY+1);
+        engine->setUnidadeTAB(TipoUnidade::t_fortaleza, posX+1, posY+1);
+        engine->setUnidadeTAB(TipoUnidade::t_fortaleza, posX+2, posY+1);
+        engine->setUnidadeTAB(TipoUnidade::t_fortaleza, posX+3, posY+1);
+        }
          return 1;
 }
 Mina Jogador::getMinaBypos(unsigned int posX, unsigned int posY) {
      int i = 0;
-     while ( i < 10 ) {
+     while (i < 10) {
         /* As posicoes devem ser recebidas da posicao do quartel
          que construiu o arqueiro */
         if ((vetorMina[i].getPosX() == (posX)) &&
@@ -694,7 +829,7 @@ Mina Jogador::getMinaBypos(unsigned int posX, unsigned int posY) {
         return Mina();
 }
 Mina Jogador::getVetorMina(int indice) {
-    if ( indice >= 0 && indice < 5 )
+    if (indice >= 0 && indice < 5 )
         return vetorMina[indice];
     else
     /* Caso o indice seja passado errado, retorna um personagem
@@ -703,7 +838,7 @@ Mina Jogador::getVetorMina(int indice) {
 }
 Lenhadora Jogador::getLenhadoraBypos(unsigned int posX, unsigned int posY) {
      int i = 0;
-     while ( i < 10 ) {
+     while (i < 10) {
         /* As posicoes devem ser recebidas da posicao do quartel
          que construiu o arqueiro */
         if ((vetorLenhadora[i].getPosX() == (posX)) &&
@@ -717,7 +852,7 @@ Lenhadora Jogador::getLenhadoraBypos(unsigned int posX, unsigned int posY) {
         return Lenhadora();
 }
 Lenhadora Jogador::getVetorLenhadora(int indice) {
-    if ( indice >= 0 && indice < 8 )
+    if (indice >= 0 && indice < 8 )
         return vetorLenhadora[indice];
     else
     /* Caso o indice seja passado errado, retorna um personagem
@@ -726,4 +861,168 @@ Lenhadora Jogador::getVetorLenhadora(int indice) {
 }
 Fortaleza Jogador::getun_Fortaleza() {
     return un_Fortaleza;
+}
+Possibilidade Jogador::verificarPoss(unsigned int posX, unsigned int posY,
+    Engine * engine) {
+    if (engine->getUnidadeTAB(posX, posY) == TipoUnidade::t_UnidadeVazio) {
+        return p_construir;
+    }
+    if (engine->getUnidadeTAB(posX, posY) == TipoUnidade::t_fortaleza
+    || engine->getUnidadeTAB(posX, posY) == TipoUnidade::t_mina
+    || engine->getUnidadeTAB(posX, posY) == TipoUnidade::t_lenhadora) {
+        return p_nada;
+    } else {
+        return p_personagem;
+    }
+}
+Acao Jogador::acaoPersonagem(unsigned int posX, unsigned int posY,
+    Engine * engine) {
+int i, lim_i, j, lim_j, i2, j2;
+if (engine->getUnidadeTAB(posX, posY) == TipoUnidade::t_cavaleiro) {
+           if (posX - 3 < 0) {
+               i = 0;
+           } else {
+            i = posX - 3;
+           }
+           if (posX + 3 >= COL_TABULEIRO) {
+            lim_i = COL_TABULEIRO;
+           } else {
+            lim_i = posX + 3;
+           }
+           if (posY - 3 < 0) {
+               j = 0;
+           } else {
+            j = posY - 3;
+           }
+           if (posY + 3 >= LIN_TABULEIRO) {
+            lim_j = LIN_TABULEIRO;
+           } else {
+            lim_j = posY + 3;
+           }
+
+for (i2 = i ; i2 <= lim_i; i2++) {
+    for (j2 = j ; j2 <= lim_j; j2++) {
+    if (i2 == posX && j2 == posY) {
+        continue;
+    } else {
+    if (engine->getUnidadeTAB(i2, j2) == TipoUnidade::t_UnidadeVazio) {
+        engine->tabela_personagem[i2][j2] = movimentar;
+            } else if ((engine->getUnidadeTAB(i2, j2) ==
+                                             TipoUnidade::t_fortaleza
+    || engine->getUnidadeTAB(i2, j2) == TipoUnidade::t_mina
+    || engine->getUnidadeTAB(i2, j2) == TipoUnidade::t_lenhadora
+    || engine->getUnidadeTAB(i2, j2) == TipoUnidade::t_arqueiro
+    || engine->getUnidadeTAB(i2, j2) == TipoUnidade::t_guerreiro
+    || engine->getUnidadeTAB(i2, j2) == TipoUnidade:: t_cavaleiro)
+        && engine->getTabelaTime(i2, j2) == 0) {
+        engine->tabela_personagem[i2][i2] = atacar;
+    } else {
+        engine->tabela_personagem[i2][j2] = impossivel;
+    }
+    }
+    }
+}
+}
+if (engine->getUnidadeTAB(posX, posY) == TipoUnidade::t_arqueiro) {
+           if (posX - 2 < 0) {
+               i = 0;
+           } else {
+            i = posX - 2;
+           }
+           if (posX + 2 >= COL_TABULEIRO) {
+            lim_i = COL_TABULEIRO;
+           } else {
+            lim_i = posX + 2;
+           }
+           if (posY - 2 < 0) {
+               j = 0;
+           } else {
+            j = posY - 2;
+           }
+           if (posY + 2 >= LIN_TABULEIRO) {
+            lim_j = LIN_TABULEIRO;
+           } else {
+            lim_j = posY + 2;
+           }
+
+for (i2 = i ; i2 <= lim_i; i2++) {
+    for (j2= j ; j2 <= lim_j; j2++) {
+    if (i2 == posX && j2 == posY) {
+     continue;
+    } else {
+    if (engine->getUnidadeTAB(i2, j2) == TipoUnidade::t_UnidadeVazio) {
+        engine->tabela_personagem[i2][j2] = movimentar;
+    } else if ((engine->getUnidadeTAB(i2, j2) == TipoUnidade::t_fortaleza
+    || engine->getUnidadeTAB(i2, j2) == TipoUnidade::t_mina
+    || engine->getUnidadeTAB(i2, j2) == TipoUnidade::t_lenhadora
+    || engine->getUnidadeTAB(i2, j2) == TipoUnidade::t_arqueiro
+    || engine->getUnidadeTAB(i2, j2) == TipoUnidade::t_guerreiro
+    || engine->getUnidadeTAB(i2, j2) == TipoUnidade:: t_cavaleiro)
+        && engine->getTabelaTime(i2, j2) == 0) {
+        engine->tabela_personagem[i2][j2] = atacar;
+    } else {
+        engine->tabela_personagem[i2][j2] = impossivel;
+    }
+    }
+    }
+}
+}
+if (engine->getUnidadeTAB(posX, posY) == TipoUnidade::t_guerreiro) {
+           if (posX - 1 < 0) {
+               i = 0;
+           } else {
+            i = posX - 1;
+           }
+           if (posX + 1 >= COL_TABULEIRO) {
+            lim_i = COL_TABULEIRO;
+           } else {
+            lim_i = posX + 1;
+           }
+           if (posY - 1 < 0) {
+               j = 0;
+           } else {
+            j = posY - 1;
+           }
+           if (posY + 1 >= LIN_TABULEIRO) {
+            lim_j = LIN_TABULEIRO;
+           } else {
+            lim_j = posY + 1;
+           }
+
+for (i2 = i ; i2 <= lim_i; i2++) {
+    for (j2 = j; j2 <= lim_j; j2++) {
+    if (i2 == posX && j2 == posY) {
+        continue;
+    } else {
+    if (engine->getUnidadeTAB(i2, j2) == TipoUnidade::t_UnidadeVazio) {
+        printf("X\n");
+        engine->setTabelaP(movimentar, i2, j2);
+    } else if ((engine->getUnidadeTAB(i2, j2) == TipoUnidade::t_fortaleza
+    || engine->getUnidadeTAB(i2, j2) == TipoUnidade::t_mina
+    || engine->getUnidadeTAB(i2, j2) == TipoUnidade::t_lenhadora
+    || engine->getUnidadeTAB(i2, j2) == TipoUnidade::t_arqueiro
+    || engine->getUnidadeTAB(i2, j2) == TipoUnidade::t_guerreiro
+    || engine->getUnidadeTAB(i2, j2) == TipoUnidade:: t_cavaleiro) &&
+    engine->getTabelaTime(i2, j2) == 0) {
+        engine->setTabelaP(atacar, i2, j2);
+      } else {
+        engine->setTabelaP(impossivel, i2, j2);
+    }
+    }
+    }
+}
+return impossivel;
+}
+}
+int Jogador::EscolherAcaoPos(unsigned int posX, unsigned int posY,
+    Engine * engine) {
+if (verificarPoss(posX, posY, engine) == p_nada) {
+    printf("Impossivel fazer acao! \n");
+} else if (verificarPoss(posX, posY, engine) == p_construir) {
+    // construir
+} else if (verificarPoss(posX, posY, engine) == p_personagem) {
+    engine->zeraTABpersonagem();
+    EscolherAcaoPos(posX, posY, engine);
+    // verificar a tabela e pegar acao que se quer fazer.
+}
 }
