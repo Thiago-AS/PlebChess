@@ -93,7 +93,7 @@ char Map::map[10][10] = {
 };
 
 Map::Map() {
-  tile = TextureManager::LoadTexture("../assets/grass.png");
+  tile = TextureManager::LoadTexture("../assets/dirt.png");
   src.x = src.y = 0;
   dst.x = dst.y = 0;
   src.w = dst.w = 64;

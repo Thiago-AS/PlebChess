@@ -13,7 +13,7 @@ GameScreen Gui::current_screen;
 
 GameObject* hearth;
 MainMenu* main_menu;
-Map* map;
+GameScene* game_scene;
 
 Gui* Gui::Instance() {
   if (instance == NULL)
@@ -82,9 +82,10 @@ bool Gui::Init() {
 
   hearth = new GameObject(TextureManager::LoadTexture("../assets/hearth.png"),
                           0, 0, 64, 64);
-  map = new Map();
   main_menu = new MainMenu();
   main_menu->LoadScreen();
+  game_scene = new GameScene();
+  game_scene->LoadScreen();
   return true;
 }
 
@@ -94,7 +95,14 @@ void Gui::HandleEvents() {
     if (events.type == SDL_QUIT) {
       quit = true;
     }
-    main_menu->EventHandler(events);
+    switch (Gui::current_screen) {
+      case GameScreen::MAIN_MENU:
+        main_menu->EventHandler(events);
+        break;
+
+      default:
+        break;
+    }
   }
 }
 
@@ -115,10 +123,13 @@ void Gui::Render() {
       main_menu->Render();
       break;
 
+    case GameScreen::NEW_GAME:
+      game_scene->Render();
+      break;
+
     default:
       break;
   }
-  // map->DrawMap();
   // hearth->Render();
   SDL_RenderPresent(gRenderer);
 }
