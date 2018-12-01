@@ -260,7 +260,7 @@ class Mina {
 *    Interface explicita: Nao ha.
 *    Interface implicita: Nao ha.
 * Assertiva Saida: devolve a a vida do mina.
-*/	
+*/    
         unsigned int getPosY();
 /**
 * @fn         tipo_recurso getRecurso();
@@ -523,7 +523,7 @@ class Lenhadora {
 *    Interface explicita: Nao ha.
 *    Interface implicita: Nao ha.
 * Assertiva Saida: devolve a a vida do lenhadora.
-*/	
+*/    
         unsigned int getPosY();
 /**
 * @fn         tipo_recurso getRecurso();
@@ -567,7 +567,7 @@ class Fortaleza {
         Fortaleza();
         ~Fortaleza();
         // metodos getter and setters
-		/**
+        /**
 * @fn int setVida(unsigned int p_vida);
 * @brief Metodo que seta o valor da vida da fortaleza para o valor passado.
 * @param p_vida deve ser um valor maior igual a 0
@@ -786,7 +786,7 @@ class Fortaleza {
 *    Interface explicita: Nao ha.
 *    Interface implicita: Nao ha.
 * Assertiva Saida: devolve a a vida do fortaleza.
-*/	
+*/    
         unsigned int getPosY();
 /**
 * @fn         tipo_recurso getRecurso();

@@ -202,7 +202,7 @@ class Arqueiro {
 *    Interface explicita: Nao ha.
 *    Interface implicita: Nao ha.
 * Assertiva Saida: devolve a a vida do arqueiro.
-*/	
+*/    
         unsigned int getPosY();
 /**
 * @fn unsigned int getQt_turnos();
@@ -226,7 +226,7 @@ class Arqueiro {
 *    Interface explicita: Nao ha.
 *    Interface implicita: Nao ha.
 * Assertiva Saida: devolve a casas andaveis pelo arqueiro.
-*/	
+*/    
         unsigned int getQt_casas();
 /**
 * @fn unsigned int getAtivo();
@@ -238,7 +238,7 @@ class Arqueiro {
 *    Interface explicita: Nao ha.
 *    Interface implicita: Nao ha.
 * Assertiva Saida: devolve ativo se estiver em jogo, 0 c.c.
-*/	
+*/    
         unsigned int getAtivo();
 /**
 * @fn int get_status_personagem();
@@ -249,7 +249,7 @@ class Arqueiro {
 *    Interface explicita: Nao ha.
 *    Interface implicita: Nao ha.
 * Assertiva Saida: Printa informacoes e retorna 1.
-*/	
+*/    
         int get_status_personagem();
 };
 class Guerreiro {
@@ -472,7 +472,7 @@ class Guerreiro {
 *    Interface explicita: Nao ha.
 *    Interface implicita: Nao ha.
 * Assertiva Saida: devolve ativo se estiver em jogo, 0 c.c.
-*/	
+*/    
         unsigned int getAtivo();
 /**
 * @fn int get_status_personagem();
@@ -483,7 +483,7 @@ class Guerreiro {
 *    Interface explicita: Nao ha.
 *    Interface implicita: Nao ha.
 * Assertiva Saida: Printa informacoes e retorna 1.
-*/	
+*/    
         int get_status_personagem();
 };
 class Cavaleiro {
@@ -706,7 +706,7 @@ class Cavaleiro {
 *    Interface explicita: Nao ha.
 *    Interface implicita: Nao ha.
 * Assertiva Saida: devolve ativo se estiver em jogo, 0 c.c.
-*/	
+*/    
         unsigned int getAtivo();
 /**
 * @fn int get_status_personagem();
@@ -717,7 +717,7 @@ class Cavaleiro {
 *    Interface explicita: Nao ha.
 *    Interface implicita: Nao ha.
 * Assertiva Saida: Printa informacoes e retorna 1.
-*/	
+*/    
         int get_status_personagem();
 };
 class Unidade_vazio {

@@ -296,7 +296,7 @@ int Jogador::inicializaJogador() {
 int Jogador::setRecursos(int ouro1, int madeira1) {
     ouro = ouro1;
     madeira = madeira1;
-	return 1;
+    return 1;
 }
 
 int Jogador::setTropas(int guerr, int arq, int cav) {
@@ -305,7 +305,7 @@ int Jogador::setTropas(int guerr, int arq, int cav) {
     arqueiros = arq + arqueiros;
     cavaleiros = cav + cavaleiros;
     uni_vazias -= (guerr+arq+cav);
-	return 1;
+    return 1;
 }
 
 int Jogador::setConstrucoes(int mina, int madeireira) {
@@ -323,7 +323,7 @@ int Jogador::setGanhoPorTurno() {
 
     ganhoOuro = (minas * 10) + 5;  // quantidade vezes quanto cada da por turno
     ganhoMadeira = (madeireiras * 5) + 5;
-	return 1;
+    return 1;
 }
 
 int Jogador::getTime() {
@@ -365,7 +365,8 @@ int Jogador::getGanhoOuro() {
 int Jogador::getGanhoMadeira() {
     return ganhoMadeira;
 }
-int Jogador::setVetorArqueiro(int posicaoX, int posicaoY, Engine * engine, bool times) {
+int Jogador::setVetorArqueiro(int posicaoX, int posicaoY,
+    Engine * engine, bool times) {
     int i = 0;
         while (i < 10) {
                 vetorArqueiro[i].setAtivo(1);  // ativa o arqueiro
@@ -409,7 +410,8 @@ Arqueiro Jogador::getArqueiroBypos(unsigned int posX, unsigned int posY) {
      * do tipo zero_p, mas eh quando o metodo eh usado errado */
         return Arqueiro();
 }
-int Jogador::setVetorGuerreiro(int posicaoX, int posicaoY, Engine * engine, bool times) {
+int Jogador::setVetorGuerreiro(int posicaoX, int posicaoY,
+    Engine * engine, bool times) {
     int i = 0;
         while (i < 10) {
                 vetorGuerreiro[i].setAtivo(1);  // ativa o guerreiro
@@ -453,7 +455,8 @@ Guerreiro Jogador::getGuerreiroBypos(unsigned int posX, unsigned int posY) {
      * do tipo zero_p, mas eh quando o metodo eh usado errado */
         return Guerreiro();
 }
-int Jogador::setVetorCavaleiro(int posicaoX, int posicaoY, Engine * engine, bool times) {
+int Jogador::setVetorCavaleiro(int posicaoX, int posicaoY,
+    Engine * engine, bool times) {
     int i = 0;
         while (i < 10) {
                 vetorCavaleiro[i].setAtivo(1);  // ativa o cavaleiro
@@ -556,7 +559,8 @@ int Jogador::alteraGuerreiro(int indice, unsigned int posX,
         }
 }
 
-int Jogador::setVetorMina(int posicaoX, int posicaoY, Engine * engine) {
+int Jogador::setVetorMina(int posicaoX, int posicaoY,
+    Engine * engine, bool times) {
     int i = 0;
         while (i < 5) {
                 /* As posicoes devem ser recebidas da posicao do quartel
@@ -595,7 +599,8 @@ int Jogador::setVetorMina(int posicaoX, int posicaoY, Engine * engine) {
         }  // end while
         return 1;
 }
-int Jogador::setVetorLenhadora(int posicaoX, int posicaoY, Engine * engine, bool times) {
+int Jogador::setVetorLenhadora(int posicaoX, int posicaoY,
+    Engine * engine, bool times) {
     int i = 0;
         while (i < 8) {
                  /* As posicoes devem ser recebidas da posicao do quartel
@@ -637,7 +642,8 @@ int Jogador::setVetorLenhadora(int posicaoX, int posicaoY, Engine * engine, bool
         return 1;  // bem sucedido
 }
 
-int Jogador::setFortaleza(int posicaoX, int posicaoY, Engine * engine, bool times) {
+int Jogador::setFortaleza(int posicaoX, int posicaoY,
+    Engine * engine, bool times) {
                 /* As posicoes devem ser recebidas da posicao do quartel
                     que construiu o cavaleiro */
             if (posicaoX != -1 && posicaoY != -1) {
@@ -658,7 +664,7 @@ int Jogador::setFortaleza(int posicaoX, int posicaoY, Engine * engine, bool time
                     return 0;
                 }
                 }
-				un_Fortaleza.setHumano(times);
+                un_Fortaleza.setHumano(times);
                 un_Fortaleza.setPosX(posicaoX);
                 un_Fortaleza.setPosY(posicaoY);
                 if (posicaoX != -1 && posicaoY != -1) {
@@ -869,7 +875,7 @@ Possibilidade Jogador::verificarPoss(unsigned int posX, unsigned int posY,
         return p_personagem;
     }
 }
-int Jogador::acaoPersonagem(unsigned int posX, unsigned int posY,
+Acao Jogador::acaoPersonagem(unsigned int posX, unsigned int posY,
     Engine * engine) {
 int i, lim_i, j, lim_j, i2, j2;
 if (engine->getUnidadeTAB(posX, posY) == TipoUnidade::t_cavaleiro) {
@@ -1005,7 +1011,7 @@ for (i2 = i ; i2 <= lim_i; i2++) {
     }
     }
 }
-return 1;
+return impossivel;
 }
 }
 int Jogador::EscolherAcaoPos(unsigned int posX, unsigned int posY,
