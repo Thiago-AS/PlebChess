@@ -11,7 +11,6 @@ class MainMenu {
 
   void EventHandler(SDL_Event&);
   void LoadScreen();
-  void Update();
   void Render();
   void Clean();
 

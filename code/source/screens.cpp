@@ -79,9 +79,6 @@ void MainMenu::EventHandler(SDL_Event &event) {
   }
 }
 
-void MainMenu::Update() {
-}
-
 void MainMenu::Render() {
   screen_objects.Draw();
 }
