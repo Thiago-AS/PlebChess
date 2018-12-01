@@ -101,7 +101,6 @@ void Gui::HandleEvents() {
 void Gui::Update() {
   switch (Gui::current_screen) {
     case GameScreen::MAIN_MENU:
-      main_menu->Update();
       break;
 
     default:
@@ -119,20 +118,7 @@ void Gui::Render() {
     default:
       break;
   }
-  // switch (Gui::current_screen) {
-  //   case GameScreen::MAIN_MENU:
-  //     main_menu->Render();
-  //     break;
-  //
-  //   default:
-  //     break;
-  // }
-  //map->DrawMap();
-  //hearth->Render();
-  start_button->Render();
-=======
   // map->DrawMap();
   // hearth->Render();
->>>>>>> Mudando função de atualização de posição
   SDL_RenderPresent(gRenderer);
 }

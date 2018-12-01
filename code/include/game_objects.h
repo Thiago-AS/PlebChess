@@ -3,6 +3,7 @@
 #define  GAME_OBJECTS_H
 
 #include <string>
+#include <vector>
 #include "./gui.h"
 
 using namespace std;
@@ -14,14 +15,13 @@ class GameObject {
   bool HandleMouse(SDL_MouseButtonEvent&);
   void Update(int, int);
   void Render();
+  void Clean();
 
  private:
   SDL_Texture* obj_texture;
   SDL_Rect src_rect, dst_rect;
 };
 
-<<<<<<< HEAD
-=======
 class VectorObjects {
  public:
   void AddObject(GameObject*);
@@ -35,7 +35,6 @@ class VectorObjects {
   vector<GameObject*> objects_vector;
 };
 
->>>>>>> Mudando função de atualização de posição
 class Map{
  public:
   Map();
