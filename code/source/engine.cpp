@@ -270,12 +270,12 @@ Jogador::Jogador(int times) {
     setTropas(0, 0, 0);
     setConstrucoes(0, 0);
     setGanhoPorTurno();
-    setVetorArqueiro(-1, -1, &en);
-    setVetorCavaleiro(-1, -1, &en);
-    setVetorGuerreiro(-1, -1, &en);
-    setVetorMina(-1, -1, &en);
-    setVetorLenhadora(-1, -1, &en);
-    setFortaleza(-1, -1, &en);
+    setVetorArqueiro(-1, -1, &en, times);
+    setVetorCavaleiro(-1, -1, &en, times);
+    setVetorGuerreiro(-1, -1, &en, times);
+    setVetorMina(-1, -1, &en, times);
+    setVetorLenhadora(-1, -1, &en, times);
+    setFortaleza(-1, -1, &en, times);
 }
 Jogador::~Jogador() {
 }
@@ -296,6 +296,7 @@ int Jogador::inicializaJogador() {
 int Jogador::setRecursos(int ouro1, int madeira1) {
     ouro = ouro1;
     madeira = madeira1;
+	return 1;
 }
 
 int Jogador::setTropas(int guerr, int arq, int cav) {
@@ -304,6 +305,7 @@ int Jogador::setTropas(int guerr, int arq, int cav) {
     arqueiros = arq + arqueiros;
     cavaleiros = cav + cavaleiros;
     uni_vazias -= (guerr+arq+cav);
+	return 1;
 }
 
 int Jogador::setConstrucoes(int mina, int madeireira) {
@@ -321,6 +323,7 @@ int Jogador::setGanhoPorTurno() {
 
     ganhoOuro = (minas * 10) + 5;  // quantidade vezes quanto cada da por turno
     ganhoMadeira = (madeireiras * 5) + 5;
+	return 1;
 }
 
 int Jogador::getTime() {
@@ -362,7 +365,7 @@ int Jogador::getGanhoOuro() {
 int Jogador::getGanhoMadeira() {
     return ganhoMadeira;
 }
-int Jogador::setVetorArqueiro(int posicaoX, int posicaoY, Engine * engine) {
+int Jogador::setVetorArqueiro(int posicaoX, int posicaoY, Engine * engine, bool times) {
     int i = 0;
         while (i < 10) {
                 vetorArqueiro[i].setAtivo(1);  // ativa o arqueiro
@@ -372,7 +375,7 @@ int Jogador::setVetorArqueiro(int posicaoX, int posicaoY, Engine * engine) {
                     printf("Eh impossivel inserir - ha elemento\n");
                     return 0;
                 }
-                vetorArqueiro[i].setHumano(1);
+                vetorArqueiro[i].setHumano(times);
                 engine->setTabelaTime(vetorArqueiro[i].getHumano(),
                     posicaoX, posicaoY);
                 vetorArqueiro[i].setPosX(posicaoX);
@@ -406,7 +409,7 @@ Arqueiro Jogador::getArqueiroBypos(unsigned int posX, unsigned int posY) {
      * do tipo zero_p, mas eh quando o metodo eh usado errado */
         return Arqueiro();
 }
-int Jogador::setVetorGuerreiro(int posicaoX, int posicaoY, Engine * engine) {
+int Jogador::setVetorGuerreiro(int posicaoX, int posicaoY, Engine * engine, bool times) {
     int i = 0;
         while (i < 10) {
                 vetorGuerreiro[i].setAtivo(1);  // ativa o guerreiro
@@ -416,7 +419,7 @@ int Jogador::setVetorGuerreiro(int posicaoX, int posicaoY, Engine * engine) {
                     printf("Eh impossivel inserir - ha elemento\n");
                     return 0;
                 }
-                vetorGuerreiro[i].setHumano(1);
+                vetorGuerreiro[i].setHumano(times);
                 engine->setTabelaTime(vetorGuerreiro[i].getHumano(),
                     posicaoX, posicaoY);
                 vetorGuerreiro[i].setPosX(posicaoX);
@@ -450,7 +453,7 @@ Guerreiro Jogador::getGuerreiroBypos(unsigned int posX, unsigned int posY) {
      * do tipo zero_p, mas eh quando o metodo eh usado errado */
         return Guerreiro();
 }
-int Jogador::setVetorCavaleiro(int posicaoX, int posicaoY, Engine * engine) {
+int Jogador::setVetorCavaleiro(int posicaoX, int posicaoY, Engine * engine, bool times) {
     int i = 0;
         while (i < 10) {
                 vetorCavaleiro[i].setAtivo(1);  // ativa o cavaleiro
@@ -460,7 +463,7 @@ int Jogador::setVetorCavaleiro(int posicaoX, int posicaoY, Engine * engine) {
                     printf("Eh impossivel inserir - ha elemento\n");
                     return 0;
                 }
-                vetorCavaleiro[i].setHumano(1);
+                vetorCavaleiro[i].setHumano(times);
                 engine->setTabelaTime(vetorCavaleiro[i].getHumano(),
                     posicaoX, posicaoY);
                 vetorCavaleiro[i].setPosX(posicaoX);
@@ -572,7 +575,7 @@ int Jogador::setVetorMina(int posicaoX, int posicaoY, Engine * engine) {
                     return 0;
                 }
                 }
-                vetorArqueiro[i].setHumano(1);
+                vetorArqueiro[i].setHumano(times);
                 if (posicaoX != -1 && posicaoY != -1) {
                 engine->setTabelaTime(1, posicaoX, posicaoY);
                 engine->setTabelaTime(1, posicaoX+1, posicaoY);
@@ -592,7 +595,7 @@ int Jogador::setVetorMina(int posicaoX, int posicaoY, Engine * engine) {
         }  // end while
         return 1;
 }
-int Jogador::setVetorLenhadora(int posicaoX, int posicaoY, Engine * engine) {
+int Jogador::setVetorLenhadora(int posicaoX, int posicaoY, Engine * engine, bool times) {
     int i = 0;
         while (i < 8) {
                  /* As posicoes devem ser recebidas da posicao do quartel
@@ -611,7 +614,7 @@ int Jogador::setVetorLenhadora(int posicaoX, int posicaoY, Engine * engine) {
                     return 0;
                 }
                 }
-                vetorLenhadora[i].setHumano(1);
+                vetorLenhadora[i].setHumano(times);
                 vetorLenhadora[i].setPosX(posicaoX);
                 vetorLenhadora[i].setPosY(posicaoY);
                 if (posicaoX != -1 && posicaoY != -1) {
@@ -634,7 +637,7 @@ int Jogador::setVetorLenhadora(int posicaoX, int posicaoY, Engine * engine) {
         return 1;  // bem sucedido
 }
 
-int Jogador::setFortaleza(int posicaoX, int posicaoY, Engine * engine) {
+int Jogador::setFortaleza(int posicaoX, int posicaoY, Engine * engine, bool times) {
                 /* As posicoes devem ser recebidas da posicao do quartel
                     que construiu o cavaleiro */
             if (posicaoX != -1 && posicaoY != -1) {
@@ -655,6 +658,7 @@ int Jogador::setFortaleza(int posicaoX, int posicaoY, Engine * engine) {
                     return 0;
                 }
                 }
+				un_Fortaleza.setHumano(times);
                 un_Fortaleza.setPosX(posicaoX);
                 un_Fortaleza.setPosY(posicaoY);
                 if (posicaoX != -1 && posicaoY != -1) {

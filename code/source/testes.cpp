@@ -149,10 +149,11 @@ TEST_CASE("Vetor de Arqueiros", "[engine.hpp]" ) {
     Arqueiro P1;
     int i = 0, teste;
     for ( i; i < 10; i++ ) {
-        teste = Jog1.setVetorArqueiro(-1, -1 , &En0);
+	// no ultimo parametro indica que eh o humano	
+        teste = Jog1.setVetorArqueiro(-1, -1 , &En0, 1);
     }
     REQUIRE(teste == 1);  // bem sucedido
-    Jog1.setVetorArqueiro(10, 10, &En0);
+    Jog1.setVetorArqueiro(10, 10, &En0, 1);
     P1 = Jog1.getVetorArqueiro(0);
     // testes para o primeiro elemento do vetor
     REQUIRE(P1.getPosX() == 10);
@@ -178,10 +179,10 @@ TEST_CASE("Vetor de Guerreiros", "[engine.hpp]" ) {
     Guerreiro P1;
     int i = 0, teste;
     for ( i; i < 10; i++ ) {
-        teste = Jog1.setVetorGuerreiro(-1, -1, &En0);
+        teste = Jog1.setVetorGuerreiro(-1, -1, &En0, 1);
     }
     REQUIRE(teste == 1);  // bem sucedido
-    Jog1.setVetorGuerreiro(10, 10, &En0);
+    Jog1.setVetorGuerreiro(10, 10, &En0, 1);
     P1 = Jog1.getVetorGuerreiro(0);
     // testes para o primeiro elemento do vetor
     REQUIRE(P1.getPosX() == 10);
@@ -207,10 +208,10 @@ TEST_CASE("Vetor de Cavaleiros", "[engine.hpp]" ) {
     Cavaleiro P1;
     int i = 0, teste;
     for ( i; i < 10; i++ ) {
-        teste = Jog1.setVetorCavaleiro(-1, -1, &En0);
+        teste = Jog1.setVetorCavaleiro(-1, -1, &En0, 1);
     }
     REQUIRE(teste == 1);  // bem sucedido
-    Jog1.setVetorCavaleiro(10, 10, &En0);
+    Jog1.setVetorCavaleiro(10, 10, &En0, 1);
     P1 = Jog1.getVetorCavaleiro(0);
     // testes para o primeiro elemento do vetor
     REQUIRE(P1.getPosX() == 10);
@@ -236,7 +237,7 @@ TEST_CASE("Vetor Mina", "[engine.hpp]" ) {
     Mina P1;
     int i = 0, teste;
     for ( i; i < 5; i++ ) {
-        teste = Jog1.setVetorMina(-1, -1, &En0);
+        teste = Jog1.setVetorMina(-1, -1, &En0, 1);
     }
     REQUIRE(teste == 1);  // bem sucedido
     // ja esta no limite de guerreiros permitidos
@@ -263,7 +264,7 @@ TEST_CASE("Vetor de Lenha", "[engine.hpp]" ) {
     Lenhadora P1;
     int i = 0, teste;
     for ( i; i < 8; i++ ) {
-        teste = Jog1.setVetorLenhadora(-1, -1, &En0);
+        teste = Jog1.setVetorLenhadora(-1, -1, &En0, 1);
     }
     REQUIRE(teste == 1);  // bem sucedido
     // ja esta no limite de guerreiros permitidos
@@ -289,7 +290,7 @@ TEST_CASE("Vetor de Fortaleza", "[engine.hpp]" ) {
     Jogador Jog1(1);
     Fortaleza P1, P2;
     // ja esta no limite de guerreiros permitidos
-    Jog1.setFortaleza(-1, -1,  &En0);
+    Jog1.setFortaleza(-1, -1,  &En0, 1);
     P1 = Jog1.getun_Fortaleza();
     // testes para o primeiro elemento do vetor
     REQUIRE(P1.getPosX() == -1);
@@ -309,14 +310,14 @@ TEST_CASE("TESTE TAB Engine", "[engine.hpp]" ) {
     REQUIRE(teste == 1);
     Arqueiro A1;
     for ( i; i < 10; i++ ) {
-        teste = Jog1.setVetorArqueiro(-1, -1, &En0);
+        teste = Jog1.setVetorArqueiro(-1, -1, &En0, 1);
     }
     REQUIRE(Jog1.alteraArqueiro(3, 17, 16, &En0) == 1);
     REQUIRE(En0.getUnidadeTAB(17, 16) == TipoUnidade::t_arqueiro);
     REQUIRE(Jog1.verificarPoss(17, 16, &En0) == p_personagem);
     Guerreiro G1;
     for ( i; i < 10; i++ ) {
-        teste = Jog1.setVetorGuerreiro(-1, -1, &En0);
+        teste = Jog1.setVetorGuerreiro(-1, -1, &En0, 1);
     }
     REQUIRE(teste == 1);  // bem sucedido
     REQUIRE(Jog1.alteraGuerreiro(3, 21, 11, &En0) == 1);
@@ -324,14 +325,14 @@ TEST_CASE("TESTE TAB Engine", "[engine.hpp]" ) {
     REQUIRE(Jog1.verificarPoss(21, 11, &En0) == p_personagem);
     Cavaleiro C1;
     for ( i; i < 10; i++ ) {
-        teste = Jog1.setVetorCavaleiro(-1, -1, &En0);
+        teste = Jog1.setVetorCavaleiro(-1, -1, &En0, 1);
     }
     REQUIRE(teste == 1);  // bem sucedido
     REQUIRE(Jog1.alteraCavaleiro(3, 12, 11, &En0) == 1);
     REQUIRE(En0.getUnidadeTAB(12, 11) == TipoUnidade::t_cavaleiro);
     Mina M1;
     for ( i; i < 5; i++ ) {
-        teste = Jog1.setVetorMina(-1, -1, &En0);
+        teste = Jog1.setVetorMina(-1, -1, &En0, 1);
     }
     REQUIRE(teste == 1);  // bem sucedido
     REQUIRE(Jog1.alteraMina(3, 10, 10, &En0) == 1);
@@ -345,7 +346,7 @@ TEST_CASE("TESTE TAB Engine", "[engine.hpp]" ) {
     REQUIRE(Jog1.verificarPoss(11, 11, &En0) == p_nada);
     Lenhadora L1;
     for ( i; i < 8; i++ ) {
-        teste = Jog1.setVetorLenhadora(-1, -1, &En0);
+        teste = Jog1.setVetorLenhadora(-1, -1, &En0, 1);
     }
     REQUIRE(teste == 1);  // bem sucedido
     REQUIRE(Jog1.alteraLenhadora(3, 1, 11, &En0) == 1);
@@ -359,7 +360,7 @@ TEST_CASE("TESTE TAB Engine", "[engine.hpp]" ) {
     REQUIRE(Jog1.verificarPoss(2, 12, &En0) == p_nada);
     Fortaleza F1, F2;
     // ja esta no limite de guerreiros permitidos
-    Jog1.setFortaleza(1, 1,  &En0);
+    Jog1.setFortaleza(1, 1,  &En0, 1);
     REQUIRE(Jog1.alteraFortaleza(0, 21, &En0) == 1);
     REQUIRE(En0.getUnidadeTAB(0, 21) == TipoUnidade::t_fortaleza);
     REQUIRE(En0.getUnidadeTAB(1, 21) == TipoUnidade::t_fortaleza);
