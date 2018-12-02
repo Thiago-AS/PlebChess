@@ -52,7 +52,7 @@ class Map {
 
   void DrawMap();
   void UpdateFocus(int, int);
-  void InsertObject(char, int);
+  void InsertObject(int, int);
   MapTile ReturnObject(int, int);
 
  private:

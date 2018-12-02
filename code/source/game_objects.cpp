@@ -120,7 +120,31 @@ void Map::DrawMap() {
   }
 }
 
-void Map::InsertObject(char object, int player_turn) {
+void Map::InsertObject(int object_id, int player_turn) {
+  switch (object_id) {
+    case 0:
+      map[focus.y][focus.x].unit = 'w';
+      break;
+    case 1:
+      map[focus.y][focus.x].unit = 'b';
+      break;
+    case 2:
+      map[focus.y][focus.x].unit = 'g';
+      break;
+    case 3:
+      map[focus.y][focus.x].unit = 'A';
+      break;
+    case 4:
+      map[focus.y][focus.x].unit = 'K';
+      break;
+    case 5:
+      map[focus.y][focus.x].unit = 'W';
+      break;
+
+    default:
+      break;
+  }
+  map[focus.y][focus.x].player = player_turn;
 }
 
 MapTile Map::ReturnObject(int row, int column) {
