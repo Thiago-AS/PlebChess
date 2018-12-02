@@ -13,7 +13,19 @@ class MainMenu {
   void EventHandler(SDL_Event&);
   void LoadScreen();
   void Render();
-  void Clean();
+
+ private:
+  VectorObjects screen_objects;
+};
+
+class PauseMenu {
+ public:
+  PauseMenu();
+  ~PauseMenu();
+
+  void EventHandler(SDL_Event&);
+  void LoadScreen();
+  void Render();
 
  private:
   VectorObjects screen_objects;
@@ -27,7 +39,6 @@ class GameScene {
   void EventHandler(SDL_Event&);
   void LoadScreen();
   void Render();
-  void Clean();
 
  private:
   Player* player0;

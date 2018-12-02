@@ -14,6 +14,7 @@ GameScreen Gui::current_screen;
 GameObject* hearth;
 MainMenu* main_menu;
 GameScene* game_scene;
+PauseMenu* pause_menu;
 
 Gui* Gui::Instance() {
   if (instance == NULL)
@@ -45,6 +46,8 @@ Gui::~Gui() {
   mWindow = NULL;
   SDL_DestroyRenderer(gRenderer);
   gRenderer = NULL;
+  TTF_CloseFont(game_font);
+  game_font = NULL;
 
   SDL_Quit();
   TTF_Quit();
@@ -68,7 +71,7 @@ bool Gui::Init() {
   if (gRenderer == NULL) {
     cout << "Falha ao criar renderer: " << SDL_GetError() << endl;
   } else {
-    SDL_SetRenderDrawColor(gRenderer, 255, 255, 255, 255);
+    SDL_SetRenderDrawColor(gRenderer, 222, 184, 135, 255);
   }
 
   if (TTF_Init() == -1) {
@@ -86,6 +89,8 @@ bool Gui::Init() {
   main_menu->LoadScreen();
   game_scene = new GameScene();
   game_scene->LoadScreen();
+  pause_menu = new PauseMenu();
+  pause_menu->LoadScreen();
   return true;
 }
 
@@ -102,6 +107,10 @@ void Gui::HandleEvents() {
 
       case GameScreen::NEW_GAME:
         game_scene->EventHandler(events);
+        break;
+
+      case GameScreen::PAUSE_MENU:
+        pause_menu->EventHandler(events);
         break;
 
       default:
@@ -129,6 +138,10 @@ void Gui::Render() {
 
     case GameScreen::NEW_GAME:
       game_scene->Render();
+      break;
+
+    case GameScreen::PAUSE_MENU:
+      pause_menu->Render();
       break;
 
     default:

@@ -12,6 +12,7 @@ GameObject::GameObject(SDL_Texture* texture, int x_pos, int y_pos,
 }
 
 GameObject::~GameObject() {
+  Clean();
 }
 
 void GameObject::Update(int new_x, int new_y) {
@@ -115,15 +116,31 @@ Map::Map() {
 }
 
 Map::~Map() {
+  for (int row = 0; row < 10; row++) {
+    for (int column = 0; column < 10; column++) {
+      if (map[row][column].object != NULL) {
+        map[row][column].object->Clean();
+        delete map[row][column].object;
+        map[row][column].object = NULL;
+      }
+    }
+  }
+
+  SDL_DestroyTexture(tile);
+  tile = NULL;
 }
 
 void Map::DrawMap() {
-  SDL_Rect src;
+  SDL_Rect src, dst;
   src.x = 0; src.y = 0; src.h = 64; src.w = 64;
+  dst.w = 64; dst.h = 64;
 
   for (int row = 0; row < 10; row++) {
     for (int column = 0; column < 10; column++) {
-      TextureManager::Draw(tile, src, map[row][column].position);
+      dst.x = map[row][column].position.x;
+      dst.y = map[row][column].position.y;
+
+      TextureManager::Draw(tile, src, dst);
       if (map[row][column].object != NULL)
         map[row][column].object->Render();
     }
@@ -293,8 +310,6 @@ void Player::FinishTurn() {
   total_gold += (amount_m * 10);
   total_wood += (amount_w * 5);
 
-  gold_text->Clean();
-  wood_text->Clean();
   delete gold_text;
   delete wood_text;
 
@@ -305,4 +320,13 @@ void Player::FinishTurn() {
   fontSup = TextureManager::LoadTTF(Gui::game_font, to_string(total_wood));
   SDL_QueryTexture(fontSup, NULL, NULL, &lw, &lh);
   wood_text = new GameObject(fontSup, 700, 55, lw, lh);
+}
+
+Player::~Player() {
+  delete gold_text;
+  gold_text = NULL;
+  delete wood_text;
+  wood_text = NULL;
+  SDL_DestroyTexture(fontSup);
+  fontSup = NULL;
 }

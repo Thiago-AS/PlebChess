@@ -7,6 +7,7 @@ MainMenu::MainMenu() {
 }
 
 MainMenu::~MainMenu() {
+  screen_objects.Clean();
 }
 
 void MainMenu::LoadScreen() {
@@ -83,8 +84,73 @@ void MainMenu::Render() {
   screen_objects.Draw();
 }
 
-void MainMenu::Clean() {
+PauseMenu::PauseMenu() {
+}
+
+PauseMenu::~PauseMenu() {
   screen_objects.Clean();
+}
+
+void PauseMenu::LoadScreen() {
+  GameObject* continue_button = NULL;
+  GameObject* exit_button = NULL;
+  GameObject* cursor = NULL;
+
+  int sw, sh, lw, lh, ew, eh;
+  SDL_Texture* fontSup = TextureManager::LoadTTF(Gui::game_font, "CONTINUE");
+  SDL_QueryTexture(fontSup, NULL, NULL, &sw, &sh);
+  continue_button = new GameObject(fontSup, 315, 200, sw, sh);
+  screen_objects.AddObject(continue_button);
+
+  SDL_Texture* fontSup3 = TextureManager::LoadTTF(Gui::game_font, "EXIT GAME");
+  SDL_QueryTexture(fontSup3, NULL, NULL, &ew, &eh);
+  exit_button = new GameObject(fontSup3, 310, 240, ew, eh);
+  screen_objects.AddObject(exit_button);
+
+  cursor = new GameObject(TextureManager::LoadTexture
+                         ("../assets/cursorBlack.png"), -500, -500, 64, 64);
+  screen_objects.AddObject(cursor);
+}
+
+void PauseMenu::EventHandler(SDL_Event &event) {
+  int mouse_over;
+  switch (event.type) {
+    case SDL_MOUSEBUTTONDOWN:
+      mouse_over = screen_objects.HandleMouse(event.button);
+      switch (mouse_over) {
+        case 0:
+          Gui::current_screen = GameScreen::NEW_GAME;
+          break;
+        case 1:
+          Gui::quit = true;
+          break;
+        default:
+          break;
+      }
+      break;
+
+    case SDL_MOUSEMOTION:
+      mouse_over = screen_objects.HandleMouse(event.button);
+      switch (mouse_over) {
+        case 0:
+          screen_objects.GetObject(2)->Update(240, 185);
+          break;
+        case 1:
+          screen_objects.GetObject(2)->Update(240, 225);
+          break;
+        default:
+          screen_objects.GetObject(2)->Update(-500, -500);
+          break;
+      }
+      break;
+
+    default:
+      break;
+  }
+}
+
+void PauseMenu::Render() {
+  screen_objects.Draw();
 }
 
 GameScene::GameScene() {
@@ -95,6 +161,12 @@ GameScene::GameScene() {
 }
 
 GameScene::~GameScene() {
+  delete map;
+  map = NULL;
+  delete player0;
+  player0 = NULL;
+  delete player1;
+  player1 = NULL;
 }
 
 void GameScene::LoadScreen() {
@@ -152,12 +224,10 @@ void GameScene::EventHandler(SDL_Event &event) {
   switch (event.type) {
     case SDL_MOUSEBUTTONDOWN:
       mouse_over = button_objects.HandleMouse(event.button);
-      cout << mouse_over << endl;
       if (mouse_over != -1) {
         insertion_flag = mouse_over;
       }
       if ((mouse_over == -1) && (insertion_flag != -1)) {
-        cout << insertion_flag << endl;
         SDL_GetMouseState(&x, &y);
         map->UpdateFocus(x, y, player_turn);
         if (player_turn == 0) {
@@ -178,6 +248,11 @@ void GameScene::EventHandler(SDL_Event &event) {
       }
       break;
 
+    case SDL_KEYDOWN:
+      if (event.key.keysym.sym == SDLK_ESCAPE)
+        Gui::current_screen = GameScreen::PAUSE_MENU;
+      break;
+
     default:
       break;
   }
@@ -194,7 +269,4 @@ void GameScene::Render() {
     player1->wood_text->Render();
     player1->gold_text->Render();
   }
-}
-
-void GameScene::Clean() {
 }

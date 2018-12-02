@@ -12,7 +12,7 @@ using namespace std;
 enum class GameScreen: int {
     MAIN_MENU = 0,
     NEW_GAME = 1,
-    LOAD_GAME = 2
+    PAUSE_MENU = 2
 };
 
 class Gui {
