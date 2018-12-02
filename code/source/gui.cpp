@@ -147,6 +147,5 @@ void Gui::Render() {
     default:
       break;
   }
-  // hearth->Render();
   SDL_RenderPresent(gRenderer);
 }

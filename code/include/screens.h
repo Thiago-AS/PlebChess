@@ -48,6 +48,8 @@ class GameScene {
   VectorObjects texts;
   Map* map;
   int insertion_flag;
+  int move_flag;
+  SDL_Point to_be_moved;
 };
 
 

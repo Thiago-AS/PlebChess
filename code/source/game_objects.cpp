@@ -104,6 +104,7 @@ Map::Map() {
                            map[0][0].position.h,
                            map[0][0].position.w);
   map[0][0].player = 1;
+  map[0][0].unit = 'c';
   map[9][9].object = new GameObject(TextureManager::LoadTexture(
                            "../assets/castle.png"),
                            map[9][9].position.x,
@@ -111,6 +112,7 @@ Map::Map() {
                            map[9][9].position.h,
                            map[9][9].position.w);
   map[9][9].player = 0;
+  map[9][9].unit = 'c';
   focus.x = -1;
   focus.y = -1;
 }
@@ -139,10 +141,11 @@ void Map::DrawMap() {
     for (int column = 0; column < 10; column++) {
       dst.x = map[row][column].position.x;
       dst.y = map[row][column].position.y;
-
       TextureManager::Draw(tile, src, dst);
-      if (map[row][column].object != NULL)
+
+      if (map[row][column].unit != 0) {
         map[row][column].object->Render();
+      }
     }
   }
 }
@@ -166,6 +169,8 @@ bool Map::InsertObject(int object_id, int player_turn, Player* player) {
                              map[focus.y][focus.x].position.h,
                              map[focus.y][focus.x].position.w);
       } else {
+        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Not enough resources",
+                                 "Not enough wood to create woodcutter", NULL);
         return false;
       }
       break;
@@ -181,6 +186,8 @@ bool Map::InsertObject(int object_id, int player_turn, Player* player) {
                              map[focus.y][focus.x].position.h,
                              map[focus.y][focus.x].position.w);
       } else {
+        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Not enough resources",
+                                 "Not enough wood to create barrack", NULL);
         return false;
       }
       break;
@@ -196,6 +203,8 @@ bool Map::InsertObject(int object_id, int player_turn, Player* player) {
                              map[focus.y][focus.x].position.h,
                              map[focus.y][focus.x].position.w);
       } else {
+        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Not enough resources",
+                                 "Not enough wood to create mine", NULL);
         return false;
       }
       break;
@@ -210,6 +219,8 @@ bool Map::InsertObject(int object_id, int player_turn, Player* player) {
                              map[focus.y][focus.x].position.h,
                              map[focus.y][focus.x].position.w);
       } else {
+        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Not enough resources",
+                                 "Not enough gold to create archer", NULL);
         return false;
       }
       break;
@@ -224,7 +235,9 @@ bool Map::InsertObject(int object_id, int player_turn, Player* player) {
                              map[focus.y][focus.x].position.h,
                              map[focus.y][focus.x].position.w);
       } else {
-       return false;
+        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Not enough resources",
+                                 "Not enough gold to create knight", NULL);
+        return false;
       }
       break;
     case 5:
@@ -238,7 +251,9 @@ bool Map::InsertObject(int object_id, int player_turn, Player* player) {
                              map[focus.y][focus.x].position.h,
                              map[focus.y][focus.x].position.w);
       } else {
-       return false;
+        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Not enough resources",
+                                 "Not enough gold to create warrior", NULL);
+        return false;
       }
       break;
 
@@ -246,8 +261,8 @@ bool Map::InsertObject(int object_id, int player_turn, Player* player) {
       break;
   }
   map[focus.y][focus.x].object = obj;
-  obj = NULL;
   map[focus.y][focus.x].player = player_turn;
+  obj = NULL;
   return true;
 }
 
@@ -255,24 +270,57 @@ MapTile Map::ReturnObject(int row, int column) {
   return map[row][column];
 }
 
-void Map::UpdateFocus(int row, int column, int player_turn) {
-  if (player_turn == 1) {
-    if ((row < 0) || (column < 0) || (row > 640) || (column > 320)) {
-      focus.x = -1;
-      focus.y = -1;
-    } else {
-      focus.x = static_cast<int>(row/64);
-      focus.y = static_cast<int>(column/64);
-    }
+bool Map::UpdateFocus(int row, int column, int player_turn) {
+  // if (player_turn == 1) {
+  //   if ((row < 0) || (column < 0) || (row > 640) || (column > 320)) {
+  //     focus.x = -1;
+  //     focus.y = -1;
+  //     return false;
+  //   } else {
+  //     focus.x = static_cast<int>(row/64);
+  //     focus.y = static_cast<int>(column/64);
+  //   }
+  // } else {
+  //   if ((row < 0) || (column < 320) || (row > 640) || (column > 640)) {
+  //     focus.x = -1;
+  //     focus.y = -1;
+  //     return false;
+  //   } else {
+  //     focus.x = static_cast<int>(row/64);
+  //     focus.y = static_cast<int>(column/64);
+  //   }
+  // }
+  if ((row < 0) || (column < 0) || (row > 640) || (column > 640)) {
+    focus.x = -1;
+    focus.y = -1;
+    return false;
   } else {
-    if ((row < 0) || (column < 320) || (row > 640) || (column > 640)) {
-      focus.x = -1;
-      focus.y = -1;
-    } else {
-      focus.x = static_cast<int>(row/64);
-      focus.y = static_cast<int>(column/64);
-    }
+    focus.x = static_cast<int>(row/64);
+    focus.y = static_cast<int>(column/64);
   }
+  return true;
+}
+
+bool Map::Occupied(int player_turn) {
+  if ((map[focus.y][focus.x].unit != 0) &&
+      (map[focus.y][focus.x].player == player_turn))
+    return true;
+  else
+    return false;
+}
+
+bool Map::MoveObject(SDL_Point object_location) {
+  map[focus.y][focus.x].unit = map[object_location.y][object_location.x].unit;
+  map[focus.y][focus.x].player = map[object_location.y]
+                                 [object_location.x].player;
+  map[focus.y][focus.x].object = map[object_location.y]
+                                 [object_location.x].object;
+  map[focus.y][focus.x].object->Update(map[focus.y][focus.x].position.x,
+                                       map[focus.y][focus.x].position.y);
+  map[object_location.y][object_location.x].unit = 0;
+  map[object_location.y][object_location.x].player = -1;
+  map[object_location.y][object_location.x].object = NULL;
+  return true;
 }
 
 Structure::Structure(SDL_Texture* texture, int x_pos, int y_pos,

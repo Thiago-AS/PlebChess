@@ -155,6 +155,7 @@ void PauseMenu::Render() {
 
 GameScene::GameScene() {
   insertion_flag = -1;
+  move_flag = -1;
   player_turn = 0;
   player0 = new Player();
   player1 = new Player();
@@ -243,6 +244,27 @@ void GameScene::EventHandler(SDL_Event &event) {
             player1->FinishTurn();
             player0->FinishTurn();
             insertion_flag = -1;
+          }
+        }
+      }
+      if ((mouse_over == -1) && (insertion_flag == -1)) {
+        SDL_GetMouseState(&x, &y);
+        if ((map->UpdateFocus(x, y, player_turn)) &&
+            (map->Occupied(player_turn))) {
+            move_flag = 1;
+            to_be_moved.x = map->focus.x;
+            to_be_moved.y = map->focus.y;
+        }
+      }
+      if ((mouse_over == -1) && (move_flag != -1)) {
+        SDL_GetMouseState(&x, &y);
+        if ((map->UpdateFocus(x, y, player_turn)) &&
+            !(map->Occupied(player_turn))) {
+          if (map->MoveObject(to_be_moved)) {
+            player_turn ^= 1;
+            player1->FinishTurn();
+            player0->FinishTurn();
+            move_flag = -1;
           }
         }
       }

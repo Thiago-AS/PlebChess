@@ -91,8 +91,10 @@ class Map {
   ~Map();
 
   void DrawMap();
-  void UpdateFocus(int, int, int);
+  bool UpdateFocus(int, int, int);
   bool InsertObject(int, int, Player*);
+  bool MoveObject(SDL_Point);
+  bool Occupied(int);
   MapTile ReturnObject(int, int);
 
  private:
