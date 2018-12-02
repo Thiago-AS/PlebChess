@@ -3,6 +3,7 @@
 #define  SCREENS_H
 
 #include "./game_objects.h"
+#include <vector>
 
 class MainMenu {
  public:
@@ -31,8 +32,9 @@ class GameScene {
  private:
   int player_turn;
   VectorObjects button_objects;
+  vector<Structure> structure_objects;
   Map* map;
-  int button_pressed;
+  int insertion_flag;
 };
 
 

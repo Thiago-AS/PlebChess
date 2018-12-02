@@ -8,6 +8,13 @@
 
 using namespace std;
 
+enum class StructureType: int{
+  CASTLE = 0,
+  WOOD_CUT = 1,
+  MINE = 2,
+  BARRACK = 3
+};
+
 class GameObject {
  public:
   GameObject(SDL_Texture*, int, int, int, int);
@@ -19,7 +26,16 @@ class GameObject {
 
  private:
   SDL_Texture* obj_texture;
-  SDL_Rect src_rect, dst_rect;
+  SDL_Rect dst_rect;
+};
+
+class Structure:public GameObject {
+ public:
+  Structure(SDL_Texture*, int, int, int, int, int, StructureType, int);
+ private:
+  StructureType type;
+  int health;
+  int player;
 };
 
 class VectorObjects {
@@ -40,6 +56,7 @@ class MapTile {
   char unit;
   SDL_Rect position;
   int player;
+  GameObject* object;
 };
 
 class Map {
@@ -51,8 +68,8 @@ class Map {
   ~Map();
 
   void DrawMap();
-  void UpdateFocus(int, int);
-  void InsertObject(int, int);
+  void UpdateFocus(int, int, int);
+  bool InsertObject(int, int);
   MapTile ReturnObject(int, int);
 
  private:

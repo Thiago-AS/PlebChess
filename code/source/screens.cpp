@@ -88,7 +88,7 @@ void MainMenu::Clean() {
 }
 
 GameScene::GameScene() {
-  button_pressed = -1;
+  insertion_flag = -1;
   player_turn = 0;
 }
 
@@ -139,39 +139,18 @@ void GameScene::EventHandler(SDL_Event &event) {
   switch (event.type) {
     case SDL_MOUSEBUTTONDOWN:
       mouse_over = button_objects.HandleMouse(event.button);
-      switch (mouse_over) {
-        case 0:
-          if (button_pressed == -1)
-            button_pressed = 0;
-          break;
-        case 1:
-          if (button_pressed == -1)
-            button_pressed = 1;
-          break;
-        case 2:
-          if (button_pressed == -1)
-            button_pressed = 2;
-          break;
-        case 3:
-          if (button_pressed == -1)
-            button_pressed = 3;
-          break;
-        case 4:
-          if (button_pressed == -1)
-            button_pressed = 4;
-          break;
-        case 5:
-          if (button_pressed == -1)
-            button_pressed = 5;
-          break;
-        default:
-          if (button_pressed != -1) {
-            SDL_GetMouseState(&x, &y);
-            map->UpdateFocus(x, y);
-            map->InsertObject(button_pressed, player_turn);
-          }
-          button_pressed = -1;
-          break;
+      cout << mouse_over << endl;
+      if (mouse_over != -1) {
+        insertion_flag = mouse_over;
+      }
+      if ((mouse_over == -1) && (insertion_flag != -1)) {
+        cout << insertion_flag << endl;
+        SDL_GetMouseState(&x, &y);
+        map->UpdateFocus(x, y, player_turn);
+        if (map->InsertObject(insertion_flag, player_turn)) {
+          player_turn ^= 1;
+          insertion_flag = -1;
+        }
       }
       break;
 

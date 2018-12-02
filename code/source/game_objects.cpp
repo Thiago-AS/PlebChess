@@ -90,6 +90,7 @@ Map::Map() {
       map[row][column].position.h = 64;
       map[row][column].position.w = 64;
       map[row][column].player = -1;
+      map[row][column].object = NULL;
     }
   }
 
@@ -101,62 +102,120 @@ Map::~Map() {
 }
 
 void Map::DrawMap() {
-  char tile_type;
   SDL_Rect src;
   src.x = 0; src.y = 0; src.h = 64; src.w = 64;
 
   for (int row = 0; row < 10; row++) {
     for (int column = 0; column < 10; column++) {
-      tile_type = map[row][column].unit;
-
-      switch (tile_type) {
-        case 0:
-          TextureManager::Draw(tile, src, map[row][column].position);
-          break;
-        default:
-          break;
-      }
+      TextureManager::Draw(tile, src, map[row][column].position);
+      if (map[row][column].object != NULL)
+        map[row][column].object->Render();
     }
   }
 }
 
-void Map::InsertObject(int object_id, int player_turn) {
+bool Map::InsertObject(int object_id, int player_turn) {
+  GameObject* obj;
+  if ((focus.y == -1) && (focus.x == -1))
+    return false;
+
   switch (object_id) {
     case 0:
       map[focus.y][focus.x].unit = 'w';
+      obj = new GameObject(TextureManager::LoadTexture("../assets/woodcut.png"),
+                               map[focus.y][focus.x].position.x,
+                               map[focus.y][focus.x].position.y,
+                               map[focus.y][focus.x].position.h,
+                               map[focus.y][focus.x].position.w);
+      map[focus.y][focus.x].object = obj;
+      obj = NULL;
       break;
     case 1:
       map[focus.y][focus.x].unit = 'b';
+      obj = new GameObject(TextureManager::LoadTexture("../assets/barrack.png"),
+                               map[focus.y][focus.x].position.x,
+                               map[focus.y][focus.x].position.y,
+                               map[focus.y][focus.x].position.h,
+                               map[focus.y][focus.x].position.w);
+      map[focus.y][focus.x].object = obj;
+      obj = NULL;
       break;
     case 2:
-      map[focus.y][focus.x].unit = 'g';
+      map[focus.y][focus.x].unit = 'm';
+      obj = new GameObject(TextureManager::LoadTexture("../assets/mine.png"),
+                               map[focus.y][focus.x].position.x,
+                               map[focus.y][focus.x].position.y,
+                               map[focus.y][focus.x].position.h,
+                               map[focus.y][focus.x].position.w);
+      map[focus.y][focus.x].object = obj;
+      obj = NULL;
       break;
     case 3:
       map[focus.y][focus.x].unit = 'A';
+      obj = new GameObject(TextureManager::LoadTexture("../assets/archer.png"),
+                               map[focus.y][focus.x].position.x,
+                               map[focus.y][focus.x].position.y,
+                               map[focus.y][focus.x].position.h,
+                               map[focus.y][focus.x].position.w);
+      map[focus.y][focus.x].object = obj;
+      obj = NULL;
       break;
     case 4:
       map[focus.y][focus.x].unit = 'K';
+      obj = new GameObject(TextureManager::LoadTexture("../assets/knight.png"),
+                               map[focus.y][focus.x].position.x,
+                               map[focus.y][focus.x].position.y,
+                               map[focus.y][focus.x].position.h,
+                               map[focus.y][focus.x].position.w);
+      map[focus.y][focus.x].object = obj;
+      obj = NULL;
       break;
     case 5:
       map[focus.y][focus.x].unit = 'W';
+      obj = new GameObject(TextureManager::LoadTexture("../assets/warrior.png"),
+                               map[focus.y][focus.x].position.x,
+                               map[focus.y][focus.x].position.y,
+                               map[focus.y][focus.x].position.h,
+                               map[focus.y][focus.x].position.w);
+      map[focus.y][focus.x].object = obj;
+      obj = NULL;
       break;
 
     default:
       break;
   }
   map[focus.y][focus.x].player = player_turn;
+  return true;
 }
 
 MapTile Map::ReturnObject(int row, int column) {
   return map[row][column];
 }
 
-void Map::UpdateFocus(int row, int column) {
-  if ((row < 0) || (row < 0) || (column > 640) || (column > 640)) {
-    focus.x = -1;
-    focus.y = -1;
+void Map::UpdateFocus(int row, int column, int player_turn) {
+  if (player_turn == 0) {
+    if ((row < 0) || (column < 0) || (row > 640) || (column > 320)) {
+      focus.x = -1;
+      focus.y = -1;
+    } else {
+      focus.x = static_cast<int>(row/64);
+      focus.y = static_cast<int>(column/64);
+    }
   } else {
-    focus.x = static_cast<int>(row/64);
-    focus.y = static_cast<int>(column/64);
+    if ((row < 0) || (column < 320) || (row > 640) || (column > 640)) {
+      focus.x = -1;
+      focus.y = -1;
+    } else {
+      focus.x = static_cast<int>(row/64);
+      focus.y = static_cast<int>(column/64);
+    }
   }
+}
+
+Structure::Structure(SDL_Texture* texture, int x_pos, int y_pos,
+                     int width, int height, int health, StructureType type,
+                     int player): GameObject(texture, x_pos, y_pos, width,
+                                             height) {
+  this->type = type;
+  this->health = health;
 }
