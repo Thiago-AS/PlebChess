@@ -90,6 +90,8 @@ void MainMenu::Clean() {
 GameScene::GameScene() {
   insertion_flag = -1;
   player_turn = 0;
+  player0 = new Player();
+  player1 = new Player();
 }
 
 GameScene::~GameScene() {
@@ -115,24 +117,19 @@ void GameScene::LoadScreen() {
   gold_icon = new GameObject(TextureManager::LoadTexture
                          ("../assets/gold.png"), 645, 5, 42, 42);
   texts.AddObject(gold_icon);
+
   wood_icon = new GameObject(TextureManager::LoadTexture
                          ("../assets/wood.png"), 645, 55, 42, 42);
   texts.AddObject(wood_icon);
-  SDL_Texture* fontSup1 = TextureManager::LoadTTF(Gui::game_font, "0000");
-  SDL_QueryTexture(fontSup1, NULL, NULL, &lw, &lh);
-  gold_text = new GameObject(fontSup1, 700, 5, lw, lh);
-  texts.AddObject(gold_text);
-  SDL_Texture* fontSup2 = TextureManager::LoadTTF(Gui::game_font, "0000");
-  SDL_QueryTexture(fontSup2, NULL, NULL, &lw, &lh);
-  wood_text = new GameObject(fontSup2, 700, 55, lw, lh);
-  texts.AddObject(wood_text);
 
   wood_cutter_button = new GameObject(TextureManager::LoadTexture
                          ("../assets/woodcut.png"), 645, 512, 64, 64);
   button_objects.AddObject(wood_cutter_button);
+
   barrack_button = new GameObject(TextureManager::LoadTexture
                          ("../assets/barrack.png"), 645, 576, 64, 64);
   button_objects.AddObject(barrack_button);
+
   gold_mine_button = new GameObject(TextureManager::LoadTexture
                          ("../assets/mine.png"), 730, 576, 64, 64);
   button_objects.AddObject(gold_mine_button);
@@ -140,9 +137,11 @@ void GameScene::LoadScreen() {
   archer_button = new GameObject(TextureManager::LoadTexture
                          ("../assets/archer.png"), 645, 320, 64, 64);
   button_objects.AddObject(archer_button);
+
   knight_button = new GameObject(TextureManager::LoadTexture
                          ("../assets/knight.png"), 645, 384, 64, 64);
   button_objects.AddObject(knight_button);
+
   warrior_button = new GameObject(TextureManager::LoadTexture
                          ("../assets/warrior.png"), 730, 384, 64, 64);
   button_objects.AddObject(warrior_button);
@@ -161,9 +160,20 @@ void GameScene::EventHandler(SDL_Event &event) {
         cout << insertion_flag << endl;
         SDL_GetMouseState(&x, &y);
         map->UpdateFocus(x, y, player_turn);
-        if (map->InsertObject(insertion_flag, player_turn)) {
-          player_turn ^= 1;
-          insertion_flag = -1;
+        if (player_turn == 0) {
+          if (map->InsertObject(insertion_flag, player_turn, player0)) {
+            player_turn ^= 1;
+            player1->FinishTurn();
+            player0->FinishTurn();
+            insertion_flag = -1;
+          }
+        } else {
+          if (map->InsertObject(insertion_flag, player_turn, player1)) {
+            player_turn ^= 1;
+            player1->FinishTurn();
+            player0->FinishTurn();
+            insertion_flag = -1;
+          }
         }
       }
       break;
@@ -177,6 +187,13 @@ void GameScene::Render() {
   map->DrawMap();
   button_objects.Draw();
   texts.Draw();
+  if (player_turn == 0) {
+    player0->wood_text->Render();
+    player0->gold_text->Render();
+  } else {
+    player1->wood_text->Render();
+    player1->gold_text->Render();
+  }
 }
 
 void GameScene::Clean() {

@@ -40,6 +40,8 @@ void GameObject::Render() {
 }
 
 void GameObject::Clean() {
+  SDL_DestroyTexture(obj_texture);
+  obj_texture = NULL;
 }
 
 void VectorObjects::AddObject(GameObject* object) {
@@ -93,6 +95,21 @@ Map::Map() {
       map[row][column].object = NULL;
     }
   }
+
+  map[0][0].object = new GameObject(TextureManager::LoadTexture(
+                           "../assets/castle.png"),
+                           map[0][0].position.x,
+                           map[0][0].position.y,
+                           map[0][0].position.h,
+                           map[0][0].position.w);
+  map[0][0].player = 1;
+  map[9][9].object = new GameObject(TextureManager::LoadTexture(
+                           "../assets/castle.png"),
+                           map[9][9].position.x,
+                           map[9][9].position.y,
+                           map[9][9].position.h,
+                           map[9][9].position.w);
+  map[9][9].player = 0;
   focus.x = -1;
   focus.y = -1;
 }
@@ -113,76 +130,106 @@ void Map::DrawMap() {
   }
 }
 
-bool Map::InsertObject(int object_id, int player_turn) {
+bool Map::InsertObject(int object_id, int player_turn, Player* player) {
   GameObject* obj;
-  if ((focus.y == -1) && (focus.x == -1))
+  if (((focus.y == -1) && (focus.x == -1)) ||
+      (map[focus.y][focus.x].object != NULL))
     return false;
 
   switch (object_id) {
     case 0:
-      map[focus.y][focus.x].unit = 'w';
-      obj = new GameObject(TextureManager::LoadTexture("../assets/woodcut.png"),
-                               map[focus.y][focus.x].position.x,
-                               map[focus.y][focus.x].position.y,
-                               map[focus.y][focus.x].position.h,
-                               map[focus.y][focus.x].position.w);
-      map[focus.y][focus.x].object = obj;
-      obj = NULL;
+      if (player->total_wood >= 30) {
+        player->UpdateWood(30);
+        player->amount_w++;
+        map[focus.y][focus.x].unit = 'w';
+        obj = new GameObject(TextureManager::LoadTexture(
+                             "../assets/woodcut.png"),
+                             map[focus.y][focus.x].position.x,
+                             map[focus.y][focus.x].position.y,
+                             map[focus.y][focus.x].position.h,
+                             map[focus.y][focus.x].position.w);
+      } else {
+        return false;
+      }
       break;
+
     case 1:
-      map[focus.y][focus.x].unit = 'b';
-      obj = new GameObject(TextureManager::LoadTexture("../assets/barrack.png"),
-                               map[focus.y][focus.x].position.x,
-                               map[focus.y][focus.x].position.y,
-                               map[focus.y][focus.x].position.h,
-                               map[focus.y][focus.x].position.w);
-      map[focus.y][focus.x].object = obj;
-      obj = NULL;
+      if (player->total_wood >= 50) {
+        player->UpdateWood(50);
+        map[focus.y][focus.x].unit = 'b';
+        obj = new GameObject(TextureManager::LoadTexture(
+                             "../assets/barrack.png"),
+                             map[focus.y][focus.x].position.x,
+                             map[focus.y][focus.x].position.y,
+                             map[focus.y][focus.x].position.h,
+                             map[focus.y][focus.x].position.w);
+      } else {
+        return false;
+      }
       break;
     case 2:
-      map[focus.y][focus.x].unit = 'm';
-      obj = new GameObject(TextureManager::LoadTexture("../assets/mine.png"),
-                               map[focus.y][focus.x].position.x,
-                               map[focus.y][focus.x].position.y,
-                               map[focus.y][focus.x].position.h,
-                               map[focus.y][focus.x].position.w);
-      map[focus.y][focus.x].object = obj;
-      obj = NULL;
+      if (player->total_wood >= 50) {
+        player->UpdateWood(50);
+        player->amount_m++;
+        map[focus.y][focus.x].unit = 'm';
+        obj = new GameObject(TextureManager::LoadTexture(
+                             "../assets/mine.png"),
+                             map[focus.y][focus.x].position.x,
+                             map[focus.y][focus.x].position.y,
+                             map[focus.y][focus.x].position.h,
+                             map[focus.y][focus.x].position.w);
+      } else {
+        return false;
+      }
       break;
     case 3:
-      map[focus.y][focus.x].unit = 'A';
-      obj = new GameObject(TextureManager::LoadTexture("../assets/archer.png"),
-                               map[focus.y][focus.x].position.x,
-                               map[focus.y][focus.x].position.y,
-                               map[focus.y][focus.x].position.h,
-                               map[focus.y][focus.x].position.w);
-      map[focus.y][focus.x].object = obj;
-      obj = NULL;
+      if (player->total_gold >= 50) {
+        player->UpdateGold(50);
+        map[focus.y][focus.x].unit = 'A';
+        obj = new GameObject(TextureManager::LoadTexture(
+                             "../assets/archer.png"),
+                             map[focus.y][focus.x].position.x,
+                             map[focus.y][focus.x].position.y,
+                             map[focus.y][focus.x].position.h,
+                             map[focus.y][focus.x].position.w);
+      } else {
+        return false;
+      }
       break;
     case 4:
-      map[focus.y][focus.x].unit = 'K';
-      obj = new GameObject(TextureManager::LoadTexture("../assets/knight.png"),
-                               map[focus.y][focus.x].position.x,
-                               map[focus.y][focus.x].position.y,
-                               map[focus.y][focus.x].position.h,
-                               map[focus.y][focus.x].position.w);
-      map[focus.y][focus.x].object = obj;
-      obj = NULL;
+      if (player->total_gold >= 50) {
+        player->UpdateGold(50);
+        map[focus.y][focus.x].unit = 'K';
+        obj = new GameObject(TextureManager::LoadTexture(
+                             "../assets/knight.png"),
+                             map[focus.y][focus.x].position.x,
+                             map[focus.y][focus.x].position.y,
+                             map[focus.y][focus.x].position.h,
+                             map[focus.y][focus.x].position.w);
+      } else {
+       return false;
+      }
       break;
     case 5:
-      map[focus.y][focus.x].unit = 'W';
-      obj = new GameObject(TextureManager::LoadTexture("../assets/warrior.png"),
-                               map[focus.y][focus.x].position.x,
-                               map[focus.y][focus.x].position.y,
-                               map[focus.y][focus.x].position.h,
-                               map[focus.y][focus.x].position.w);
-      map[focus.y][focus.x].object = obj;
-      obj = NULL;
+      if (player->total_gold >= 30) {
+        player->UpdateGold(30);
+        map[focus.y][focus.x].unit = 'W';
+        obj = new GameObject(TextureManager::LoadTexture(
+                             "../assets/warrior.png"),
+                             map[focus.y][focus.x].position.x,
+                             map[focus.y][focus.x].position.y,
+                             map[focus.y][focus.x].position.h,
+                             map[focus.y][focus.x].position.w);
+      } else {
+       return false;
+      }
       break;
 
     default:
       break;
   }
+  map[focus.y][focus.x].object = obj;
+  obj = NULL;
   map[focus.y][focus.x].player = player_turn;
   return true;
 }
@@ -192,7 +239,7 @@ MapTile Map::ReturnObject(int row, int column) {
 }
 
 void Map::UpdateFocus(int row, int column, int player_turn) {
-  if (player_turn == 0) {
+  if (player_turn == 1) {
     if ((row < 0) || (column < 0) || (row > 640) || (column > 320)) {
       focus.x = -1;
       focus.y = -1;
@@ -217,4 +264,45 @@ Structure::Structure(SDL_Texture* texture, int x_pos, int y_pos,
                                              height) {
   this->type = type;
   this->health = health;
+}
+
+Player::Player() {
+  total_wood = 150;
+  total_gold = 0;
+  amount_m = 0;
+  amount_w = 0;
+
+  fontSup = TextureManager::LoadTTF(Gui::game_font, "0000");
+  SDL_QueryTexture(fontSup, NULL, NULL, &lw, &lh);
+  gold_text = new GameObject(fontSup, 700, 5, lw, lh);;
+
+  fontSup = TextureManager::LoadTTF(Gui::game_font, "0150");
+  SDL_QueryTexture(fontSup, NULL, NULL, &lw, &lh);
+  wood_text = new GameObject(fontSup, 700, 55, lw, lh);
+}
+
+void Player::UpdateWood(int value) {
+  total_wood -= value;
+}
+
+void Player::UpdateGold(int value) {
+  total_gold -= value;
+}
+
+void Player::FinishTurn() {
+  total_gold += (amount_m * 10);
+  total_wood += (amount_w * 5);
+
+  gold_text->Clean();
+  wood_text->Clean();
+  delete gold_text;
+  delete wood_text;
+
+  fontSup = TextureManager::LoadTTF(Gui::game_font, to_string(total_gold));
+  SDL_QueryTexture(fontSup, NULL, NULL, &lw, &lh);
+  gold_text = new GameObject(fontSup, 700, 5, lw, lh);
+
+  fontSup = TextureManager::LoadTTF(Gui::game_font, to_string(total_wood));
+  SDL_QueryTexture(fontSup, NULL, NULL, &lw, &lh);
+  wood_text = new GameObject(fontSup, 700, 55, lw, lh);
 }

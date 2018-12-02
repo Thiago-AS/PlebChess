@@ -59,6 +59,29 @@ class MapTile {
   GameObject* object;
 };
 
+class Player {
+ public:
+  Player();
+  ~Player();
+  void UpdateWood(int);
+  void UpdateGold(int);
+  void FinishTurn();
+
+  VectorObjects structures;
+  VectorObjects troops;
+  int total_wood;
+  int total_gold;
+  int amount_w;
+  int amount_m;
+
+  GameObject* gold_text;
+  GameObject* wood_text;
+
+ private:
+  SDL_Texture* fontSup;
+  int lw, lh;
+};
+
 class Map {
  public:
   SDL_Point focus;
@@ -69,7 +92,7 @@ class Map {
 
   void DrawMap();
   void UpdateFocus(int, int, int);
-  bool InsertObject(int, int);
+  bool InsertObject(int, int, Player*);
   MapTile ReturnObject(int, int);
 
  private:

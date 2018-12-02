@@ -30,6 +30,8 @@ class GameScene {
   void Clean();
 
  private:
+  Player* player0;
+  Player* player1;
   int player_turn;
   VectorObjects button_objects;
   VectorObjects texts;
