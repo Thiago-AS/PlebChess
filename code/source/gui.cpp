@@ -100,6 +100,10 @@ void Gui::HandleEvents() {
         main_menu->EventHandler(events);
         break;
 
+      case GameScreen::NEW_GAME:
+        game_scene->EventHandler(events);
+        break;
+
       default:
         break;
     }

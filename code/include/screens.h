@@ -29,8 +29,10 @@ class GameScene {
   void Clean();
 
  private:
+  int player_turn;
   VectorObjects button_objects;
   Map* map;
+  int button_pressed;
 };
 
 

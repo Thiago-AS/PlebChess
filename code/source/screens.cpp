@@ -88,6 +88,8 @@ void MainMenu::Clean() {
 }
 
 GameScene::GameScene() {
+  button_pressed = -1;
+  player_turn = 0;
 }
 
 GameScene::~GameScene() {
@@ -108,10 +110,8 @@ void GameScene::LoadScreen() {
 
   gold_icon = new GameObject(TextureManager::LoadTexture
                          ("../assets/gold.png"), 645, 5, 64, 64);
-  button_objects.AddObject(gold_icon);
   wood_icon = new GameObject(TextureManager::LoadTexture
                          ("../assets/wood.png"), 730, 5, 64, 64);
-  button_objects.AddObject(wood_icon);
 
   wood_cutter_button = new GameObject(TextureManager::LoadTexture
                          ("../assets/woodcut.png"), 645, 512, 64, 64);
@@ -132,11 +132,52 @@ void GameScene::LoadScreen() {
   warrior_button = new GameObject(TextureManager::LoadTexture
                          ("../assets/warrior.png"), 730, 384, 64, 64);
   button_objects.AddObject(warrior_button);
-
-
 }
 
 void GameScene::EventHandler(SDL_Event &event) {
+  int mouse_over, x, y;
+  switch (event.type) {
+    case SDL_MOUSEBUTTONDOWN:
+      mouse_over = button_objects.HandleMouse(event.button);
+      switch (mouse_over) {
+        case 0:
+          if (button_pressed == -1)
+            button_pressed = 0;
+          break;
+        case 1:
+          if (button_pressed == -1)
+            button_pressed = 1;
+          break;
+        case 2:
+          if (button_pressed == -1)
+            button_pressed = 2;
+          break;
+        case 3:
+          if (button_pressed == -1)
+            button_pressed = 3;
+          break;
+        case 4:
+          if (button_pressed == -1)
+            button_pressed = 4;
+          break;
+        case 5:
+          if (button_pressed == -1)
+            button_pressed = 5;
+          break;
+        default:
+          if (button_pressed != -1) {
+            SDL_GetMouseState(&x, &y);
+            map->UpdateFocus(x, y);
+            map->InsertObject(button_pressed, player_turn);
+          }
+          button_pressed = -1;
+          break;
+      }
+      break;
+
+    default:
+      break;
+  }
 }
 
 void GameScene::Render() {

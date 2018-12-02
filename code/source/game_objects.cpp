@@ -79,47 +79,60 @@ void VectorObjects::Clean() {
   }
 }
 
-char Map::map[10][10] = {
-  { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-  { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-  { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-  { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-  { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-  { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-  { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-  { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-  { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-  { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
-};
-
 Map::Map() {
   tile = TextureManager::LoadTexture("../assets/dirt.png");
-  src.x = src.y = 0;
-  dst.x = dst.y = 0;
-  src.w = dst.w = 64;
-  src.h = dst.h = 64;
+
+  for (int row = 0; row < 10; row++) {
+    for (int column = 0; column < 10; column++) {
+      map[row][column].unit = 0;
+      map[row][column].position.x = column * 64;
+      map[row][column].position.y = row * 64;
+      map[row][column].position.h = 64;
+      map[row][column].position.w = 64;
+      map[row][column].player = -1;
+    }
+  }
+
+  focus.x = -1;
+  focus.y = -1;
 }
 
 Map::~Map() {
 }
 
 void Map::DrawMap() {
-  char tile_type = 0;
+  char tile_type;
+  SDL_Rect src;
+  src.x = 0; src.y = 0; src.h = 64; src.w = 64;
 
   for (int row = 0; row < 10; row++) {
     for (int column = 0; column < 10; column++) {
-      tile_type = map[row][column];
-
-      dst.x = column * 64;
-      dst.y = row * 64;
+      tile_type = map[row][column].unit;
 
       switch (tile_type) {
         case 0:
-          TextureManager::Draw(tile, src, dst);
+          TextureManager::Draw(tile, src, map[row][column].position);
           break;
         default:
           break;
       }
     }
+  }
+}
+
+void Map::InsertObject(char object, int player_turn) {
+}
+
+MapTile Map::ReturnObject(int row, int column) {
+  return map[row][column];
+}
+
+void Map::UpdateFocus(int row, int column) {
+  if ((row < 0) || (row < 0) || (column > 640) || (column > 640)) {
+    focus.x = -1;
+    focus.y = -1;
+  } else {
+    focus.x = static_cast<int>(row/64);
+    focus.y = static_cast<int>(column/64);
   }
 }

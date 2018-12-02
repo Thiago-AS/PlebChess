@@ -1,7 +1,7 @@
 // "Copyright 2018 Grupo MP"
 /**
 * @file Unidades.hpp
-* @brief Arquivo com as funcoes que sao usadas para implementar as funcoes que contaram o numero de linhas. 
+* @brief Arquivo com as funcoes que sao usadas para implementar as funcoes que contaram o numero de linhas.
 */
 #ifndef CODE_INCLUDE_UNIDADES_HPP_
 #define CODE_INCLUDE_UNIDADES_HPP_
@@ -15,7 +15,7 @@
 #include <cstring>
 using namespace std;
 /**
- * @brief Enum que indica o tipo de recurso que a unidade produz. 
+ * @brief Enum que indica o tipo de recurso que a unidade produz.
  */
 enum tipo_recurso {
     nada = 0,
@@ -51,7 +51,7 @@ class Mina {
 * Assertiva Entrada:  p_vida >= 0
 *    Interface explicita: p_vida
 *    Interface implicita:
-* Assertiva Saida: Se p_vida for maior que 0 
+* Assertiva Saida: Se p_vida for maior que 0
 * entao vida = p_vida, caso der certo retorna 1.
 */
         int setVida(unsigned int p_vida);
@@ -65,7 +65,7 @@ class Mina {
 * Assertiva Entrada:  materia >= 0
 *    Interface explicita: materia
 *    Interface implicita:
-* Assertiva Saida: Se materia for maior que 0 
+* Assertiva Saida: Se materia for maior que 0
 * entao Qt_materia = materia, caso der certo retorna 1.
 */
         int setQt_materia(unsigned int materia);
@@ -79,7 +79,7 @@ class Mina {
 * Assertiva Entrada:  p_lar >= 0
 *    Interface explicita: p_lar
 *    Interface implicita:
-* Assertiva Saida: Se p_lar for maior que 0 
+* Assertiva Saida: Se p_lar for maior que 0
 * entao vida = p_lar, caso der certo retorna 1.
 */
         int setLargura(unsigned int p_lar);
@@ -93,7 +93,7 @@ class Mina {
 * Assertiva Entrada:  p_com >= 0
 *    Interface explicita: p_com
 *    Interface implicita:
-* Assertiva Saida: Se p_com for maior que 0 
+* Assertiva Saida: Se p_com for maior que 0
 * entao vida = p_com, caso der certo retorna 1.
 */
         int setComprimento(unsigned int p_com);
@@ -107,7 +107,7 @@ class Mina {
 * Assertiva Entrada:  p_const >= 0
 *    Interface explicita: p_const
 *    Interface implicita:
-* Assertiva Saida: Se p_const for maior que 0 
+* Assertiva Saida: Se p_const for maior que 0
 * entao Qt_materia = p_const, caso der certo retorna 1.
 */
         int setConstrucao(unsigned int p_const);
@@ -121,7 +121,7 @@ class Mina {
 * Assertiva Entrada:  p_pox >= 0 && p_posX < LIN_TABULEIRO
 *    Interface explicita: p_posX
 *    Interface implicita: LIN_TABULEIRO
-* Assertiva Saida: Se p_posX for maior que -1 e menor que o limite 
+* Assertiva Saida: Se p_posX for maior que -1 e menor que o limite
 * entao posX = p_posX, caso der certo retorna 1.
 */
         int setPosX(unsigned int p_posX);
@@ -135,7 +135,7 @@ class Mina {
 * Assertiva Entrada:  p_posY >= -1 && p_posY < COL_TABULEIRO
 *    Interface explicita: p_posY
 *    Interface implicita: COL_TABULEIRO
-* Assertiva Saida: Se p_posY for maior que -1 e menor que o limite 
+* Assertiva Saida: Se p_posY for maior que -1 e menor que o limite
 * entao posY = p_posY, caso der certo retorna 1.
 */
         int setPosY(unsigned int p_posY);
@@ -149,7 +149,7 @@ class Mina {
 * Assertiva Entrada:  p_recurso >= 0
 *    Interface explicita: p_recurso
 *    Interface implicita:
-* Assertiva Saida: Se p_recurso for maior que 0 
+* Assertiva Saida: Se p_recurso for maior que 0
 * entao recurso = p_recurso, caso der certo retorna 1.
 */
         int setRecurso(tipo_recurso p_recurso);
@@ -260,7 +260,7 @@ class Mina {
 *    Interface explicita: Nao ha.
 *    Interface implicita: Nao ha.
 * Assertiva Saida: devolve a a vida do mina.
-*/    
+*/
         unsigned int getPosY();
 /**
 * @fn         tipo_recurso getRecurso();
@@ -314,7 +314,7 @@ class Lenhadora {
 * Assertiva Entrada:  p_vida >= 0
 *    Interface explicita: p_vida
 *    Interface implicita:
-* Assertiva Saida: Se p_vida for maior que 0 
+* Assertiva Saida: Se p_vida for maior que 0
 * entao vida = p_vida, caso der certo retorna 1.
 */
         int setVida(unsigned int p_vida);
@@ -328,7 +328,7 @@ class Lenhadora {
 * Assertiva Entrada:  materia >= 0
 *    Interface explicita: materia
 *    Interface implicita:
-* Assertiva Saida: Se materia for maior que 0 
+* Assertiva Saida: Se materia for maior que 0
 * entao Qt_materia = materia, caso der certo retorna 1.
 */
         int setQt_materia(unsigned int materia);
@@ -342,7 +342,7 @@ class Lenhadora {
 * Assertiva Entrada:  p_lar >= 0
 *    Interface explicita: p_lar
 *    Interface implicita:
-* Assertiva Saida: Se p_lar for maior que 0 
+* Assertiva Saida: Se p_lar for maior que 0
 * entao vida = p_lar, caso der certo retorna 1.
 */
         int setLargura(unsigned int p_lar);
@@ -356,7 +356,7 @@ class Lenhadora {
 * Assertiva Entrada:  p_com >= 0
 *    Interface explicita: p_com
 *    Interface implicita:
-* Assertiva Saida: Se p_com for maior que 0 
+* Assertiva Saida: Se p_com for maior que 0
 * entao vida = p_com, caso der certo retorna 1.
 */
         int setComprimento(unsigned int p_com);
@@ -370,7 +370,7 @@ class Lenhadora {
 * Assertiva Entrada:  p_const >= 0
 *    Interface explicita: p_const
 *    Interface implicita:
-* Assertiva Saida: Se p_const for maior que 0 
+* Assertiva Saida: Se p_const for maior que 0
 * entao Qt_materia = p_const, caso der certo retorna 1.
 */
         int setConstrucao(unsigned int p_const);
@@ -384,7 +384,7 @@ class Lenhadora {
 * Assertiva Entrada:  p_pox >= 0 && p_posX < LIN_TABULEIRO
 *    Interface explicita: p_posX
 *    Interface implicita: LIN_TABULEIRO
-* Assertiva Saida: Se p_posX for maior que -1 e menor que o limite 
+* Assertiva Saida: Se p_posX for maior que -1 e menor que o limite
 * entao posX = p_posX, caso der certo retorna 1.
 */
         int setPosX(unsigned int p_posX);
@@ -398,7 +398,7 @@ class Lenhadora {
 * Assertiva Entrada:  p_posY >= -1 && p_posY < COL_TABULEIRO
 *    Interface explicita: p_posY
 *    Interface implicita: COL_TABULEIRO
-* Assertiva Saida: Se p_posY for maior que -1 e menor que o limite 
+* Assertiva Saida: Se p_posY for maior que -1 e menor que o limite
 * entao posY = p_posY, caso der certo retorna 1.
 */
         int setPosY(unsigned int p_posY);
@@ -412,7 +412,7 @@ class Lenhadora {
 * Assertiva Entrada:  p_recurso >= 0
 *    Interface explicita: p_recurso
 *    Interface implicita:
-* Assertiva Saida: Se p_recurso for maior que 0 
+* Assertiva Saida: Se p_recurso for maior que 0
 * entao recurso = p_recurso, caso der certo retorna 1.
 */
         int setRecurso(tipo_recurso p_recurso);
@@ -523,7 +523,7 @@ class Lenhadora {
 *    Interface explicita: Nao ha.
 *    Interface implicita: Nao ha.
 * Assertiva Saida: devolve a a vida do lenhadora.
-*/    
+*/
         unsigned int getPosY();
 /**
 * @fn         tipo_recurso getRecurso();
@@ -577,7 +577,7 @@ class Fortaleza {
 * Assertiva Entrada:  p_vida >= 0
 *    Interface explicita: p_vida
 *    Interface implicita:
-* Assertiva Saida: Se p_vida for maior que 0 
+* Assertiva Saida: Se p_vida for maior que 0
 * entao vida = p_vida, caso der certo retorna 1.
 */
         int setVida(unsigned int p_vida);
@@ -591,7 +591,7 @@ class Fortaleza {
 * Assertiva Entrada:  materia >= 0
 *    Interface explicita: materia
 *    Interface implicita:
-* Assertiva Saida: Se materia for maior que 0 
+* Assertiva Saida: Se materia for maior que 0
 * entao Qt_materia = materia, caso der certo retorna 1.
 */
         int setQt_materia(unsigned int materia);
@@ -605,7 +605,7 @@ class Fortaleza {
 * Assertiva Entrada:  p_lar >= 0
 *    Interface explicita: p_lar
 *    Interface implicita:
-* Assertiva Saida: Se p_lar for maior que 0 
+* Assertiva Saida: Se p_lar for maior que 0
 * entao vida = p_lar, caso der certo retorna 1.
 */
         int setLargura(unsigned int p_lar);
@@ -619,7 +619,7 @@ class Fortaleza {
 * Assertiva Entrada:  p_com >= 0
 *    Interface explicita: p_com
 *    Interface implicita:
-* Assertiva Saida: Se p_com for maior que 0 
+* Assertiva Saida: Se p_com for maior que 0
 * entao vida = p_com, caso der certo retorna 1.
 */
         int setComprimento(unsigned int p_com);
@@ -633,7 +633,7 @@ class Fortaleza {
 * Assertiva Entrada:  p_const >= 0
 *    Interface explicita: p_const
 *    Interface implicita:
-* Assertiva Saida: Se p_const for maior que 0 
+* Assertiva Saida: Se p_const for maior que 0
 * entao Qt_materia = p_const, caso der certo retorna 1.
 */
         int setConstrucao(unsigned int p_const);
@@ -647,7 +647,7 @@ class Fortaleza {
 * Assertiva Entrada:  p_pox >= 0 && p_posX < LIN_TABULEIRO
 *    Interface explicita: p_posX
 *    Interface implicita: LIN_TABULEIRO
-* Assertiva Saida: Se p_posX for maior que -1 e menor que o limite 
+* Assertiva Saida: Se p_posX for maior que -1 e menor que o limite
 * entao posX = p_posX, caso der certo retorna 1.
 */
         int setPosX(unsigned int p_posX);
@@ -661,7 +661,7 @@ class Fortaleza {
 * Assertiva Entrada:  p_posY >= -1 && p_posY < COL_TABULEIRO
 *    Interface explicita: p_posY
 *    Interface implicita: COL_TABULEIRO
-* Assertiva Saida: Se p_posY for maior que -1 e menor que o limite 
+* Assertiva Saida: Se p_posY for maior que -1 e menor que o limite
 * entao posY = p_posY, caso der certo retorna 1.
 */
         int setPosY(unsigned int p_posY);
@@ -675,7 +675,7 @@ class Fortaleza {
 * Assertiva Entrada:  p_recurso >= 0
 *    Interface explicita: p_recurso
 *    Interface implicita:
-* Assertiva Saida: Se p_recurso for maior que 0 
+* Assertiva Saida: Se p_recurso for maior que 0
 * entao recurso = p_recurso, caso der certo retorna 1.
 */
         int setRecurso(tipo_recurso p_recurso);
@@ -786,7 +786,7 @@ class Fortaleza {
 *    Interface explicita: Nao ha.
 *    Interface implicita: Nao ha.
 * Assertiva Saida: devolve a a vida do fortaleza.
-*/    
+*/
         unsigned int getPosY();
 /**
 * @fn         tipo_recurso getRecurso();

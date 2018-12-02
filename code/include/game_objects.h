@@ -35,18 +35,28 @@ class VectorObjects {
   vector<GameObject*> objects_vector;
 };
 
-class Map{
+class MapTile {
  public:
+  char unit;
+  SDL_Rect position;
+  int player;
+};
+
+class Map {
+ public:
+  SDL_Point focus;
+  MapTile map[10][10];
+
   Map();
   ~Map();
 
   void DrawMap();
+  void UpdateFocus(int, int);
+  void InsertObject(char, int);
+  MapTile ReturnObject(int, int);
 
  private:
-  SDL_Rect src, dst;
   SDL_Texture* tile;
-
-  static char map[10][10];
 };
 
 #endif  // GAME_OBJECTS_H
