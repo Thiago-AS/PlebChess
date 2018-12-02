@@ -93,7 +93,6 @@ Map::Map() {
       map[row][column].object = NULL;
     }
   }
-
   focus.x = -1;
   focus.y = -1;
 }

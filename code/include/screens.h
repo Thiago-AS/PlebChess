@@ -32,7 +32,7 @@ class GameScene {
  private:
   int player_turn;
   VectorObjects button_objects;
-  vector<Structure> structure_objects;
+  VectorObjects texts;
   Map* map;
   int insertion_flag;
 };

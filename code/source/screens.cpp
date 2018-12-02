@@ -46,7 +46,7 @@ void MainMenu::EventHandler(SDL_Event &event) {
           Gui::current_screen = GameScreen::NEW_GAME;
           break;
         case 1:
-          Gui::current_screen = GameScreen::LOAD_GAME;
+          Gui::quit = true;
           break;
         case 2:
           Gui::quit = true;
@@ -96,6 +96,8 @@ GameScene::~GameScene() {
 }
 
 void GameScene::LoadScreen() {
+  int lw, lh;
+
   map = new Map();
 
   GameObject* archer_button = NULL;
@@ -107,11 +109,23 @@ void GameScene::LoadScreen() {
   GameObject* wood_cutter_button = NULL;
   GameObject* barrack_button = NULL;
   GameObject* gold_mine_button = NULL;
+  GameObject* gold_text = NULL;
+  GameObject* wood_text = NULL;
 
   gold_icon = new GameObject(TextureManager::LoadTexture
-                         ("../assets/gold.png"), 645, 5, 64, 64);
+                         ("../assets/gold.png"), 645, 5, 42, 42);
+  texts.AddObject(gold_icon);
   wood_icon = new GameObject(TextureManager::LoadTexture
-                         ("../assets/wood.png"), 730, 5, 64, 64);
+                         ("../assets/wood.png"), 645, 55, 42, 42);
+  texts.AddObject(wood_icon);
+  SDL_Texture* fontSup1 = TextureManager::LoadTTF(Gui::game_font, "0000");
+  SDL_QueryTexture(fontSup1, NULL, NULL, &lw, &lh);
+  gold_text = new GameObject(fontSup1, 700, 5, lw, lh);
+  texts.AddObject(gold_text);
+  SDL_Texture* fontSup2 = TextureManager::LoadTTF(Gui::game_font, "0000");
+  SDL_QueryTexture(fontSup2, NULL, NULL, &lw, &lh);
+  wood_text = new GameObject(fontSup2, 700, 55, lw, lh);
+  texts.AddObject(wood_text);
 
   wood_cutter_button = new GameObject(TextureManager::LoadTexture
                          ("../assets/woodcut.png"), 645, 512, 64, 64);
@@ -162,6 +176,7 @@ void GameScene::EventHandler(SDL_Event &event) {
 void GameScene::Render() {
   map->DrawMap();
   button_objects.Draw();
+  texts.Draw();
 }
 
 void GameScene::Clean() {
