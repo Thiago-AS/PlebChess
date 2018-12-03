@@ -279,9 +279,29 @@ bool Map::Occupied(int player_turn) {
 }
 
 bool Map::MoveObject(SDL_Point object_location) {
-  if ((map[object_location.y][object_location.x].unit == 'W') ||
-      (map[object_location.y][object_location.x].unit == 'K') ||
-      (map[object_location.y][object_location.x].unit == 'A')) {
+  bool possible_move = false;
+  switch (map[object_location.y][object_location.x].unit) {
+    case 'W':
+      if (IsMovePossible('W', object_location)) {
+        possible_move = true;
+      }
+      break;
+    case 'K':
+      if (IsMovePossible('K', object_location)) {
+        possible_move = true;
+      }
+      break;
+    case 'A':
+      if (IsMovePossible('A', object_location)) {
+        possible_move = true;
+      }
+      break;
+
+    default:
+      possible_move = false;
+      break;
+  }
+  if (possible_move) {
     map[focus.y][focus.x].unit = map[object_location.y][object_location.x].unit;
     map[focus.y][focus.x].player = map[object_location.y]
                                    [object_location.x].player;
@@ -294,6 +314,37 @@ bool Map::MoveObject(SDL_Point object_location) {
     map[object_location.y][object_location.x].object = NULL;
     return true;
   } else {
+    SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Impossible Movement",
+                             "Not allowed to move to the selected space", NULL);
     return false;
   }
+}
+
+bool Map::IsMovePossible(char unit, SDL_Point object_location) {
+  int movement_x, movement_y;
+  movement_x = abs(focus.x - object_location.x);
+  movement_y = abs(focus.y - object_location.y);
+
+  switch (unit) {
+    case 'W':
+      if (movement_x <= 2 && movement_y <= 2) {
+        return true;
+      }
+      break;
+    case 'K':
+      if (movement_x <= 1 && movement_y <= 1) {
+        return true;
+      }
+      break;
+    case 'A':
+      if (movement_x <= 1 && movement_y <= 1) {
+        return true;
+      }
+      break;
+
+    default:
+      return false;
+      break;
+  }
+  return false;
 }

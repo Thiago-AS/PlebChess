@@ -90,6 +90,8 @@ class Map {
   */
   bool Occupied(int);
 
+  bool IsMovePossible(char, SDL_Point);
+
  private:
   /** Textura de espaço vazio do mapa. */
   SDL_Texture* tile;
