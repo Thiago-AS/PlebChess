@@ -10,15 +10,31 @@ Implementação de um jogo de estratégia para a disciplina de Métodos de Progr
   - [Catch](https://github.com/catchorg/Catch2)
   - [SDL](https://www.libsdl.org/)
 
+```bash
+$ sudo apt-get install build-essential
+$ sudo apt-get -y install libsdl2-2.0-0 libsdl2-dev libsdl2-doc libsdl2-gfx-1.0-0 libsdl2-gfx-dev libsdl2-image-2.0-0 libsdl2-image-dev libsdl2-mixer-2.0-0 libsdl2-mixer-dev libsdl2-net-2.0-0 libsdl2-net-dev libsdl2-ttf-2.0-0 libsdl2-ttf-dev
+```
+
+##  Compilação e execução
+
+Para compilar e executar:
+
+```bash
+$ cd code/source/
+$ make
+$ ./game
+```
+
+Para limpar pasta e remover objetos:
+```bash
+$ make clean
+```
+
 ## Team
 
 |         Nome          |               Email               |     GitHub                                                          |
 |:---------------------:|:---------------------------------:|:-------------------------------------------------------------------:|
 |  Thiago Araújo        |  [thiagos.araujo09@gmail.com]()   |   [@Thiag-AS](https://github.com/Thiago-AS)                         |
-|  Vinicius Campos      |  []()                             |   [@ViniciusSilva3](https://github.com/ViniciusSilva3)              |
-|  Talles Fernando      |  [talles.silva@gmail.com]()       |   [@InluxBDX](https://github.com/InluxBDX)                          |
-|  Marcos Tonin         |  [marcosvtonin@gmail.com]()       |   [@M-Tonin](https://github.com/M-Tonin)                            |
-|  Bernardo Ferreira    |  [bernardoximbre@gmail.com]()                             |   [@BernardoXimbre](https://github.com/BernardoXimbre)              |
 
 ## Contribua
 

@@ -1,6 +1,6 @@
 code/source/obj/*.gcda
 code/source/obj/*.gcno
-code/source/testes
+code/source/game
 
 # Prerequisites
 *.d
