@@ -156,8 +156,8 @@ GameScene::GameScene() {
   insertion_flag = -1;
   move_flag = -1;
   player_turn = 0;
-  player0 = new Player();
-  player1 = new Player();
+  player0 = new Player(0);
+  player1 = new Player(1);
 }
 
 GameScene::~GameScene() {
@@ -172,7 +172,7 @@ GameScene::~GameScene() {
 void GameScene::LoadScreen() {
   int lw, lh;
 
-  map = new Map();
+  map = new Map(player0, player1);
 
   GameObject* archer_button = NULL;
   GameObject* knight_button = NULL;
@@ -246,13 +246,14 @@ void GameScene::EventHandler(SDL_Event &event) {
           }
         }
       }
-      if ((mouse_over == -1) && (insertion_flag == -1)) {
+      if ((mouse_over == -1) && (insertion_flag == -1) && (move_flag == -1)) {
         SDL_GetMouseState(&x, &y);
         if ((map->UpdateFocus(x, y, player_turn)) &&
             (map->Occupied(player_turn))) {
             move_flag = 1;
             to_be_moved.x = map->focus.x;
             to_be_moved.y = map->focus.y;
+            break;
         }
       }
       if ((mouse_over == -1) && (move_flag != -1)) {
@@ -268,6 +269,19 @@ void GameScene::EventHandler(SDL_Event &event) {
             SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR,
                                     "Impossible Movement",
                                      "Not allowed to move to the space", NULL);
+            move_flag = -1;
+          }
+        } else {
+          if (map->AttackObject(to_be_moved)) {
+            player_turn ^= 1;
+            player1->FinishTurn();
+            player0->FinishTurn();
+            move_flag = -1;
+            break;
+          } else {
+            SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR,
+                                    "Impossible Movement",
+                                     "Not allowed to attack the space", NULL);
             move_flag = -1;
           }
         }

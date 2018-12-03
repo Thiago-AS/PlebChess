@@ -17,10 +17,12 @@ class MapTile {
  public:
   /** Unidade que ocupa o espaço. */
   char unit;
+  /** Vida da unidade que ocupa o espaço. */
+  int health;
   /** Posição do espaço na tela. */
   SDL_Rect position;
   /** A quem pertence o espaço. */
-  int player;
+  Player* player;
   /** Objeto do espaço. */
   GameObject* object;
 };
@@ -37,7 +39,7 @@ class Map {
   /** Matriz do mapa. */
   MapTile map[10][10];
 
-  Map();
+  Map(Player*, Player*);
   ~Map();
 
   /**
@@ -108,12 +110,30 @@ class Map {
   * Assertiva Saida: Não há.
   */
   void DrawPossibleMoves(SDL_Point);
+  /**
+  * @brief Ataca objeto no mapa.
+  * @param object_location Local que ira atacar.
+  * @return Retorna verdadeiro caso ataque seja sucesso, falso cc.
+  * Assertiva Entrada: Deve existir objeto no foco.
+  *
+  * Assertiva Saida: Verdadeiro para operação executada com sucesso.
+  */
+  bool AttackObject(SDL_Point);
+  /**
+  * @brief Apaga objeto no mapa.
+  * Assertiva Entrada: Deve existir objeto no foco.
+  *
+  * Assertiva Saida: Não há.
+  */
+  void EraseUnit(SDL_Point);
 
  private:
   /** Textura de espaço vazio do mapa. */
   SDL_Texture* tile;
   /** Textura de possivel movimentação. */
   SDL_Texture* possible_tile;
+  /** Textura de possivel ataque. */
+  SDL_Texture* attack_tile;
 };
 
 #endif  // CODE_INCLUDE_MAP_H_

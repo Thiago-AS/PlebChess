@@ -78,11 +78,12 @@ void VectorObjects::Clean() {
   }
 }
 
-Player::Player() {
+Player::Player(int id) {
   total_wood = 150;
   total_gold = 0;
   amount_m = 0;
   amount_w = 0;
+  this->id = id;
 
   fontSup = TextureManager::LoadTTF(Gui::game_font, "0000");
   SDL_QueryTexture(fontSup, NULL, NULL, &lw, &lh);

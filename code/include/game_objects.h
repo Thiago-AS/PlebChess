@@ -119,7 +119,7 @@ class VectorObjects {
 */
 class Player {
  public:
-  Player();
+  Player(int);
   ~Player();
   /**
   * @brief Atualiza quantidade de madeira do jogador.
@@ -153,6 +153,8 @@ class Player {
   int amount_w;
   /** Quantidade de minas. */
   int amount_m;
+  /** Player id. */
+  int id;
 
   /** Texto do valor total de ouro. */
   GameObject* gold_text;
