@@ -1,6 +1,6 @@
 // "Copyright 2018"
-#ifndef GUI_H
-#define GUI_H
+#ifndef CODE_INCLUDE_GUI_H_
+#define CODE_INCLUDE_GUI_H_
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
@@ -41,4 +41,4 @@ class Gui {
   void Update();
 };
 
-#endif
+#endif  // CODE_INCLUDE_GUI_H_

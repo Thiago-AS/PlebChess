@@ -1,5 +1,4 @@
 // "Copyright 2018"
-
 #include "../include/screens.h"
 #include "../include/texture_manager.h"
 

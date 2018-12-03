@@ -1,6 +1,11 @@
-// "Copyright 2018"
-#ifndef GUI_MANAGER_H
-#define GUI_MANAGER_H
+/**
+ * @file gui_manager.h
+ * @brief Arquivo que instancia e controla o jogo.
+ * @author Thiago Araujo (@Thiago-AS)
+ * @copyright Copyright (c) 2018
+ */
+#ifndef CODE_INCLUDE_GUI_MANAGER_H_
+#define CODE_INCLUDE_GUI_MANAGER_H_
 
 #include "./gui.h"
 
@@ -19,4 +24,4 @@ class GuiManager {
   void Run();
 };
 
-#endif  // GUI_MANAGER_H
+#endif  // CODE_INCLUDE_GUI_MANAGER_H_
