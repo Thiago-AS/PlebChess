@@ -3,6 +3,7 @@
 
 Map::Map() {
   tile = TextureManager::LoadTexture("../assets/dirt.png");
+  possible_tile = TextureManager::LoadTexture("../assets/green.png");
 
   for (int row = 0; row < 10; row++) {
     for (int column = 0; column < 10; column++) {
@@ -314,8 +315,6 @@ bool Map::MoveObject(SDL_Point object_location) {
     map[object_location.y][object_location.x].object = NULL;
     return true;
   } else {
-    SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Impossible Movement",
-                             "Not allowed to move to the selected space", NULL);
     return false;
   }
 }
@@ -347,4 +346,66 @@ bool Map::IsMovePossible(char unit, SDL_Point object_location) {
       break;
   }
   return false;
+}
+
+void Map::DrawPossibleMoves(SDL_Point object_location) {
+  SDL_Rect src, dst;
+  src.x = 0; src.y = 0; src.h = 64; src.w = 64;
+  dst.w = 64; dst.h = 64;
+  switch (map[object_location.y][object_location.x].unit) {
+    case 'W':
+      for (int i = -1; i <= 1; ++i) {
+        for (int j = -1; j <= 1; ++j) {
+          if ((object_location.y + i < 0) || (object_location.x + j < 0) ||
+              (object_location.y + i > 9) || (object_location.x + j > 9) ||
+              (i == 0 && j == 0) || (map[object_location.y + i]
+              [object_location.x + j].unit != 0)) {
+          } else {
+            dst.x = map[object_location.y + i]
+                    [object_location.x + j].position.x;
+            dst.y = map[object_location.y + i]
+                    [object_location.x + j].position.y;
+            TextureManager::Draw(possible_tile, src, dst);
+          }
+        }
+      }
+      break;
+    case 'K':
+      for (int i = -1; i <= 1; ++i) {
+        for (int j = -1; j <= 1; ++j) {
+          if ((object_location.y + i < 0) || (object_location.x + j < 0) ||
+              (object_location.y + i > 9) || (object_location.x + j > 9) ||
+              (i == 0 && j == 0) || (map[object_location.y + i]
+              [object_location.x + j].unit != 0)) {
+          } else {
+            dst.x = map[object_location.y + i]
+                    [object_location.x + j].position.x;
+            dst.y = map[object_location.y + i]
+                    [object_location.x + j].position.y;
+            TextureManager::Draw(possible_tile, src, dst);
+          }
+        }
+      }
+      break;
+    case 'A':
+      for (int i = -1; i <= 1; ++i) {
+        for (int j = -1; j <= 1; ++j) {
+          if ((object_location.y + i < 0) || (object_location.x + j < 0) ||
+              (object_location.y + i > 9) || (object_location.x + j > 9) ||
+              (i == 0 && j == 0) || (map[object_location.y + i]
+              [object_location.x + j].unit != 0)) {
+          } else {
+            dst.x = map[object_location.y + i]
+                    [object_location.x + j].position.x;
+            dst.y = map[object_location.y + i]
+                    [object_location.x + j].position.y;
+            TextureManager::Draw(possible_tile, src, dst);
+          }
+        }
+      }
+      break;
+
+    default:
+      break;
+  }
 }

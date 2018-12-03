@@ -264,6 +264,11 @@ void GameScene::EventHandler(SDL_Event &event) {
             player1->FinishTurn();
             player0->FinishTurn();
             move_flag = -1;
+          } else {
+            SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR,
+                                    "Impossible Movement",
+                                     "Not allowed to move to the space", NULL);
+            move_flag = -1;
           }
         }
       }
@@ -283,6 +288,9 @@ void GameScene::Render() {
   map->DrawMap();
   button_objects.Draw();
   texts.Draw();
+  if (move_flag == 1) {
+    map->DrawPossibleMoves(to_be_moved);
+  }
   if (player_turn == 0) {
     player0->wood_text->Render();
     player0->gold_text->Render();

@@ -89,12 +89,31 @@ class Map {
   * Assertiva Saida: Verdadeiro para ocupado, falso cc.
   */
   bool Occupied(int);
-
+  /**
+  * @brief Verifica se e possivel se movimentar para o espaço.
+  * @param unit Unidade a ser verificada.
+  * @param object_location Local da unidade.
+  * @return Retorna verdadeiro caso seja possivel, falso cc.
+  * Assertiva Entrada: Local dentro do mapa de pixel, e unidade existente.
+  *
+  * Assertiva Saida: Verdadeiro para possivel, falso cc.
+  */
   bool IsMovePossible(char, SDL_Point);
+  /**
+  * @brief Renderiza as casas possiveis para movimento da unidade.
+  * @param object_location Local da unidade.
+  * Assertiva Entrada: Verificar se unidade se encontra nas extremidades do
+  * mapa, e se existe algum objeto no espaço.
+  *
+  * Assertiva Saida: Não há.
+  */
+  void DrawPossibleMoves(SDL_Point);
 
  private:
   /** Textura de espaço vazio do mapa. */
   SDL_Texture* tile;
+  /** Textura de possivel movimentação. */
+  SDL_Texture* possible_tile;
 };
 
 #endif  // CODE_INCLUDE_MAP_H_
