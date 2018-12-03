@@ -54,12 +54,13 @@ class Map {
   * @param row Valor x da tela.
   * @param column Valor y da tela.
   * @param player_turn A que jogador pertence o turno.
+  * @param insertion Sinaliza se havera inserção.
   * @return Retorna verdadeiro caso foco seja atualizado com sucesso, falso cc.
   * Assertiva Entrada: Valor de pixels validos e turno previamente definido.
   *
   * Assertiva Saida: Verdadeiro para operação executada com sucesso.
   */
-  bool UpdateFocus(int, int, int);
+  bool UpdateFocus(int, int, int, bool);
   /**
   * @brief Insere objeto em espaço do mapa.
   * @param object_id Valor que define qual unidade a ser inserida.
@@ -83,14 +84,13 @@ class Map {
   bool MoveObject(SDL_Point);
   /**
   * @brief Verifica se espaço do mapa esta ocupado.
-  * @param player_turn A que jogador pertence o turno.
   * @return Retorna verdadeiro caso esteja ocupado, falso cc.
   * Assertiva Entrada: Espaço não ocupado por objeto do jogador a qual pertence
   * o turno.
   *
   * Assertiva Saida: Verdadeiro para ocupado, falso cc.
   */
-  bool Occupied(int);
+  bool Occupied();
   /**
   * @brief Verifica se e possivel se movimentar para o espaço.
   * @param unit Unidade a ser verificada.
@@ -121,11 +121,14 @@ class Map {
   bool AttackObject(SDL_Point);
   /**
   * @brief Apaga objeto no mapa.
+  * @param object_location Local do objeto a ser apagado.
   * Assertiva Entrada: Deve existir objeto no foco.
   *
   * Assertiva Saida: Não há.
   */
   void EraseUnit(SDL_Point);
+
+  bool IsEnemy(int);
 
  private:
   /** Textura de espaço vazio do mapa. */

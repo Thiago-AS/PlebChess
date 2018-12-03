@@ -250,9 +250,28 @@ bool Map::InsertObject(int object_id, int player_turn, Player* player) {
   return true;
 }
 
-bool Map::UpdateFocus(int row, int column, int player_turn) {
-  if (player_turn == 1) {
-    if ((row < 0) || (column < 0) || (row > 640) || (column > 320)) {
+bool Map::UpdateFocus(int row, int column, int player_turn, bool insertion) {
+  if (insertion) {
+    if (player_turn == 1) {
+      if ((row < 0) || (column < 0) || (row > 640) || (column > 320)) {
+        focus.x = -1;
+        focus.y = -1;
+        return false;
+      } else {
+        focus.x = static_cast<int>(row/64);
+        focus.y = static_cast<int>(column/64);
+      }
+    } else {
+      if ((row < 0) || (column < 320) || (row > 640) || (column > 640)) {
+        focus.x = -1;
+        focus.y = -1;
+        return false;
+      } else {
+        focus.x = static_cast<int>(row/64);
+        focus.y = static_cast<int>(column/64);
+      }
+    }
+    if ((row < 0) || (column < 0) || (row > 640) || (column > 640)) {
       focus.x = -1;
       focus.y = -1;
       return false;
@@ -261,7 +280,7 @@ bool Map::UpdateFocus(int row, int column, int player_turn) {
       focus.y = static_cast<int>(column/64);
     }
   } else {
-    if ((row < 0) || (column < 320) || (row > 640) || (column > 640)) {
+    if ((row < 0) || (column < 0) || (row > 640) || (column > 640)) {
       focus.x = -1;
       focus.y = -1;
       return false;
@@ -269,21 +288,12 @@ bool Map::UpdateFocus(int row, int column, int player_turn) {
       focus.x = static_cast<int>(row/64);
       focus.y = static_cast<int>(column/64);
     }
-  }
-  if ((row < 0) || (column < 0) || (row > 640) || (column > 640)) {
-    focus.x = -1;
-    focus.y = -1;
-    return false;
-  } else {
-    focus.x = static_cast<int>(row/64);
-    focus.y = static_cast<int>(column/64);
   }
   return true;
 }
 
-bool Map::Occupied(int player_turn) {
-  if ((map[focus.y][focus.x].unit != 0) &&
-      (map[focus.y][focus.x].player->id == player_turn))
+bool Map::Occupied() {
+  if (map[focus.y][focus.x].unit != 0)
     return true;
   else
     return false;
@@ -478,8 +488,11 @@ bool Map::AttackObject(SDL_Point object_location) {
         map[focus.y][focus.x].player->amount_w--;
       }
       EraseUnit(focus);
-      return true;
     }
+    SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "HIT",
+                          ("Unity Life: " + to_string(map[focus.y]
+                          [focus.x].health)).c_str(), NULL);
+    return true;
   }
   return false;
 }
@@ -489,4 +502,11 @@ void Map::EraseUnit(SDL_Point object_location) {
   map[object_location.y][object_location.x].player = NULL;
   map[object_location.y][object_location.x].health = 0;
   map[object_location.y][object_location.x].object = NULL;
+}
+
+bool Map::IsEnemy(int player_turn) {
+  if (map[focus.y][focus.x].player->id != player_turn)
+    return true;
+  else
+    return false;
 }

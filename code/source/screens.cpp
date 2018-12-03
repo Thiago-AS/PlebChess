@@ -229,7 +229,7 @@ void GameScene::EventHandler(SDL_Event &event) {
       }
       if ((mouse_over == -1) && (insertion_flag != -1)) {
         SDL_GetMouseState(&x, &y);
-        map->UpdateFocus(x, y, player_turn);
+        map->UpdateFocus(x, y, player_turn, true);
         if (player_turn == 0) {
           if (map->InsertObject(insertion_flag, player_turn, player0)) {
             player_turn ^= 1;
@@ -248,42 +248,48 @@ void GameScene::EventHandler(SDL_Event &event) {
       }
       if ((mouse_over == -1) && (insertion_flag == -1) && (move_flag == -1)) {
         SDL_GetMouseState(&x, &y);
-        if ((map->UpdateFocus(x, y, player_turn)) &&
-            (map->Occupied(player_turn))) {
+        if (map->UpdateFocus(x, y, player_turn, false) && map->Occupied()
+            && !map->IsEnemy(player_turn)) {
             move_flag = 1;
             to_be_moved.x = map->focus.x;
             to_be_moved.y = map->focus.y;
             break;
         }
       }
-      if ((mouse_over == -1) && (move_flag != -1)) {
+      if ((mouse_over == -1) && (move_flag != -1) && (insertion_flag == -1)) {
         SDL_GetMouseState(&x, &y);
-        if ((map->UpdateFocus(x, y, player_turn)) &&
-            !(map->Occupied(player_turn))) {
-          if (map->MoveObject(to_be_moved)) {
-            player_turn ^= 1;
-            player1->FinishTurn();
-            player0->FinishTurn();
-            move_flag = -1;
+        if (map->UpdateFocus(x, y, player_turn, false) && !map->Occupied()) {
+            if (map->MoveObject(to_be_moved)) {
+              player_turn ^= 1;
+              player1->FinishTurn();
+              player0->FinishTurn();
+              move_flag = -1;
+            } else {
+              SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR,
+                                      "Impossible Movement",
+                                      "Not allowed to move to the space", NULL);
+              move_flag = -1;
+            }
           } else {
-            SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR,
-                                    "Impossible Movement",
-                                     "Not allowed to move to the space", NULL);
-            move_flag = -1;
-          }
-        } else {
-          if (map->AttackObject(to_be_moved)) {
-            player_turn ^= 1;
-            player1->FinishTurn();
-            player0->FinishTurn();
-            move_flag = -1;
-            break;
-          } else {
-            SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR,
-                                    "Impossible Movement",
-                                     "Not allowed to attack the space", NULL);
-            move_flag = -1;
-          }
+            if (map->IsEnemy(player_turn)) {
+              if (map->AttackObject(to_be_moved)) {
+                player_turn ^= 1;
+                player1->FinishTurn();
+                player0->FinishTurn();
+                move_flag = -1;
+                break;
+              } else {
+                SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR,
+                                        "Impossible Movement",
+                                        "Space too far away to attack", NULL);
+                move_flag = -1;
+              }
+            } else {
+              SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR,
+                                      "Impossible Movement",
+                                      "Can't attack friendly unities", NULL);
+              move_flag = -1;
+            }
         }
       }
       break;
