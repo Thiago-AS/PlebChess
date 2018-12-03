@@ -137,9 +137,6 @@ void Gui::Render() {
       pause_menu->Render();
       break;
 
-    case GameScreen::WINNER_SCREEN:
-      break;
-
     default:
       break;
   }

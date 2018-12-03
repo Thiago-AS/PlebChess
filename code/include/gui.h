@@ -21,8 +21,7 @@ using namespace std;
 enum class GameScreen: int {
     MAIN_MENU = 0,
     NEW_GAME = 1,
-    PAUSE_MENU = 2,
-    WINNER_SCREEN = 3
+    PAUSE_MENU = 2
 };
 
 /**@brief Clase que define e instancia todas as telas do jogo.

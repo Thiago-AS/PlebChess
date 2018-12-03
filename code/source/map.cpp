@@ -500,7 +500,10 @@ bool Map::AttackObject(SDL_Point object_location) {
       EraseUnit(focus);
       is_winner = CheckWinCondition();
       if (is_winner != -1) {
-        Gui::current_screen = GameScreen::WINNER_SCREEN;
+        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "WINNER",
+                              ("Player " + to_string(is_winner) + " won")
+                              .c_str(), NULL);
+        Gui::quit = true;
       }
     }
     SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "HIT",
