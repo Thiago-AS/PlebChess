@@ -1,8 +1,8 @@
 // "Copyright 2018"
 #include "../include/gui.h"
 #include "./texture_manager.h"
-#include "./game_objects.h"
 #include "./screens.h"
+#include "./game_objects.h"
 
 Gui* Gui::instance = NULL;
 bool Gui::initialized = false;
@@ -11,7 +11,6 @@ SDL_Renderer* Gui::gRenderer = NULL;
 TTF_Font* Gui::game_font = NULL;
 GameScreen Gui::current_screen;
 
-GameObject* hearth;
 MainMenu* main_menu;
 GameScene* game_scene;
 PauseMenu* pause_menu;
@@ -26,6 +25,12 @@ Gui* Gui::Instance() {
 void Gui::Release() {
   delete instance;
   instance = NULL;
+  delete main_menu;
+  main_menu = NULL;
+  delete game_scene;
+  game_scene = NULL;
+  delete pause_menu;
+  pause_menu = NULL;
 
   initialized = false;
 }
@@ -83,8 +88,6 @@ bool Gui::Init() {
     }
   }
 
-  hearth = new GameObject(TextureManager::LoadTexture("../assets/hearth.png"),
-                          0, 0, 64, 64);
   main_menu = new MainMenu();
   main_menu->LoadScreen();
   game_scene = new GameScene();
@@ -119,16 +122,6 @@ void Gui::HandleEvents() {
   }
 }
 
-void Gui::Update() {
-  switch (Gui::current_screen) {
-    case GameScreen::MAIN_MENU:
-      break;
-
-    default:
-      break;
-  }
-}
-
 void Gui::Render() {
   SDL_RenderClear(gRenderer);
   switch (Gui::current_screen) {
@@ -142,6 +135,9 @@ void Gui::Render() {
 
     case GameScreen::PAUSE_MENU:
       pause_menu->Render();
+      break;
+
+    case GameScreen::WINNER_SCREEN:
       break;
 
     default:

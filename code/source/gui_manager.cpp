@@ -30,7 +30,6 @@ GuiManager::~GuiManager() {
 void GuiManager::Run() {
   while (!Gui::quit) {
     gui->HandleEvents();
-    gui->Update();
     gui->Render();
   }
 }

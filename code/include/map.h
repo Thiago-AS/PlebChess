@@ -127,8 +127,24 @@ class Map {
   * Assertiva Saida: Não há.
   */
   void EraseUnit(SDL_Point);
-
+  /**
+  * @brief Verifica se espaço e ocupado por inimigo.
+  * @param player_turn A quem o turno pertence.
+  * @return Retorna verdadeiro caso seja inimigo, falso cc.
+  * Assertiva Entrada: Deve have unidade no espaço.
+  *
+  * Assertiva Saida: Retorna verdadeiro caso seja inimigo, falso cc..
+  */
   bool IsEnemy(int);
+  /**
+  * @brief Verifica condição de vitoria.
+  * @return Retorna o valor do jogador vencedor, ou -1 caso niguem ganhe.
+  * Assertiva Entrada: Deve have ambos castelos ativos.
+  *
+  * Assertiva Saida: Retorna o valor do jogador vencedor, ou -1 caso niguem
+  * ganhe.
+  */
+  int CheckWinCondition();
 
  private:
   /** Textura de espaço vazio do mapa. */

@@ -48,12 +48,17 @@ Map::~Map() {
         map[row][column].object->Clean();
         delete map[row][column].object;
         map[row][column].object = NULL;
+        map[row][column].player = NULL;
       }
     }
   }
 
   SDL_DestroyTexture(tile);
   tile = NULL;
+  SDL_DestroyTexture(possible_tile);
+  possible_tile = NULL;
+  SDL_DestroyTexture(attack_tile);
+  attack_tile = NULL;
 }
 
 void Map::DrawMap() {
@@ -333,7 +338,11 @@ bool Map::MoveObject(SDL_Point object_location) {
     map[focus.y][focus.x].object->Update(map[focus.y][focus.x].position.x,
                                          map[focus.y][focus.x].position.y);
 
-    EraseUnit(object_location);
+    map[object_location.y][object_location.x].unit = 0;
+    map[object_location.y][object_location.x].player = NULL;
+    map[object_location.y][object_location.x].health = 0;
+    map[object_location.y][object_location.x].object = NULL;
+
     return true;
   } else {
     return false;
@@ -457,6 +466,7 @@ void Map::DrawPossibleMoves(SDL_Point object_location) {
 
 bool Map::AttackObject(SDL_Point object_location) {
   bool possible_attack = false;
+  int is_winner;
   switch (map[object_location.y][object_location.x].unit) {
     case 'W':
       if (IsMovePossible('W', object_location)) {
@@ -488,6 +498,10 @@ bool Map::AttackObject(SDL_Point object_location) {
         map[focus.y][focus.x].player->amount_w--;
       }
       EraseUnit(focus);
+      is_winner = CheckWinCondition();
+      if (is_winner != -1) {
+        Gui::current_screen = GameScreen::WINNER_SCREEN;
+      }
     }
     SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "HIT",
                           ("Unity Life: " + to_string(map[focus.y]
@@ -501,6 +515,7 @@ void Map::EraseUnit(SDL_Point object_location) {
   map[object_location.y][object_location.x].unit = 0;
   map[object_location.y][object_location.x].player = NULL;
   map[object_location.y][object_location.x].health = 0;
+  delete map[object_location.y][object_location.x].object;
   map[object_location.y][object_location.x].object = NULL;
 }
 
@@ -509,4 +524,15 @@ bool Map::IsEnemy(int player_turn) {
     return true;
   else
     return false;
+}
+
+int Map::CheckWinCondition() {
+  if (map[0][0].health == 0) {
+    return 0;
+  }
+  if (map[9][9].health == 0) {
+    return 1;
+  }
+
+  return -1;
 }
